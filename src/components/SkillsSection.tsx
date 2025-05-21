@@ -1,11 +1,16 @@
 
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
+import { 
+  Code, Database, CloudCog, Workflow, Brain, 
+  LineChart, Wrench, MessageSquareText 
+} from "lucide-react";
 
 interface SkillCategory {
   category: string;
   skills: string[];
   colorClass: string;
+  icon: React.ReactNode;
 }
 
 const SkillsSection = () => {
@@ -17,7 +22,8 @@ const SkillsSection = () => {
         "SQL (MySQL, Oracle, PostgreSQL)", "NoSQL (MongoDB, CosmosDB)", 
         "Snowflake", "Spark (PySpark)", "Hadoop", "Hive", "XML"
       ],
-      colorClass: "from-blue-500 to-indigo-600"
+      colorClass: "from-blue-500 to-indigo-600",
+      icon: <Code className="w-8 h-8 text-blue-500" strokeWidth={1.5} />
     },
     {
       category: "Libraries & Frameworks",
@@ -26,7 +32,8 @@ const SkillsSection = () => {
         "Scikit-Learn", "SpaCy", "NLTK", "Gensim", "LangChain", 
         "LangGraph", "Langsmith", "Alteryx", "Seaborn"
       ],
-      colorClass: "from-indigo-500 to-purple-600"
+      colorClass: "from-indigo-500 to-purple-600",
+      icon: <Code className="w-8 h-8 text-indigo-500" strokeWidth={1.5} />
     },
     {
       category: "Cloud Platforms",
@@ -35,7 +42,8 @@ const SkillsSection = () => {
         "Azure (Data Factory, Synapse, CosmosDB, Data Explorer, Logic Apps, Storage)", 
         "GCP (Cloud Storage, BigQuery)"
       ],
-      colorClass: "from-purple-500 to-pink-600"
+      colorClass: "from-purple-500 to-pink-600",
+      icon: <CloudCog className="w-8 h-8 text-purple-500" strokeWidth={1.5} />
     },
     {
       category: "Data Engineering & Pipelines",
@@ -44,7 +52,8 @@ const SkillsSection = () => {
         "Delta Lake", "Data Lake Architecture", "dbt", "Apache Kafka", 
         "Airflow", "FastAPI"
       ],
-      colorClass: "from-pink-500 to-red-600"
+      colorClass: "from-pink-500 to-red-600",
+      icon: <Database className="w-8 h-8 text-pink-500" strokeWidth={1.5} />
     },
     {
       category: "GenAI & LLM Systems",
@@ -53,7 +62,8 @@ const SkillsSection = () => {
         "Retrieval-Augmented Generation (RAG)", "LlamaIndex", 
         "Vector Databases (FAISS, Pinecone)"
       ],
-      colorClass: "from-red-500 to-orange-600"
+      colorClass: "from-red-500 to-orange-600",
+      icon: <Brain className="w-8 h-8 text-red-500" strokeWidth={1.5} />
     },
     {
       category: "Machine Learning & Analytics",
@@ -62,7 +72,8 @@ const SkillsSection = () => {
         "Time Series (ARIMA, Exponential Smoothing)", "CNNs", "RNNs", "LSTMs", 
         "A/B Testing", "Hypothesis Testing", "EDA"
       ],
-      colorClass: "from-orange-500 to-yellow-600"
+      colorClass: "from-orange-500 to-yellow-600",
+      icon: <LineChart className="w-8 h-8 text-orange-500" strokeWidth={1.5} />
     },
     {
       category: "Tools & DevOps",
@@ -71,7 +82,8 @@ const SkillsSection = () => {
         "Power BI", "Excel (Advanced)", "Looker", "Power Automate", 
         "Power Apps", "CI/CD (GitHub Actions, Jenkins)", "Jira"
       ],
-      colorClass: "from-teal-500 to-cyan-600"
+      colorClass: "from-teal-500 to-cyan-600",
+      icon: <Wrench className="w-8 h-8 text-teal-500" strokeWidth={1.5} />
     },
     {
       category: "Soft Skills",
@@ -79,7 +91,8 @@ const SkillsSection = () => {
         "Data-Driven Strategic Planning", "Analytical Market Research", 
         "Stakeholder Engagement", "Data Storytelling"
       ],
-      colorClass: "from-cyan-500 to-blue-600"
+      colorClass: "from-cyan-500 to-blue-600",
+      icon: <MessageSquareText className="w-8 h-8 text-cyan-500" strokeWidth={1.5} />
     }
   ];
 
@@ -89,9 +102,12 @@ const SkillsSection = () => {
       
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         {skillCategories.map((category, idx) => (
-          <Card key={idx} className="overflow-hidden border-none shadow-lg bg-gradient-to-r from-slate-50 to-gray-100 dark:from-slate-900 dark:to-gray-900/80 hover:shadow-xl transition-all duration-300">
+          <Card key={idx} className="overflow-hidden border-none shadow-lg bg-gradient-to-r from-slate-50 to-gray-100 dark:from-slate-900 dark:to-gray-900/80 hover:shadow-xl transition-all duration-300 group">
             <div className={`absolute top-0 left-0 w-2 h-full bg-gradient-to-b ${category.colorClass}`}></div>
-            <CardHeader className="relative pb-2">
+            <CardHeader className="relative pb-2 flex flex-row items-center">
+              <div className="p-2 mr-3 rounded-lg bg-gray-100 dark:bg-gray-800/50 group-hover:scale-110 transition-transform duration-300">
+                {category.icon}
+              </div>
               <CardTitle className="text-lg">{category.category}</CardTitle>
             </CardHeader>
             <CardContent>
@@ -111,7 +127,7 @@ const SkillsSection = () => {
                     <Badge 
                       key={skillIdx} 
                       variant="secondary" 
-                      className={`text-xs ${badgeColorClass}`}
+                      className={`text-xs ${badgeColorClass} transition-all duration-300 hover:scale-105`}
                     >
                       {skill}
                     </Badge>
