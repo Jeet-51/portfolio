@@ -8,31 +8,7 @@ const ContactSection = () => {
   };
 
   return (
-    <div>
-      <h2 className="text-2xl font-bold tracking-tight mb-6 bg-gradient-to-r from-white to-blue-300 text-transparent bg-clip-text flex items-center gap-3">
-        <div className="p-2 rounded-full bg-blue-900/30 border border-blue-700/30">
-          <Mail className="w-5 h-5 text-blue-400" />
-        </div>
-        Get In Touch
-      </h2>
-      <p className="text-gray-300 dark:text-gray-300 mb-6">
-        I'm always open to discussing new projects, opportunities, or partnerships.
-        Feel free to reach out through any of my contact information below.
-      </p>
-
-      <div className="mb-8 flex justify-center">
-        <a 
-          href="mailto:jeetp5118@gmail.com"
-          className="inline-block"
-        >
-          <Button 
-            className="bg-gradient-to-r from-blue-600 to-cyan-500 hover:from-blue-700 hover:to-cyan-600 text-white shadow-lg hover:shadow-xl transition-all duration-300 px-8 py-6 rounded-xl text-base font-medium"
-            size="lg"
-          >
-            Contact Me
-          </Button>
-        </a>
-      </div>
+    
 
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
         <Card className="overflow-hidden border-none shadow-lg rounded-2xl bg-slate-900/80 backdrop-blur-sm hover:shadow-xl transition-all duration-300 border border-slate-700/50 hover:border-blue-500/30">
