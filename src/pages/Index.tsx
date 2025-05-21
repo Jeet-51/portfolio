@@ -112,14 +112,7 @@ const Index = () => {
                     <CardTitle>About Me</CardTitle>
                   </CardHeader>
                   <CardContent>
-                    <p className="text-lg leading-relaxed">
-                      As a Data Scientist and AI Engineer with expertise in machine learning, data engineering, and AI system development, 
-                      I specialize in building intelligent solutions that transform complex data into actionable insights. 
-                      My experience spans across healthcare analytics, recommendation systems, fraud detection, and natural language processing.
-                    </p>
-                    <p className="mt-4 text-lg leading-relaxed">
-                      Currently pursuing my Master's in Data Science at Indiana University, I combine academic knowledge with practical experience 
-                      from roles at IU Smart Charity, Hyphenova Network, and various research positions to deliver innovative data-driven solutions.
+                    <p className="text-lg leading-relaxed"> I’m a Data Scientist and AI Engineer with a strong foundation in machine learning, data engineering, and intelligent system design. I specialize in translating complex, high-volume datasets into actionable strategies—whether it’s forecasting Medicare billing behaviors, powering fraud detection systems, or building RAG-based chatbots. </p> <p className="mt-4 text-lg leading-relaxed"> With a Master’s in Data Science from Indiana University and hands-on roles at Hyphenova Network, Project 990, and IU’s School of Public Health, I bring a mix of academic rigor and real-world execution. My work spans healthcare analytics, GenAI applications, recommender systems, and geospatial visualizations—always grounded in scalable infrastructure and model interpretability. </p>
                     </p>
                   </CardContent>
                 </Card>
