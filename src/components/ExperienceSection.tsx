@@ -98,9 +98,7 @@ const ExperienceSection = () => {
       location: "Bloomington, Indiana",
       period: "May 2023 - September 2023",
       descriptions: [
-        "Performed regression-based statistical analysis on 50,000+ DHS responses in Stata, reducing inconsistencies by 30% and enhancing the credibility of health policy insights.",
-        "Executed A/B testing frameworks to refine preprocessing strategies for health indicators, improving data model accuracy by 15% and supporting evidence-based regional interventions.",
-        "Designed an interactive ArcGIS dashboard for multi-region health teams, reducing analysis time by 35% and accelerating timely responses for vulnerable populations."
+        "At the Indiana University School of Public Health, I analyzed 50K+ DHS responses using Stata, reducing data inconsistencies by 30% and strengthening health policy insights. I implemented A/B testing to refine preprocessing for health indicators, boosting model accuracy by 15%, and built an ArcGIS dashboard that cut analysis time by 35% for regional health teams."
       ],
       technologies: ["Stata", "Statistical Analysis", "A/B Testing", "ArcGIS", "Dashboards"]
     },
@@ -110,9 +108,7 @@ const ExperienceSection = () => {
       location: "Mumbai, India",
       period: "June 2022 - May 2023",
       descriptions: [
-        "Engineered advanced resampling techniques using SMOTE and ADASYN for 800+ imbalanced healthcare records, improving class representation for downstream modeling.",
-        "Attained 94% predictive accuracy on rebalanced datasets using Random Forest and ensemble learning, strengthening diagnostic decision support.",
-        "Authored and published peer-reviewed research in Design Engineering (Scopus-indexed), contributing to academic discourse on imbalanced classification in medical AI."
+        "At Dwarkadas J. Sanghvi College of Engineering, I applied SMOTE and ADASYN to rebalance 800+ imbalanced healthcare records, achieving 94% accuracy with Random Forest and ensemble models. This work strengthened diagnostic decision support and was published in the Scopus-indexed journal Design Engineering, contributing to research in medical AI."
       ],
       technologies: ["SMOTE", "ADASYN", "Random Forest", "Ensemble Learning", "Research"]
     },
@@ -122,9 +118,7 @@ const ExperienceSection = () => {
       location: "Remote",
       period: "Feb 2022 - May 2022",
       descriptions: [
-        "Constructed an LSTM-based deep learning model on 430K+ time series entries for early AQI prediction, achieving an R² score of 0.91.",
-        "Enhanced model precision by 25% through Bayesian hyperparameter tuning and targeted feature selection, lowering RMSE from 0.24 to 0.18.",
-        "Integrated ML pipelines into Azure ML with AKS deployment, enabling real-time inference and accelerating delivery of environmental insights by 30%."
+        "At Gustovalley Technovations, I built an LSTM-based deep learning model on 430K+ time series records for early AQI prediction, achieving an R² of 0.91. I improved precision by 25% using Bayesian tuning and feature selection, and deployed the ML pipeline on Azure ML with AKS for real-time inference, accelerating environmental insights by 30%."
       ],
       technologies: ["LSTM", "Deep Learning", "Time Series", "Azure ML", "AKS", "Bayesian Optimization"]
     },
@@ -134,9 +128,7 @@ const ExperienceSection = () => {
       location: "Remote",
       period: "Jun 2021 - Aug 2021",
       descriptions: [
-        "Implemented a cost tracking system using PostgreSQL, driving a 15% reduction in project expenses through improved financial oversight.",
-        "Optimized MongoDB queries for application monitoring, resulting in a 40% boost in page load performance and user experience.",
-        "Delivered RESTful APIs with Python and Flask to support real-time analytics, enhancing data accessibility and accelerating financial reporting by 40%."
+        "At Technocolabs Software, I implemented a PostgreSQL-based cost tracking system that reduced project expenses by 15%. I optimized MongoDB queries to improve app monitoring and boosted page load performance by 40%. Additionally, I developed RESTful APIs using Python and Flask to enable real-time analytics and speed up financial reporting by 40%."
       ],
       technologies: ["PostgreSQL", "MongoDB", "Python", "Flask", "RESTful APIs"]
     }
