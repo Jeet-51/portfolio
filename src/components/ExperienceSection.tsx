@@ -14,7 +14,7 @@ interface ExperienceItemProps {
 }
 
 const ExperienceItem = ({ title, company, location, period, descriptions, technologies }: ExperienceItemProps) => (
-  <div className="relative mb-12 pl-8 md:pl-12 group">
+  <div className="relative mb-8 pl-8 md:pl-12 group">
     {/* Timeline dot */}
     <div className="absolute left-0 top-2 h-4 w-4">
       <div className="h-4 w-4 rounded-full bg-blue-500 group-hover:animate-pulse"></div>
@@ -22,7 +22,7 @@ const ExperienceItem = ({ title, company, location, period, descriptions, techno
     </div>
     
     {/* Timeline line */}
-    <div className="absolute left-2 top-6 bottom-[-48px] w-[1px] bg-gradient-to-b from-blue-500 to-blue-500/20"></div>
+    <div className="absolute left-2 top-6 bottom-[-32px] w-[1px] bg-gradient-to-b from-blue-500 to-blue-500/20"></div>
     
     <Card className="border-none rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 bg-slate-900/80 backdrop-blur-sm hover:bg-slate-800/80 border border-slate-700/50 group-hover:border-blue-500/30 overflow-hidden">
       <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-blue-600 to-cyan-400 scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left"></div>
@@ -37,8 +37,8 @@ const ExperienceItem = ({ title, company, location, period, descriptions, techno
         </div>
       </CardHeader>
       
-      <CardContent className="pt-2">
-        <ul className="space-y-3 list-disc list-inside text-slate-300 pl-2">
+      <CardContent className="pt-2 pb-4">
+        <ul className="space-y-3 list-disc list-outside text-slate-300 pl-5">
           {descriptions.map((desc, index) => (
             <li key={index} className="text-sm md:text-base leading-relaxed">{desc}</li>
           ))}

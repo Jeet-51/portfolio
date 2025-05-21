@@ -35,29 +35,31 @@ const PublicationsSection = () => {
   return (
     <div>
       <div className="flex items-center gap-2 mb-6">
-        <FileText className="w-6 h-6 text-blue-500" />
-        <h2 className="text-2xl font-bold tracking-tight">Publications</h2>
+        <div className="p-2 rounded-full bg-blue-900/30 border border-blue-700/30">
+          <FileText className="w-6 h-6 text-blue-400" />
+        </div>
+        <h2 className="text-2xl font-bold tracking-tight bg-gradient-to-r from-white to-blue-300 text-transparent bg-clip-text">Publications</h2>
       </div>
 
       <div className="space-y-6">
         {publications.map((pub, index) => (
-          <Card key={index} className="overflow-hidden border-none shadow-lg bg-gradient-to-r from-slate-50 to-indigo-50 dark:from-slate-900 dark:to-indigo-900/20">
-            <div className="absolute top-0 left-0 w-2 h-full bg-gradient-to-b from-indigo-500 to-purple-600"></div>
+          <Card key={index} className="overflow-hidden border-none shadow-lg rounded-2xl bg-slate-900/80 backdrop-blur-sm hover:shadow-xl transition-all duration-300 border border-slate-700/50 hover:border-blue-500/30">
+            <div className="absolute top-0 left-0 w-2 h-full bg-gradient-to-b from-purple-500 to-indigo-600"></div>
             <CardHeader className="relative">
               <div className="flex flex-col md:flex-row md:justify-between md:items-start gap-2">
-                <CardTitle className="text-xl">{pub.title}</CardTitle>
-                <span className="text-sm text-muted-foreground whitespace-nowrap">{pub.date}</span>
+                <CardTitle className="text-xl text-white">{pub.title}</CardTitle>
+                <span className="text-sm text-cyan-300/80 whitespace-nowrap px-3 py-1 rounded-full bg-cyan-900/20 border border-cyan-800/30">{pub.date}</span>
               </div>
-              <CardDescription className="text-base">{pub.journal}</CardDescription>
+              <CardDescription className="text-base text-slate-300">{pub.journal}</CardDescription>
             </CardHeader>
             <CardContent>
-              <p className="text-gray-700 dark:text-gray-300">{pub.description}</p>
+              <p className="text-slate-300">{pub.description}</p>
               
               <div className="mt-4">
-                <h4 className="text-sm font-semibold mb-2">Keywords:</h4>
+                <h4 className="text-sm font-semibold mb-3 text-slate-300">Keywords:</h4>
                 <div className="flex flex-wrap gap-2">
                   {pub.keywords.map((keyword, idx) => (
-                    <Badge key={idx} variant="outline" className="bg-indigo-50 dark:bg-indigo-900/20 border-indigo-200 dark:border-indigo-700">
+                    <Badge key={idx} variant="outline" className="bg-slate-800/80 border-slate-700 text-cyan-300 hover:bg-slate-700/80 transition-colors">
                       {keyword}
                     </Badge>
                   ))}
@@ -70,7 +72,7 @@ const PublicationsSection = () => {
                   href={pub.link} 
                   target="_blank" 
                   rel="noopener noreferrer" 
-                  className="text-blue-600 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-300 text-sm font-medium underline underline-offset-4"
+                  className="text-blue-400 hover:text-blue-300 text-sm font-medium underline underline-offset-4"
                 >
                   Read Publication
                 </a>
