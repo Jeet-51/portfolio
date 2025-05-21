@@ -97,37 +97,42 @@ const SkillsSection = () => {
   ];
 
   return (
-    <div>
-      <h2 className="text-2xl font-bold tracking-tight mb-6 bg-gradient-to-r from-blue-600 to-purple-600 text-transparent bg-clip-text">Skills</h2>
+    <div className="py-8">
+      <h2 className="text-2xl font-bold tracking-tight mb-8 bg-gradient-to-r from-white to-slate-300 text-transparent bg-clip-text flex items-center gap-3">
+        <div className="p-2 rounded-full bg-indigo-900/30 border border-indigo-700/30">
+          <Code className="w-6 h-6 text-indigo-400" />
+        </div>
+        Skills & Expertise
+      </h2>
       
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         {skillCategories.map((category, idx) => (
-          <Card key={idx} className="overflow-hidden border-none shadow-lg bg-gradient-to-r from-slate-50 to-gray-100 dark:from-slate-900 dark:to-gray-900/80 hover:shadow-xl transition-all duration-300 group">
-            <div className={`absolute top-0 left-0 w-2 h-full bg-gradient-to-b ${category.colorClass}`}></div>
+          <Card key={idx} className="overflow-hidden border-none rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 group bg-slate-900/80 backdrop-blur-sm hover:bg-slate-800/80 border border-slate-700/50">
+            <div className={`absolute top-0 left-0 w-1.5 h-full bg-gradient-to-b ${category.colorClass}`}></div>
             <CardHeader className="relative pb-2 flex flex-row items-center">
-              <div className="p-2 mr-3 rounded-lg bg-gray-100 dark:bg-gray-800/50 group-hover:scale-110 transition-transform duration-300">
+              <div className="p-3 mr-4 rounded-xl bg-slate-800/80 border border-slate-700/50 group-hover:scale-110 transition-transform duration-300 shadow-lg">
                 {category.icon}
               </div>
-              <CardTitle className="text-lg">{category.category}</CardTitle>
+              <CardTitle className="text-xl text-white group-hover:text-blue-300 transition-colors">{category.category}</CardTitle>
             </CardHeader>
             <CardContent>
-              <div className="flex flex-wrap gap-2">
+              <div className="flex flex-wrap gap-2.5">
                 {category.skills.map((skill, skillIdx) => {
                   // Determine badge color based on category
-                  const badgeColorClass = idx % 8 === 0 ? "bg-blue-50 dark:bg-blue-900/20 border-blue-200 dark:border-blue-700" :
-                                         idx % 8 === 1 ? "bg-indigo-50 dark:bg-indigo-900/20 border-indigo-200 dark:border-indigo-700" :
-                                         idx % 8 === 2 ? "bg-purple-50 dark:bg-purple-900/20 border-purple-200 dark:border-purple-700" :
-                                         idx % 8 === 3 ? "bg-pink-50 dark:bg-pink-900/20 border-pink-200 dark:border-pink-700" :
-                                         idx % 8 === 4 ? "bg-red-50 dark:bg-red-900/20 border-red-200 dark:border-red-700" :
-                                         idx % 8 === 5 ? "bg-orange-50 dark:bg-orange-900/20 border-orange-200 dark:border-orange-700" :
-                                         idx % 8 === 6 ? "bg-teal-50 dark:bg-teal-900/20 border-teal-200 dark:border-teal-700" :
-                                                       "bg-cyan-50 dark:bg-cyan-900/20 border-cyan-200 dark:border-cyan-700";
+                  const badgeColorClass = idx % 8 === 0 ? "bg-blue-900/20 border-blue-700/50 text-blue-300 hover:bg-blue-800/30" :
+                                         idx % 8 === 1 ? "bg-indigo-900/20 border-indigo-700/50 text-indigo-300 hover:bg-indigo-800/30" :
+                                         idx % 8 === 2 ? "bg-purple-900/20 border-purple-700/50 text-purple-300 hover:bg-purple-800/30" :
+                                         idx % 8 === 3 ? "bg-pink-900/20 border-pink-700/50 text-pink-300 hover:bg-pink-800/30" :
+                                         idx % 8 === 4 ? "bg-red-900/20 border-red-700/50 text-red-300 hover:bg-red-800/30" :
+                                         idx % 8 === 5 ? "bg-orange-900/20 border-orange-700/50 text-orange-300 hover:bg-orange-800/30" :
+                                         idx % 8 === 6 ? "bg-teal-900/20 border-teal-700/50 text-teal-300 hover:bg-teal-800/30" :
+                                                       "bg-cyan-900/20 border-cyan-700/50 text-cyan-300 hover:bg-cyan-800/30";
                   
                   return (
                     <Badge 
                       key={skillIdx} 
-                      variant="secondary" 
-                      className={`text-xs ${badgeColorClass} transition-all duration-300 hover:scale-105`}
+                      variant="outline" 
+                      className={`px-3 py-1.5 text-sm rounded-lg ${badgeColorClass} transition-all duration-300 hover:scale-105 hover:shadow-md`}
                     >
                       {skill}
                     </Badge>
