@@ -42,7 +42,7 @@ const ProjectsSection = () => {
       ],
       tech: ["Apache Spark", "Power BI", "scikit-learn", "User Behavior Analytics"],
       imageUrl: "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3",
-      githubUrl: "https://github.com/Jeet-51/HRA-Portal-Analytics"
+      githubUrl: "https://github.iu.edu/patejeet/InfoViz_HRA-Project_JP-AV-HL-SK-HC"
     },
     {
       title: "DevPath Insight: ML-Driven Career Analytics on Stack Overflow Data",
@@ -52,7 +52,7 @@ const ProjectsSection = () => {
       ],
       tech: ["FastAPI", "PostgreSQL", "LightGBM", "Plotly"],
       imageUrl: "https://images.unsplash.com/photo-1551434678-e076c223a692?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3",
-      githubUrl: "https://github.com/Jeet-51/DevPath-Insight"
+      githubUrl: "https://github.iu.edu/patejeet/ADT-Project-DevPath-Insight"
     },
     {
       title: "Learnera: Course Recommendation System for Academic Success",
@@ -62,7 +62,7 @@ const ProjectsSection = () => {
       ],
       tech: ["NLP", "TF-IDF", "Content-Based Filtering", "Web Development"],
       imageUrl: "https://images.unsplash.com/photo-1501504905252-473c47e087f8?q=80&w=2074&auto=format&fit=crop&ixlib=rb-4.0.3",
-      githubUrl: "https://github.com/Jeet-51/Learnera"
+      githubUrl: "https://github.com/Jeet-51/Learnera-A-Course-Recommendation-System"
     }
   ];
 
