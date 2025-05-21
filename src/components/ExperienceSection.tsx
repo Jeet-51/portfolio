@@ -78,9 +78,7 @@ const ExperienceSection = () => {
       location: "Bloomington, Indiana",
       period: "Aug 2023 - May 2024",
       descriptions: [
-        "Facilitated instruction on data visualization concepts using Python libraries such as Matplotlib, Seaborn, and Plotly, reinforcing practical skill development through live coding sessions.",
-        "Supported student projects involving D3.js and interactive dashboards, strengthening their ability to design intuitive, user-driven data visuals.",
-        "Empowered students to transform analytical findings into compelling visual stories, sharpening their data communication and storytelling capabilities."
+        "As an Associate Instructor at Indiana University, I led instruction on data visualization using Python libraries like Matplotlib, Seaborn, and Plotly, emphasizing hands-on learning through live coding. I supported student projects involving D3.js and interactive dashboards, helping them build intuitive visuals and effectively communicate data-driven insights."
       ],
       technologies: ["Python", "Matplotlib", "Seaborn", "Plotly", "D3.js", "Data Visualization"]
     },
