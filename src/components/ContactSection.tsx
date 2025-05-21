@@ -1,9 +1,12 @@
-
 import { Card, CardContent } from "@/components/ui/card";
 import { Mail, Phone, Linkedin, Github } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 const ContactSection = () => {
+  const handleContactClick = () => {
+    window.open('mailto:jeetp5118@gmail.com', '_blank');
+  };
+
   return (
     <div>
       <h2 className="text-2xl font-bold tracking-tight mb-6 bg-gradient-to-r from-white to-blue-300 text-transparent bg-clip-text flex items-center gap-3">
@@ -18,13 +21,17 @@ const ContactSection = () => {
       </p>
 
       <div className="mb-8 flex justify-center">
-        <Button 
-          className="bg-gradient-to-r from-blue-600 to-cyan-500 hover:from-blue-700 hover:to-cyan-600 text-white shadow-lg hover:shadow-xl transition-all duration-300 px-8 py-6 rounded-xl text-base font-medium"
-          size="lg"
-          onClick={() => window.location.href = "mailto:jeetp5118@gmail.com"}
+        <a 
+          href="mailto:jeetp5118@gmail.com"
+          className="inline-block"
         >
-          Contact Me
-        </Button>
+          <Button 
+            className="bg-gradient-to-r from-blue-600 to-cyan-500 hover:from-blue-700 hover:to-cyan-600 text-white shadow-lg hover:shadow-xl transition-all duration-300 px-8 py-6 rounded-xl text-base font-medium"
+            size="lg"
+          >
+            Contact Me
+          </Button>
+        </a>
       </div>
 
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
