@@ -24,7 +24,7 @@ const ProjectsSection = () => {
         "Integrated MLflow for experiment tracking and SHAP for model interpretability on 200K+ claims, enabling semantic service classification, drift detection, and retraining workflows with Delta Lake's versioned storage."
       ],
       tech: ["Delta Lake", "MLflow", "SHAP", "XGBoost", "PySpark", "Hugging Face Transformers"],
-      imageUrl: "https://images.unsplash.com/photo-1538108149393-fbbd81895907?auto=format&fit=crop&q=80&w=2128&ixlib=rb-4.0.3",
+      imageUrl: "https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?auto=format&fit=crop&q=80&w=2070&ixlib=rb-4.0.3",
       githubUrl: "https://github.com/Jeet-51/ClaimGuard-Intelligent-Healthcare-Service-Pattern-Analysis"
     },
     {
@@ -34,7 +34,7 @@ const ProjectsSection = () => {
         "Deployed interactive QuickSight dashboards delivering 40% faster insights into revenue trends, customer behavior, and fraud indicators, guiding strategic financial decisions."
       ],
       tech: ["AWS", "S3", "SageMaker", "Redshift", "QuickSight", "PySpark", "Machine Learning"],
-      imageUrl: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&q=80&w=2070&ixlib=rb-4.0.3",
+      imageUrl: "https://images.unsplash.com/photo-1494607239400-ff147086c950?auto=format&fit=crop&q=80&w=2071&ixlib=rb-4.0.3",
       githubUrl: "https://github.com/Jeet-51/FinanceFlow-Cloud-Enabled-Analytics-for-Fraud-Detection"
     },
     {
@@ -44,7 +44,7 @@ const ProjectsSection = () => {
         "Built a Power BI dashboard to visualize bounce rates, retention, and visit flows across 2.5K+ page views, transforming raw usage data into actionable insights for portal optimization."
       ],
       tech: ["Apache Spark", "Power BI", "scikit-learn", "User Behavior Analytics"],
-      imageUrl: "https://images.unsplash.com/photo-1487058792275-0ad4aaf24ca7?auto=format&fit=crop&q=80&w=2000&ixlib=rb-4.0.3",
+      imageUrl: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&q=80&w=2070&ixlib=rb-4.0.3",
       githubUrl: "https://github.iu.edu/patejeet/HRA-Portal-Usage-Analytics-and-Dashboard-Development"
     },
     {
@@ -54,7 +54,7 @@ const ProjectsSection = () => {
         "Predicted career trajectories and identified skill gaps using LightGBM and vector similarity models, powering interactive visualizations and personalized analytics via Plotly."
       ],
       tech: ["FastAPI", "PostgreSQL", "LightGBM", "Plotly"],
-      imageUrl: "https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&q=80&w=2000&ixlib=rb-4.0.3",
+      imageUrl: "https://images.unsplash.com/photo-1461749280684-dccba630e2f6?auto=format&fit=crop&q=80&w=2000&ixlib=rb-4.0.3",
       githubUrl: "https://github.iu.edu/patejeet/DevPath-Insight-ML-Driven-Career-Analytics-on-Stack-Overflow-Data"
     },
     {
