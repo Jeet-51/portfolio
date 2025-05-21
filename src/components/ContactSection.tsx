@@ -1,6 +1,7 @@
 
 import { Card, CardContent } from "@/components/ui/card";
 import { Mail, Phone, Linkedin, Github } from "lucide-react";
+import { Button } from "@/components/ui/button";
 
 const ContactSection = () => {
   return (
@@ -15,6 +16,16 @@ const ContactSection = () => {
         I'm always open to discussing new projects, opportunities, or partnerships.
         Feel free to reach out through any of my contact information below.
       </p>
+
+      <div className="mb-8 flex justify-center">
+        <Button 
+          className="bg-gradient-to-r from-blue-600 to-cyan-500 hover:from-blue-700 hover:to-cyan-600 text-white shadow-lg hover:shadow-xl transition-all duration-300 px-8 py-6 rounded-xl text-base font-medium"
+          size="lg"
+          onClick={() => window.location.href = "mailto:jeetp5118@gmail.com"}
+        >
+          Contact Me
+        </Button>
+      </div>
 
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
         <Card className="overflow-hidden border-none shadow-lg rounded-2xl bg-slate-900/80 backdrop-blur-sm hover:shadow-xl transition-all duration-300 border border-slate-700/50 hover:border-blue-500/30">
