@@ -12,11 +12,13 @@ const EducationSection = () => {
       period: "August 2023 - May 2025",
       gpa: "3.8/4.0",
       courses: [
-        "Machine Learning",
-        "Deep Learning",
-        "Natural Language Processing",
-        "Big Data Systems",
-        "Applied Statistics",
+        "Applied Machine Learning",
+        "Big Data Applications",
+        "Data Mining",
+        "Information Visualization",
+        "Image Processing for Medical Application", 
+        "Scientific Visualization",
+        "Applied Database Technology",
         "Data Visualization"
       ]
     },
@@ -29,8 +31,7 @@ const EducationSection = () => {
       courses: [
         "Data Structures & Algorithms",
         "Database Management Systems",
-        "Operating Systems",
-        "Artificial Intelligence",
+        "Artificial Intelligence and Machine Learning",
         "Computer Vision",
         "Signal Processing"
       ]
