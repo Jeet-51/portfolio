@@ -34,7 +34,7 @@ const ProjectsSection = () => {
         "Deployed interactive QuickSight dashboards delivering 40% faster insights into revenue trends, customer behavior, and fraud indicators, guiding strategic financial decisions."
       ],
       tech: ["AWS", "S3", "SageMaker", "Redshift", "QuickSight", "PySpark", "Machine Learning"],
-      imageUrl: "https://images.unsplash.com/photo-1488590528505-98d2b5aba04b?auto=format&fit=crop&q=80&w=2070&ixlib=rb-4.0.3",
+      imageUrl: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&q=80&w=2030&ixlib=rb-4.0.3",
       githubUrl: "https://github.com/Jeet-51/FinanceFlow-Cloud-Enabled-Analytics-for-Fraud-Detection"
     },
     {
@@ -101,6 +101,7 @@ const ProjectsSection = () => {
                     src={project.imageUrl} 
                     alt={project.title} 
                     className={`w-full h-full object-cover object-center transition-all duration-1000 ${hoveredIndex === index ? 'scale-110 filter brightness-110' : 'scale-100'}`}
+                    loading="lazy"
                   />
                   <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-[#2C7695] to-[#50BFC3]"></div>
                 </div>
