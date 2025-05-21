@@ -198,7 +198,7 @@ const Hero = () => {
               LLM Systems
             </Badge>
             <Badge variant="outline" className="px-4 py-2 text-sm rounded-xl bg-cyan-900/30 border-cyan-500/50 text-cyan-300 hover:bg-cyan-800/30 transition-all">
-              ML Engineering
+              AI Infrastructure & MLOps
             </Badge>
           </div>
           
