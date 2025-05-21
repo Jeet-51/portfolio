@@ -17,38 +17,38 @@ const ExperienceItem = ({ title, company, location, period, descriptions, techno
   <div className="relative mb-8 pl-8 md:pl-12 group">
     {/* Timeline dot */}
     <div className="absolute left-0 top-2 h-4 w-4">
-      <div className="h-4 w-4 rounded-full bg-blue-500 group-hover:animate-pulse"></div>
-      <div className="absolute -inset-1 rounded-full bg-blue-400/30 animate-pulse group-hover:animate-none"></div>
+      <div className="h-4 w-4 rounded-full bg-[#50BFC3] group-hover:animate-pulse"></div>
+      <div className="absolute -inset-1 rounded-full bg-[#50BFC3]/30 animate-pulse group-hover:animate-none"></div>
     </div>
     
     {/* Timeline line */}
-    <div className="absolute left-2 top-6 bottom-[-32px] w-[1px] bg-gradient-to-b from-blue-500 to-blue-500/20"></div>
+    <div className="absolute left-2 top-6 bottom-[-32px] w-[1px] bg-gradient-to-b from-[#50BFC3] to-[#50BFC3]/20"></div>
     
-    <Card className="border-none rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 bg-slate-900/80 backdrop-blur-sm hover:bg-slate-800/80 border border-slate-700/50 group-hover:border-blue-500/30 overflow-hidden">
-      <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-blue-600 to-cyan-400 scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left"></div>
+    <Card className="border-none rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 bg-[#1D3752]/80 backdrop-blur-sm hover:bg-[#214D72]/80 border border-[#2C7695]/50 overflow-hidden">
+      <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-[#2C7695] to-[#50BFC3] scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left"></div>
       
       <CardHeader className="pb-3">
         <div className="flex flex-col md:flex-row md:justify-between md:items-start">
           <div>
-            <CardTitle className="text-xl text-white group-hover:text-blue-400 transition-colors">{title}</CardTitle>
+            <CardTitle className="text-xl text-white group-hover:text-[#50BFC3] transition-colors">{title}</CardTitle>
             <CardDescription className="text-base text-slate-300">{company} | {location}</CardDescription>
           </div>
-          <span className="text-sm text-cyan-300/80 mt-2 md:mt-0 px-3 py-1 rounded-full bg-cyan-900/20 border border-cyan-800/30 whitespace-nowrap">{period}</span>
+          <span className="text-sm text-[#50BFC3]/80 mt-2 md:mt-0 px-3 py-1 rounded-full bg-[#2C7695]/20 border border-[#2C7695]/30 whitespace-nowrap">{period}</span>
         </div>
       </CardHeader>
       
       <CardContent className="pt-2 pb-4">
-        <ul className="space-y-3 list-disc list-outside text-slate-300 pl-5">
+        <div className="text-slate-300">
           {descriptions.map((desc, index) => (
-            <li key={index} className="text-sm md:text-base leading-relaxed">{desc}</li>
+            <p key={index} className="text-sm md:text-base leading-relaxed mb-3">{desc}</p>
           ))}
-        </ul>
+        </div>
         
         {technologies && technologies.length > 0 && (
-          <div className="mt-5 pt-3 border-t border-slate-700/50">
+          <div className="mt-5 pt-3 border-t border-[#2C7695]/50">
             <div className="flex flex-wrap gap-2 mt-2">
               {technologies.map((tech, index) => (
-                <Badge key={index} variant="outline" className="bg-slate-800/80 border-slate-700 text-cyan-300 hover:bg-slate-700/80 transition-colors">
+                <Badge key={index} variant="outline" className="bg-[#214D72]/80 border-[#2C7695] text-[#50BFC3] hover:bg-[#214D72]/90 transition-colors">
                   {tech}
                 </Badge>
               ))}
@@ -137,10 +137,10 @@ const ExperienceSection = () => {
   return (
     <div className="py-6">
       <div className="flex items-center gap-2 mb-12">
-        <div className="p-2 rounded-full bg-blue-900/30 border border-blue-700/30">
-          <Briefcase className="w-6 h-6 text-blue-400" />
+        <div className="p-2 rounded-full bg-[#2C7695]/30 border border-[#2C7695]/30">
+          <Briefcase className="w-6 h-6 text-[#50BFC3]" />
         </div>
-        <h2 className="text-2xl font-bold tracking-tight bg-gradient-to-r from-white to-slate-300 text-transparent bg-clip-text">Work Experience</h2>
+        <h2 className="text-2xl font-bold tracking-tight bg-gradient-to-r from-white to-[#50BFC3] text-transparent bg-clip-text">Work Experience</h2>
       </div>
       
       <div className="space-y-0 relative pl-2">
