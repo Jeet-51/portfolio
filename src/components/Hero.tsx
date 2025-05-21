@@ -207,9 +207,11 @@ const Hero = () => {
           </p>
           
           <div className="mt-10 flex flex-wrap gap-5 justify-center md:justify-start animate-slideInRight">
-            <Button className="flex items-center gap-2 rounded-xl px-6 py-6 bg-gradient-to-r from-blue-600 to-cyan-600 hover:from-blue-700 hover:to-cyan-700 transition-all duration-500 shadow-lg shadow-blue-700/20">
-              <Mail size={18} className="animate-bounce-subtle" /> Contact Me
-            </Button>
+            <a href="mailto:jeetp5118@gmail.com" className="inline-block">
+              <Button className="flex items-center gap-2 rounded-xl px-6 py-6 bg-gradient-to-r from-blue-600 to-cyan-600 hover:from-blue-700 hover:to-cyan-700 transition-all duration-500 shadow-lg shadow-blue-700/20">
+                <Mail size={18} className="animate-bounce-subtle" /> Contact Me
+              </Button>
+            </a>
             <Button variant="outline" className="flex items-center gap-2 rounded-xl px-6 py-6 border-cyan-500/50 text-cyan-300 bg-cyan-900/10 hover:bg-cyan-900/20 transition-all duration-500">
               <Phone size={18} className="animate-pulse" /> (930) 333-5103
             </Button>
