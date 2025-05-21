@@ -163,13 +163,13 @@ const Index = () => {
                         About Me
                       </h2>
                       <p className="text-lg leading-relaxed text-slate-300">
-                        I'm a Data Scientist and AI Engineer with a strong foundation in machine learning, data engineering, and intelligent system design. 
-                        I specialize in translating complex, high-volume datasets into actionable strategies—whether it's forecasting Medicare billing behaviors, powering fraud detection systems, or building RAG-based chatbots. 
+                        I'm a Data Scientist and AI Engineer with a solid foundation in machine learning, data engineering, and intelligent system design. 
+                        I specialize in turning complex, high-volume datasets into scalable and actionable solutions, whether it's predicting Medicare billing behaviors, detecting financial fraud, or building RAG-powered chatbots for enterprise-scale knowledge retrieval. 
                       </p>
                       <p className="mt-4 text-lg leading-relaxed text-slate-300">
-                        With a Master's in Data Science from Indiana University and hands-on roles at Hyphenova Network, Project 990, and IU's School of Public Health, I bring a mix of academic rigor and real-world execution. 
-                        My work spans healthcare analytics, GenAI applications, recommender systems, and geospatial visualizations—always grounded in scalable infrastructure and model interpretability.
-                      </p>
+                        With a Master’s in Data Science from Indiana University and hands-on experience at Hyphenova Network, Project 990, and the IU School of Public Health, I blend academic rigor with real-world problem-solving. 
+                        My work spans GenAI applications, healthcare analytics, recommendation engines, and geospatial dashboards, built on robust infrastructure with a focus on interpretability and performance.
+                         </p>
                     </div>
                   </Card>
                 </div>
