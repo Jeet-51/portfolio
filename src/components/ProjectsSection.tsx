@@ -1,8 +1,9 @@
 
+import { useState } from "react";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { Code, Github } from "lucide-react";
+import { Code, Github, ExternalLink } from "lucide-react";
 
 interface Project {
   title: string;
@@ -13,6 +14,8 @@ interface Project {
 }
 
 const ProjectsSection = () => {
+  const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
+  
   const projects: Project[] = [
     {
       title: "ClaimGuard: Intelligent Healthcare Service Pattern Analysis",
@@ -67,55 +70,83 @@ const ProjectsSection = () => {
   ];
 
   return (
-    <div>
-      <div className="flex items-center gap-2 mb-6">
-        <Code className="w-6 h-6 text-blue-500" />
-        <h2 className="text-2xl font-bold tracking-tight">Featured Projects</h2>
+    <div className="py-16 px-4">
+      <div className="flex items-center gap-2 mb-10 animate-slide-up">
+        <Code className="w-8 h-8 text-cyan-500" />
+        <h2 className="text-3xl font-bold tracking-tight bg-gradient-to-r from-blue-400 via-cyan-400 to-purple-500 text-transparent bg-clip-text">
+          Featured Projects
+        </h2>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
         {projects.map((project, index) => (
-          <Card key={index} className="overflow-hidden h-full flex flex-col border-none shadow-lg bg-gradient-to-r from-slate-50 to-cyan-50 dark:from-slate-900 dark:to-cyan-900/20">
-            {project.imageUrl && (
-              <div className="h-48 w-full overflow-hidden">
-                <img 
-                  src={project.imageUrl} 
-                  alt={project.title} 
-                  className="w-full h-full object-cover transition-transform duration-300 hover:scale-105"
-                />
+          <div 
+            key={index}
+            className="group"
+            onMouseEnter={() => setHoveredIndex(index)}
+            onMouseLeave={() => setHoveredIndex(null)}
+          >
+            <Card 
+              className={`overflow-hidden h-full flex flex-col border-none shadow-xl transition-all duration-700 bg-gradient-to-b from-gray-800/70 to-gray-900/90 backdrop-blur-sm project-card
+                ${hoveredIndex === index ? 'transform scale-[1.02]' : ''}`}
+            >
+              <div className="absolute inset-0 overflow-hidden">
+                <div className={`absolute -inset-[10px] bg-gradient-to-r from-blue-600/20 via-cyan-500/20 to-purple-600/20 opacity-0 blur-xl transition-opacity duration-1000 ${hoveredIndex === index ? 'opacity-70' : ''}`}></div>
               </div>
-            )}
-            <div className="absolute top-0 left-0 w-2 h-full bg-gradient-to-b from-cyan-500 to-blue-600"></div>
-            <CardHeader className="relative">
-              <CardTitle>{project.title}</CardTitle>
-            </CardHeader>
-            <CardContent className="flex-grow">
-              <ul className="space-y-2 list-disc list-inside text-gray-700 dark:text-gray-300">
-                {project.description.map((desc, idx) => (
-                  <li key={idx}>{desc}</li>
-                ))}
-              </ul>
-            </CardContent>
-            <CardFooter className="flex flex-col items-start gap-4 border-t pt-4">
-              <div className="flex flex-wrap gap-2">
-                {project.tech.map((tech, idx) => (
-                  <Badge key={idx} variant="secondary" className="text-xs bg-blue-100 text-blue-800 dark:bg-blue-900/40 dark:text-blue-200">
-                    {tech}
-                  </Badge>
-                ))}
-              </div>
-              {project.githubUrl && (
-                <a 
-                  href={project.githubUrl} 
-                  target="_blank" 
-                  rel="noopener noreferrer" 
-                  className="flex items-center gap-1 text-blue-600 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-300 text-sm font-medium"
-                >
-                  <Github size={16} /> View on GitHub
-                </a>
+              
+              {project.imageUrl && (
+                <div className="relative h-48 w-full overflow-hidden">
+                  <div className="absolute inset-0 bg-gradient-to-t from-gray-900 via-transparent to-transparent z-10"></div>
+                  <img 
+                    src={project.imageUrl} 
+                    alt={project.title} 
+                    className={`w-full h-full object-cover transition-all duration-1000 ${hoveredIndex === index ? 'scale-110 filter saturate-150' : 'scale-100 filter saturate-100'}`}
+                  />
+                </div>
               )}
-            </CardFooter>
-          </Card>
+              
+              <div className="absolute top-0 left-0 w-1 h-full bg-gradient-to-b from-cyan-500 to-blue-600"></div>
+              
+              <CardHeader className="relative">
+                <CardTitle className="text-xl text-white">{project.title}</CardTitle>
+              </CardHeader>
+              
+              <CardContent className="flex-grow">
+                <ul className="space-y-2 list-disc list-inside text-gray-300">
+                  {project.description.map((desc, idx) => (
+                    <li key={idx} className={`transition-all duration-500 delay-${idx * 100}`}>{desc}</li>
+                  ))}
+                </ul>
+              </CardContent>
+              
+              <CardFooter className="flex flex-col items-start gap-4 border-t border-gray-700/50 pt-4">
+                <div className="flex flex-wrap gap-2">
+                  {project.tech.map((tech, idx) => (
+                    <Badge 
+                      key={idx} 
+                      variant="secondary" 
+                      className={`text-xs bg-blue-900/30 text-blue-300 border border-blue-500/30 transition-all duration-300 delay-${idx * 50} hover:bg-blue-800/50`}
+                    >
+                      {tech}
+                    </Badge>
+                  ))}
+                </div>
+                
+                {project.githubUrl && (
+                  <a 
+                    href={project.githubUrl} 
+                    target="_blank" 
+                    rel="noopener noreferrer" 
+                    className={`flex items-center gap-1 text-cyan-400 hover:text-cyan-300 transition-all duration-300 text-sm font-medium group-hover:animate-pulse-glow`}
+                  >
+                    <Github size={16} className={`transition-transform duration-500 ${hoveredIndex === index ? 'rotate-12' : ''}`} /> 
+                    <span>View on GitHub</span>
+                    <ExternalLink size={14} className="ml-1" />
+                  </a>
+                )}
+              </CardFooter>
+            </Card>
+          </div>
         ))}
       </div>
     </div>
