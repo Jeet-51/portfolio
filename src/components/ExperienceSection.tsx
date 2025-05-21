@@ -88,10 +88,7 @@ const ExperienceSection = () => {
       location: "Los Angeles, California",
       period: "May 2023 - December 2023",
       descriptions: [
-        "Built a Retrieval-Augmented Generation (RAG) chatbot using FAISS/ChromaDB for vector search, enabling context-aware LLM responses across large-scale document repositories.",
-        "Developed a BERT-based music classification model with 80% accuracy by integrating multimodal audio-text embeddings, powering personalized content tagging and recommendations.",
-        "Designed optimized indexing and chunking pipelines for document embeddings, enhancing retrieval speed and precision in AI-powered search applications.",
-        "Engineered a scalable, serverless metadata infrastructure using DynamoDB and S3 for 500K+ creator-brand interactions, improving query performance for AI workflows."
+        "Hyphenova Network is a creator-tech platform leveraging AI to power intelligent experiences. As a Data Scientist, I built a RAG chatbot using FAISS/ChromaDB for contextual LLM responses, developed a BERT-based music classifier with 80% accuracy, optimized embedding pipelines for faster retrieval, and designed a serverless metadata system using DynamoDB and S3 to support 500K+ creator-brand interactions."
       ],
       technologies: ["RAG", "FAISS", "ChromaDB", "BERT", "LLMs", "DynamoDB", "S3", "Serverless"]
     },
