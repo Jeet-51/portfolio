@@ -68,10 +68,7 @@ const ExperienceSection = () => {
       location: "Bloomington, Indiana",
       period: "March 2024 - Present",
       descriptions: [
-        "Deployed RoBERTa model with Alteryx preprocessing on 350K+ nonprofit records to classify gender, boosting labeling efficiency by 40% and accelerating campaign targeting insights.",
-        "Engineered batch pipelines using Mistral-7B LLM and prompt chaining to classify 175K+ mission statements into multi-tier nonprofit categories, streamlining stakeholder decision-making and automating manual workflows.",
-        "Boosted ETL efficiency by 35% by migrating transformations from Pandas to SQL, improving query performance, and enabling faster updates to a normalized schema for 1.5M+ philanthropic records.",
-        "Applied Louvain and Leiden algorithms in Neo4j to discover 78 latent nonprofit funding networks, enriching the knowledge graph and guiding executive funding strategies."
+        "Project 990 is a data-driven initiative under IU Smart Charity focused on nonprofit analytics and campaign optimization. I contributed by deploying a RoBERTa model with Alteryx to classify gender across 350K+ records, boosting labeling efficiency by 40%. I also engineered LLM-based pipelines using Mistral-7B to categorize 175K+ mission statements, streamlined ETL workflows by transitioning from Pandas to SQL for 1.5M+ records, and applied graph algorithms in Neo4j to uncover 78 hidden funding networks."
       ],
       technologies: ["RoBERTa", "Alteryx", "Mistral-7B", "Prompt Engineering", "SQL", "Neo4j", "ETL"]
     },
