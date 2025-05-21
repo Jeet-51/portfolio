@@ -24,7 +24,7 @@ const ProjectsSection = () => {
         "Integrated MLflow for experiment tracking and SHAP for model interpretability on 200K+ claims, enabling semantic service classification, drift detection, and retraining workflows with Delta Lake's versioned storage."
       ],
       tech: ["Delta Lake", "MLflow", "SHAP", "XGBoost", "PySpark", "Hugging Face Transformers"],
-      imageUrl: "https://images.unsplash.com/photo-1538108149393-fbbd81895907?q=80&w=2128&auto=format&fit=crop&ixlib=rb-4.0.3",
+      imageUrl: "https://images.unsplash.com/photo-1538108149393-fbbd81895907?auto=format&fit=crop&q=80&w=2128&ixlib=rb-4.0.3",
       githubUrl: "https://github.com/Jeet-51/ClaimGuard-Intelligent-Healthcare-Service-Pattern-Analysis"
     },
     {
@@ -34,7 +34,7 @@ const ProjectsSection = () => {
         "Deployed interactive QuickSight dashboards delivering 40% faster insights into revenue trends, customer behavior, and fraud indicators, guiding strategic financial decisions."
       ],
       tech: ["AWS", "S3", "SageMaker", "Redshift", "QuickSight", "PySpark", "Machine Learning"],
-      imageUrl: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3",
+      imageUrl: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&q=80&w=2070&ixlib=rb-4.0.3",
       githubUrl: "https://github.com/Jeet-51/FinanceFlow-Cloud-Enabled-Analytics-for-Fraud-Detection"
     },
     {
@@ -44,7 +44,7 @@ const ProjectsSection = () => {
         "Built a Power BI dashboard to visualize bounce rates, retention, and visit flows across 2.5K+ page views, transforming raw usage data into actionable insights for portal optimization."
       ],
       tech: ["Apache Spark", "Power BI", "scikit-learn", "User Behavior Analytics"],
-      imageUrl: "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3",
+      imageUrl: "https://images.unsplash.com/photo-1487058792275-0ad4aaf24ca7?auto=format&fit=crop&q=80&w=2000&ixlib=rb-4.0.3",
       githubUrl: "https://github.iu.edu/patejeet/HRA-Portal-Usage-Analytics-and-Dashboard-Development"
     },
     {
@@ -54,7 +54,7 @@ const ProjectsSection = () => {
         "Predicted career trajectories and identified skill gaps using LightGBM and vector similarity models, powering interactive visualizations and personalized analytics via Plotly."
       ],
       tech: ["FastAPI", "PostgreSQL", "LightGBM", "Plotly"],
-      imageUrl: "https://images.unsplash.com/photo-1551434678-e076c223a692?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3",
+      imageUrl: "https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&q=80&w=2000&ixlib=rb-4.0.3",
       githubUrl: "https://github.iu.edu/patejeet/DevPath-Insight-ML-Driven-Career-Analytics-on-Stack-Overflow-Data"
     },
     {
@@ -64,7 +64,7 @@ const ProjectsSection = () => {
         "Enhanced ranking algorithms by analyzing user interaction data, and deployed a user-friendly web interface, resulting in a 30% increase in engagement and 25% uplift in course conversions."
       ],
       tech: ["NLP", "TF-IDF", "Content-Based Filtering", "Web Development"],
-      imageUrl: "https://images.unsplash.com/photo-1501504905252-473c47e087f8?q=80&w=2074&auto=format&fit=crop&ixlib=rb-4.0.3",
+      imageUrl: "https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d?auto=format&fit=crop&q=80&w=2000&ixlib=rb-4.0.3",
       githubUrl: "https://github.com/Jeet-51/Learnera-A-Course-Recommendation-System"
     }
   ];
@@ -72,8 +72,8 @@ const ProjectsSection = () => {
   return (
     <div className="py-16 px-4">
       <div className="flex items-center gap-2 mb-10 animate-slide-up">
-        <Code className="w-8 h-8 text-cyan-500" />
-        <h2 className="text-3xl font-bold tracking-tight bg-gradient-to-r from-blue-400 via-cyan-400 to-purple-500 text-transparent bg-clip-text">
+        <Code className="w-8 h-8 text-[#50BFC3]" />
+        <h2 className="text-3xl font-bold tracking-tight bg-gradient-to-r from-white to-[#50BFC3] text-transparent bg-clip-text">
           Featured Projects
         </h2>
       </div>
@@ -87,45 +87,46 @@ const ProjectsSection = () => {
             onMouseLeave={() => setHoveredIndex(null)}
           >
             <Card 
-              className={`overflow-hidden h-full flex flex-col border-none shadow-xl transition-all duration-700 bg-gradient-to-b from-gray-800/70 to-gray-900/90 backdrop-blur-sm project-card
+              className={`overflow-hidden h-full flex flex-col border-none shadow-xl transition-all duration-700 bg-gradient-to-b from-[#1D3752]/90 to-[#214D72]/90 backdrop-blur-sm project-card
                 ${hoveredIndex === index ? 'transform scale-[1.02]' : ''}`}
             >
               <div className="absolute inset-0 overflow-hidden">
-                <div className={`absolute -inset-[10px] bg-gradient-to-r from-blue-600/20 via-cyan-500/20 to-purple-600/20 opacity-0 blur-xl transition-opacity duration-1000 ${hoveredIndex === index ? 'opacity-70' : ''}`}></div>
+                <div className={`absolute -inset-[10px] bg-gradient-to-r from-[#2C7695]/20 via-[#50BFC3]/20 to-[#F7C232]/20 opacity-0 blur-xl transition-opacity duration-1000 ${hoveredIndex === index ? 'opacity-70' : ''}`}></div>
               </div>
               
               {project.imageUrl && (
-                <div className="relative h-48 w-full overflow-hidden">
-                  <div className="absolute inset-0 bg-gradient-to-t from-gray-900 via-transparent to-transparent z-10"></div>
+                <div className="relative h-56 w-full overflow-hidden">
+                  <div className="absolute inset-0 bg-gradient-to-t from-[#1D3752] via-transparent to-transparent z-10"></div>
                   <img 
                     src={project.imageUrl} 
                     alt={project.title} 
-                    className={`w-full h-full object-cover transition-all duration-1000 ${hoveredIndex === index ? 'scale-110 filter saturate-150' : 'scale-100 filter saturate-100'}`}
+                    className={`w-full h-full object-cover object-center transition-all duration-1000 ${hoveredIndex === index ? 'scale-110 filter brightness-110' : 'scale-100'}`}
                   />
+                  <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-[#2C7695] to-[#50BFC3]"></div>
                 </div>
               )}
               
-              <div className="absolute top-0 left-0 w-1 h-full bg-gradient-to-b from-cyan-500 to-blue-600"></div>
+              <div className="absolute top-0 left-0 w-1 h-full bg-gradient-to-b from-[#50BFC3] to-[#2C7695]"></div>
               
               <CardHeader className="relative">
                 <CardTitle className="text-xl text-white">{project.title}</CardTitle>
               </CardHeader>
               
               <CardContent className="flex-grow">
-                <ul className="space-y-2 list-disc list-inside text-gray-300">
+                <div className="space-y-3 text-gray-300">
                   {project.description.map((desc, idx) => (
-                    <li key={idx} className={`transition-all duration-500 delay-${idx * 100}`}>{desc}</li>
+                    <p key={idx} className={`transition-all duration-500 delay-${idx * 100}`}>{desc}</p>
                   ))}
-                </ul>
+                </div>
               </CardContent>
               
-              <CardFooter className="flex flex-col items-start gap-4 border-t border-gray-700/50 pt-4">
+              <CardFooter className="flex flex-col items-start gap-4 border-t border-[#2C7695]/50 pt-4">
                 <div className="flex flex-wrap gap-2">
                   {project.tech.map((tech, idx) => (
                     <Badge 
                       key={idx} 
                       variant="secondary" 
-                      className={`text-xs bg-blue-900/30 text-blue-300 border border-blue-500/30 transition-all duration-300 delay-${idx * 50} hover:bg-blue-800/50`}
+                      className={`text-xs bg-[#214D72]/70 text-[#50BFC3] border border-[#2C7695]/50 transition-all duration-300 delay-${idx * 50} hover:bg-[#214D72]`}
                     >
                       {tech}
                     </Badge>
@@ -137,7 +138,7 @@ const ProjectsSection = () => {
                     href={project.githubUrl} 
                     target="_blank" 
                     rel="noopener noreferrer" 
-                    className={`flex items-center gap-1 text-cyan-400 hover:text-cyan-300 transition-all duration-300 text-sm font-medium group-hover:animate-pulse-glow`}
+                    className={`flex items-center gap-1 text-[#50BFC3] hover:text-[#F7C232] transition-all duration-300 text-sm font-medium`}
                   >
                     <Github size={16} className={`transition-transform duration-500 ${hoveredIndex === index ? 'rotate-12' : ''}`} /> 
                     <span>View on GitHub</span>

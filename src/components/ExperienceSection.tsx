@@ -1,8 +1,6 @@
-
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import { Separator } from "@/components/ui/separator";
 import { Badge } from "@/components/ui/badge";
-import { Briefcase, Circle } from "lucide-react";
+import { Briefcase } from "lucide-react";
 
 interface ExperienceItemProps {
   title: string;
@@ -143,7 +141,7 @@ const ExperienceSection = () => {
         <h2 className="text-2xl font-bold tracking-tight bg-gradient-to-r from-white to-[#50BFC3] text-transparent bg-clip-text">Work Experience</h2>
       </div>
       
-      <div className="space-y-0 relative pl-2">
+      <div className="space-y-12 relative pl-2">
         {experiences.map((exp, idx) => (
           <ExperienceItem key={idx} {...exp} />
         ))}
