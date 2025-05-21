@@ -2,13 +2,14 @@
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { Code } from "lucide-react";
+import { Code, Github } from "lucide-react";
 
 interface Project {
   title: string;
   description: string[];
   tech: string[];
   imageUrl?: string;
+  githubUrl?: string;
 }
 
 const ProjectsSection = () => {
@@ -20,7 +21,8 @@ const ProjectsSection = () => {
         "Integrated MLflow for experiment tracking and SHAP for model interpretability on 200K+ claims, enabling semantic service classification, drift detection, and retraining workflows with Delta Lake's versioned storage."
       ],
       tech: ["Delta Lake", "MLflow", "SHAP", "XGBoost", "PySpark", "Hugging Face Transformers"],
-      imageUrl: "https://images.unsplash.com/photo-1538108149393-fbbd81895907?q=80&w=2128&auto=format&fit=crop&ixlib=rb-4.0.3"
+      imageUrl: "https://images.unsplash.com/photo-1538108149393-fbbd81895907?q=80&w=2128&auto=format&fit=crop&ixlib=rb-4.0.3",
+      githubUrl: "https://github.com/Jeet-51/ClaimGuard"
     },
     {
       title: "FinanceFlow: Cloud-Enabled Analytics for Fraud Detection",
@@ -29,7 +31,8 @@ const ProjectsSection = () => {
         "Deployed interactive QuickSight dashboards delivering 40% faster insights into revenue trends, customer behavior, and fraud indicators, guiding strategic financial decisions."
       ],
       tech: ["AWS", "S3", "SageMaker", "Redshift", "QuickSight", "PySpark", "Machine Learning"],
-      imageUrl: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3"
+      imageUrl: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3",
+      githubUrl: "https://github.com/Jeet-51/FinanceFlow"
     },
     {
       title: "HRA Portal Usage Analytics and Dashboard Development",
@@ -38,7 +41,8 @@ const ProjectsSection = () => {
         "Built a Power BI dashboard to visualize bounce rates, retention, and visit flows across 2.5K+ page views, transforming raw usage data into actionable insights for portal optimization."
       ],
       tech: ["Apache Spark", "Power BI", "scikit-learn", "User Behavior Analytics"],
-      imageUrl: "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3"
+      imageUrl: "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3",
+      githubUrl: "https://github.com/Jeet-51/HRA-Portal-Analytics"
     },
     {
       title: "DevPath Insight: ML-Driven Career Analytics on Stack Overflow Data",
@@ -47,7 +51,8 @@ const ProjectsSection = () => {
         "Predicted career trajectories and identified skill gaps using LightGBM and vector similarity models, powering interactive visualizations and personalized analytics via Plotly."
       ],
       tech: ["FastAPI", "PostgreSQL", "LightGBM", "Plotly"],
-      imageUrl: "https://images.unsplash.com/photo-1551434678-e076c223a692?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3"
+      imageUrl: "https://images.unsplash.com/photo-1551434678-e076c223a692?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3",
+      githubUrl: "https://github.com/Jeet-51/DevPath-Insight"
     },
     {
       title: "Learnera: Course Recommendation System for Academic Success",
@@ -56,7 +61,8 @@ const ProjectsSection = () => {
         "Enhanced ranking algorithms by analyzing user interaction data, and deployed a user-friendly web interface, resulting in a 30% increase in engagement and 25% uplift in course conversions."
       ],
       tech: ["NLP", "TF-IDF", "Content-Based Filtering", "Web Development"],
-      imageUrl: "https://images.unsplash.com/photo-1501504905252-473c47e087f8?q=80&w=2074&auto=format&fit=crop&ixlib=rb-4.0.3"
+      imageUrl: "https://images.unsplash.com/photo-1501504905252-473c47e087f8?q=80&w=2074&auto=format&fit=crop&ixlib=rb-4.0.3",
+      githubUrl: "https://github.com/Jeet-51/Learnera"
     }
   ];
 
@@ -69,7 +75,7 @@ const ProjectsSection = () => {
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         {projects.map((project, index) => (
-          <Card key={index} className="overflow-hidden h-full flex flex-col">
+          <Card key={index} className="overflow-hidden h-full flex flex-col border-none shadow-lg bg-gradient-to-r from-slate-50 to-cyan-50 dark:from-slate-900 dark:to-cyan-900/20">
             {project.imageUrl && (
               <div className="h-48 w-full overflow-hidden">
                 <img 
@@ -79,7 +85,8 @@ const ProjectsSection = () => {
                 />
               </div>
             )}
-            <CardHeader>
+            <div className="absolute top-0 left-0 w-2 h-full bg-gradient-to-b from-cyan-500 to-blue-600"></div>
+            <CardHeader className="relative">
               <CardTitle>{project.title}</CardTitle>
             </CardHeader>
             <CardContent className="flex-grow">
@@ -89,12 +96,24 @@ const ProjectsSection = () => {
                 ))}
               </ul>
             </CardContent>
-            <CardFooter className="flex flex-wrap gap-2 border-t pt-4">
-              {project.tech.map((tech, idx) => (
-                <Badge key={idx} variant="secondary" className="text-xs">
-                  {tech}
-                </Badge>
-              ))}
+            <CardFooter className="flex flex-col items-start gap-4 border-t pt-4">
+              <div className="flex flex-wrap gap-2">
+                {project.tech.map((tech, idx) => (
+                  <Badge key={idx} variant="secondary" className="text-xs bg-blue-100 text-blue-800 dark:bg-blue-900/40 dark:text-blue-200">
+                    {tech}
+                  </Badge>
+                ))}
+              </div>
+              {project.githubUrl && (
+                <a 
+                  href={project.githubUrl} 
+                  target="_blank" 
+                  rel="noopener noreferrer" 
+                  className="flex items-center gap-1 text-blue-600 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-300 text-sm font-medium"
+                >
+                  <Github size={16} /> View on GitHub
+                </a>
+              )}
             </CardFooter>
           </Card>
         ))}

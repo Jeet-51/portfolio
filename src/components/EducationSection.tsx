@@ -1,8 +1,7 @@
 
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import { School, Book } from "lucide-react";
+import { School } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
-import { Separator } from "@/components/ui/separator";
 
 const EducationSection = () => {
   const education = [
@@ -48,8 +47,9 @@ const EducationSection = () => {
 
         <div className="space-y-6">
           {education.map((edu, index) => (
-            <Card key={index}>
-              <CardHeader>
+            <Card key={index} className="overflow-hidden border-none shadow-lg bg-gradient-to-r from-slate-50 to-blue-50 dark:from-slate-900 dark:to-blue-900/20">
+              <div className="absolute top-0 left-0 w-2 h-full bg-gradient-to-b from-blue-500 to-indigo-600"></div>
+              <CardHeader className="relative">
                 <div className="flex flex-col md:flex-row md:justify-between md:items-start">
                   <div>
                     <CardTitle className="text-xl">{edu.school}</CardTitle>
@@ -58,7 +58,7 @@ const EducationSection = () => {
                   </div>
                   <div className="text-right mt-2 md:mt-0">
                     <span className="text-sm text-muted-foreground block">{edu.period}</span>
-                    <Badge className="mt-1">GPA: {edu.gpa}</Badge>
+                    <Badge className="mt-1 bg-blue-100 text-blue-800 dark:bg-blue-900 dark:text-blue-100">GPA: {edu.gpa}</Badge>
                   </div>
                 </div>
               </CardHeader>
@@ -66,7 +66,7 @@ const EducationSection = () => {
                 <h4 className="text-sm font-semibold mb-2">Relevant Coursework:</h4>
                 <div className="flex flex-wrap gap-2">
                   {edu.courses.map((course, idx) => (
-                    <Badge key={idx} variant="outline" className="bg-blue-50 dark:bg-blue-900/20">
+                    <Badge key={idx} variant="outline" className="bg-blue-50 dark:bg-blue-900/20 border-blue-200 dark:border-blue-700">
                       {course}
                     </Badge>
                   ))}
@@ -74,40 +74,6 @@ const EducationSection = () => {
               </CardContent>
             </Card>
           ))}
-        </div>
-      </div>
-
-      <div>
-        <div className="flex items-center gap-2 mb-6">
-          <Book className="w-6 h-6 text-blue-500" />
-          <h2 className="text-2xl font-bold tracking-tight">Certifications</h2>
-        </div>
-
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-          <Card>
-            <CardHeader className="pb-2">
-              <CardTitle className="text-lg">AWS Certified Machine Learning - Specialty</CardTitle>
-              <CardDescription>Amazon Web Services (AWS)</CardDescription>
-            </CardHeader>
-          </Card>
-          <Card>
-            <CardHeader className="pb-2">
-              <CardTitle className="text-lg">Azure Data Scientist Associate</CardTitle>
-              <CardDescription>Microsoft</CardDescription>
-            </CardHeader>
-          </Card>
-          <Card>
-            <CardHeader className="pb-2">
-              <CardTitle className="text-lg">TensorFlow Developer Certificate</CardTitle>
-              <CardDescription>Google</CardDescription>
-            </CardHeader>
-          </Card>
-          <Card>
-            <CardHeader className="pb-2">
-              <CardTitle className="text-lg">Neo4j Certified Professional</CardTitle>
-              <CardDescription>Neo4j Graph Academy</CardDescription>
-            </CardHeader>
-          </Card>
         </div>
       </div>
     </div>
