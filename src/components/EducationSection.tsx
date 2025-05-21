@@ -18,8 +18,7 @@ const EducationSection = () => {
         "Information Visualization",
         "Image Processing for Medical Application", 
         "Scientific Visualization",
-        "Applied Database Technology",
-        "Data Visualization"
+        "Applied Database Technology"
       ]
     },
     {
