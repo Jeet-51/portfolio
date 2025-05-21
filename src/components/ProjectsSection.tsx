@@ -4,14 +4,6 @@ import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle }
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Code, Github, ExternalLink } from "lucide-react";
-import { AspectRatio } from "@/components/ui/aspect-ratio";
-import {
-  Carousel,
-  CarouselContent,
-  CarouselItem,
-  CarouselNext,
-  CarouselPrevious,
-} from "@/components/ui/carousel";
 
 interface Project {
   title: string;
@@ -32,7 +24,7 @@ const ProjectsSection = () => {
         "Integrated MLflow for experiment tracking and SHAP for model interpretability on 200K+ claims, enabling semantic service classification, drift detection, and retraining workflows with Delta Lake's versioned storage."
       ],
       tech: ["Delta Lake", "MLflow", "SHAP", "XGBoost", "PySpark", "Hugging Face Transformers"],
-      imageUrl: "https://images.unsplash.com/photo-1576091160550-2173dba999ef?auto=format&fit=crop&q=80&w=2070&ixlib=rb-4.0.3",
+      imageUrl: "https://images.unsplash.com/photo-1538108149393-fbbd81895907?auto=format&fit=crop&q=80&w=2128&ixlib=rb-4.0.3",
       githubUrl: "https://github.com/Jeet-51/ClaimGuard-Intelligent-Healthcare-Service-Pattern-Analysis"
     },
     {
@@ -52,7 +44,7 @@ const ProjectsSection = () => {
         "Built a Power BI dashboard to visualize bounce rates, retention, and visit flows across 2.5K+ page views, transforming raw usage data into actionable insights for portal optimization."
       ],
       tech: ["Apache Spark", "Power BI", "scikit-learn", "User Behavior Analytics"],
-      imageUrl: "https://images.unsplash.com/photo-1551434678-e076c223a692?auto=format&fit=crop&q=80&w=2070&ixlib=rb-4.0.3",
+      imageUrl: "https://images.unsplash.com/photo-1487058792275-0ad4aaf24ca7?auto=format&fit=crop&q=80&w=2000&ixlib=rb-4.0.3",
       githubUrl: "https://github.iu.edu/patejeet/HRA-Portal-Usage-Analytics-and-Dashboard-Development"
     },
     {
@@ -62,7 +54,7 @@ const ProjectsSection = () => {
         "Predicted career trajectories and identified skill gaps using LightGBM and vector similarity models, powering interactive visualizations and personalized analytics via Plotly."
       ],
       tech: ["FastAPI", "PostgreSQL", "LightGBM", "Plotly"],
-      imageUrl: "https://images.unsplash.com/photo-1605379399642-870262d3d051?auto=format&fit=crop&q=80&w=2006&ixlib=rb-4.0.3",
+      imageUrl: "https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&q=80&w=2000&ixlib=rb-4.0.3",
       githubUrl: "https://github.iu.edu/patejeet/DevPath-Insight-ML-Driven-Career-Analytics-on-Stack-Overflow-Data"
     },
     {
@@ -72,7 +64,7 @@ const ProjectsSection = () => {
         "Enhanced ranking algorithms by analyzing user interaction data, and deployed a user-friendly web interface, resulting in a 30% increase in engagement and 25% uplift in course conversions."
       ],
       tech: ["NLP", "TF-IDF", "Content-Based Filtering", "Web Development"],
-      imageUrl: "https://images.unsplash.com/photo-1501504905252-473c47e087f8?auto=format&fit=crop&q=80&w=2074&ixlib=rb-4.0.3",
+      imageUrl: "https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d?auto=format&fit=crop&q=80&w=2000&ixlib=rb-4.0.3",
       githubUrl: "https://github.com/Jeet-51/Learnera-A-Course-Recommendation-System"
     }
   ];
@@ -85,59 +77,6 @@ const ProjectsSection = () => {
           Featured Projects
         </h2>
       </div>
-
-      <Carousel className="mb-12 hidden md:block">
-        <CarouselContent>
-          {projects.map((project, index) => (
-            <CarouselItem key={`carousel-${index}`} className="md:basis-1/2 lg:basis-1/3">
-              <div className="p-2 h-full">
-                <Card className="overflow-hidden bg-gradient-to-b from-[#1D3752]/90 to-[#214D72]/90 border-none h-full shadow-xl hover:shadow-2xl transition-all duration-300">
-                  {project.imageUrl && (
-                    <div className="relative">
-                      <AspectRatio ratio={16/9} className="bg-[#1D3752]">
-                        <img 
-                          src={project.imageUrl} 
-                          alt={project.title} 
-                          className="object-cover w-full h-full rounded-t-lg"
-                        />
-                      </AspectRatio>
-                      <div className="absolute bottom-0 left-0 w-full h-16 bg-gradient-to-t from-[#1D3752] to-transparent"></div>
-                    </div>
-                  )}
-                  <CardHeader className="relative pt-4">
-                    <CardTitle className="text-lg text-white line-clamp-1">{project.title}</CardTitle>
-                  </CardHeader>
-                  <CardContent className="pt-0">
-                    <div className="flex flex-wrap gap-2 mb-2">
-                      {project.tech.slice(0, 3).map((tech, idx) => (
-                        <Badge 
-                          key={idx} 
-                          variant="secondary" 
-                          className="text-xs bg-[#214D72]/70 text-[#50BFC3] border border-[#2C7695]/50"
-                        >
-                          {tech}
-                        </Badge>
-                      ))}
-                      {project.tech.length > 3 && (
-                        <Badge variant="secondary" className="text-xs bg-[#214D72]/70 text-[#50BFC3] border border-[#2C7695]/50">
-                          +{project.tech.length - 3}
-                        </Badge>
-                      )}
-                    </div>
-                    <p className="text-sm text-gray-300 line-clamp-2">
-                      {project.description[0]}
-                    </p>
-                  </CardContent>
-                </Card>
-              </div>
-            </CarouselItem>
-          ))}
-        </CarouselContent>
-        <div className="flex justify-center gap-2 mt-4">
-          <CarouselPrevious className="relative static left-auto bg-[#2C7695]/20 hover:bg-[#2C7695]/40 border-[#50BFC3]/30 text-[#50BFC3]" />
-          <CarouselNext className="relative static right-auto bg-[#2C7695]/20 hover:bg-[#2C7695]/40 border-[#50BFC3]/30 text-[#50BFC3]" />
-        </div>
-      </Carousel>
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
         {projects.map((project, index) => (
@@ -156,15 +95,13 @@ const ProjectsSection = () => {
               </div>
               
               {project.imageUrl && (
-                <div className="relative overflow-hidden">
-                  <AspectRatio ratio={16/9} className="bg-[#1D3752]">
-                    <img 
-                      src={project.imageUrl} 
-                      alt={project.title} 
-                      className={`w-full h-full object-cover transition-all duration-1000 ${hoveredIndex === index ? 'scale-110 filter brightness-110' : 'scale-100'}`}
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-[#1D3752] via-[#1D3752]/40 to-transparent opacity-70"></div>
-                  </AspectRatio>
+                <div className="relative h-56 w-full overflow-hidden">
+                  <div className="absolute inset-0 bg-gradient-to-t from-[#1D3752] via-transparent to-transparent z-10"></div>
+                  <img 
+                    src={project.imageUrl} 
+                    alt={project.title} 
+                    className={`w-full h-full object-cover object-center transition-all duration-1000 ${hoveredIndex === index ? 'scale-110 filter brightness-110' : 'scale-100'}`}
+                  />
                   <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-[#2C7695] to-[#50BFC3]"></div>
                 </div>
               )}
