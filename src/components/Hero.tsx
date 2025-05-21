@@ -1,3 +1,4 @@
+
 import { useEffect, useRef, useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
@@ -119,7 +120,7 @@ const Hero = () => {
     'GenAI Developer',
     'Data Scientist',
     'AI Engineer',
-    'Data Storyteller'
+    'Data Engineer'
   ]);
   const [currentTextIndex, setCurrentTextIndex] = useState(0);
   const [displayText, setDisplayText] = useState('');
