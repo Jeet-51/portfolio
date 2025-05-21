@@ -4,7 +4,7 @@ import { useToast } from "@/hooks/use-toast";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { Mail, Linkedin, Github, Phone, Briefcase, Book, Code, Award, Database, Star } from "lucide-react";
+import { Mail, Linkedin, Github, Phone, Briefcase, Book, Code, Award, Database, Star, Brain } from "lucide-react";
 import { Separator } from "@/components/ui/separator";
 import { useIsMobile } from "@/hooks/use-mobile";
 import Hero from "@/components/Hero";
