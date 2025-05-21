@@ -27,25 +27,25 @@ const ExperienceItem = ({ title, company, location, period, descriptions, techno
     <Card className="border-none rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 bg-slate-900/80 backdrop-blur-sm hover:bg-slate-800/80 border border-slate-700/50 group-hover:border-blue-500/30 overflow-hidden">
       <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-blue-600 to-cyan-400 scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left"></div>
       
-      <CardHeader className="pb-2">
+      <CardHeader className="pb-3">
         <div className="flex flex-col md:flex-row md:justify-between md:items-start">
           <div>
             <CardTitle className="text-xl text-white group-hover:text-blue-400 transition-colors">{title}</CardTitle>
             <CardDescription className="text-base text-slate-300">{company} | {location}</CardDescription>
           </div>
-          <span className="text-sm text-cyan-300/80 mt-2 md:mt-0 px-3 py-1 rounded-full bg-cyan-900/20 border border-cyan-800/30">{period}</span>
+          <span className="text-sm text-cyan-300/80 mt-2 md:mt-0 px-3 py-1 rounded-full bg-cyan-900/20 border border-cyan-800/30 whitespace-nowrap">{period}</span>
         </div>
       </CardHeader>
       
-      <CardContent>
-        <ul className="space-y-2 list-disc list-inside text-slate-300">
+      <CardContent className="pt-2">
+        <ul className="space-y-3 list-disc list-inside text-slate-300 pl-2">
           {descriptions.map((desc, index) => (
-            <li key={index} className="text-sm md:text-base">{desc}</li>
+            <li key={index} className="text-sm md:text-base leading-relaxed">{desc}</li>
           ))}
         </ul>
         
         {technologies && technologies.length > 0 && (
-          <div className="mt-4">
+          <div className="mt-5 pt-3 border-t border-slate-700/50">
             <div className="flex flex-wrap gap-2 mt-2">
               {technologies.map((tech, index) => (
                 <Badge key={index} variant="outline" className="bg-slate-800/80 border-slate-700 text-cyan-300 hover:bg-slate-700/80 transition-colors">
