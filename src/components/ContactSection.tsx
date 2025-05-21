@@ -12,8 +12,8 @@ const ContactSection = () => {
         Get In Touch
       </h2>
       <p className="text-gray-300 dark:text-gray-300 mb-6">
-        I'm always open to discussing new projects, opportunities, or partnerships.
-        Feel free to reach out through any of my contact information below.
+        I’m always open to exploring opportunities in data science, AI engineering, or analytics-driven product development. 
+        Feel free to reach out for collaborations, projects, or discussions around machine learning, GenAI, or data strategy.
       </p>
 
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
