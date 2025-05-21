@@ -22,7 +22,7 @@ const ProjectsSection = () => {
       ],
       tech: ["Delta Lake", "MLflow", "SHAP", "XGBoost", "PySpark", "Hugging Face Transformers"],
       imageUrl: "https://images.unsplash.com/photo-1538108149393-fbbd81895907?q=80&w=2128&auto=format&fit=crop&ixlib=rb-4.0.3",
-      githubUrl: "https://github.com/Jeet-51/ClaimGuard"
+      githubUrl: "https://github.com/Jeet-51/ClaimGuard-Intelligent-Healthcare-Service-Pattern-Analysis"
     },
     {
       title: "FinanceFlow: Cloud-Enabled Analytics for Fraud Detection",
@@ -32,7 +32,7 @@ const ProjectsSection = () => {
       ],
       tech: ["AWS", "S3", "SageMaker", "Redshift", "QuickSight", "PySpark", "Machine Learning"],
       imageUrl: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3",
-      githubUrl: "https://github.com/Jeet-51/FinanceFlow"
+      githubUrl: "https://github.com/Jeet-51/FinanceFlow-Cloud-Enabled-Analytics-for-Fraud-Detection"
     },
     {
       title: "HRA Portal Usage Analytics and Dashboard Development",
@@ -42,7 +42,7 @@ const ProjectsSection = () => {
       ],
       tech: ["Apache Spark", "Power BI", "scikit-learn", "User Behavior Analytics"],
       imageUrl: "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3",
-      githubUrl: "https://github.iu.edu/patejeet/InfoViz_HRA-Project_JP-AV-HL-SK-HC"
+      githubUrl: "https://github.iu.edu/patejeet/HRA-Portal-Usage-Analytics-and-Dashboard-Development"
     },
     {
       title: "DevPath Insight: ML-Driven Career Analytics on Stack Overflow Data",
@@ -52,7 +52,7 @@ const ProjectsSection = () => {
       ],
       tech: ["FastAPI", "PostgreSQL", "LightGBM", "Plotly"],
       imageUrl: "https://images.unsplash.com/photo-1551434678-e076c223a692?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3",
-      githubUrl: "https://github.iu.edu/patejeet/ADT-Project-DevPath-Insight"
+      githubUrl: "https://github.iu.edu/patejeet/DevPath-Insight-ML-Driven-Career-Analytics-on-Stack-Overflow-Data"
     },
     {
       title: "Learnera: Course Recommendation System for Academic Success",
