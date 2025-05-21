@@ -1,4 +1,3 @@
-
 import { useState, useEffect, useRef } from "react";
 import { useToast } from "@/hooks/use-toast";
 import { Button } from "@/components/ui/button";
@@ -98,19 +97,20 @@ const Index = () => {
             >
               <Github size={20} className="hover:animate-pulse" />
             </a>
-            <Button 
-              variant="outline" 
-              size="sm"
-              className="ml-2 border-cyan-700/50 text-cyan-400 bg-cyan-900/10 hover:bg-cyan-900/20 hover:border-cyan-500/70 transition-all duration-300 rounded-lg"
-              onClick={() => {
-                toast({
-                  title: "Resume downloaded",
-                  description: "Your resume has been downloaded successfully.",
-                });
-              }}
+            <a 
+              href="https://drive.google.com/file/d/1DTSiTMMfJBxAKnztLxeMmhpEetEGvsiS/view?usp=drive_link" 
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-block"
             >
-              Download CV
-            </Button>
+              <Button 
+                variant="outline" 
+                size="sm"
+                className="ml-2 border-cyan-700/50 text-cyan-400 bg-cyan-900/10 hover:bg-cyan-900/20 hover:border-cyan-500/70 transition-all duration-300 rounded-lg"
+              >
+                Download CV
+              </Button>
+            </a>
           </div>
         </div>
       </header>

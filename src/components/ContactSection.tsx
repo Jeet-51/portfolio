@@ -5,14 +5,8 @@ import { Mail, Phone, Linkedin, Github } from "lucide-react";
 const ContactSection = () => {
   return (
     <div>
-      <h2 className="text-2xl font-bold tracking-tight mb-6 bg-gradient-to-r from-white to-blue-300 text-transparent bg-clip-text flex items-center gap-3">
-        <div className="p-2 rounded-full bg-blue-900/30 border border-blue-700/30">
-          <Mail className="w-5 h-5 text-blue-400" />
-        </div>
-        Get In Touch
-      </h2>
       <p className="text-gray-300 dark:text-gray-300 mb-6">
-        I’m always open to exploring opportunities in data science, AI engineering, or analytics-driven product development. 
+        I'm always open to exploring opportunities in data science, AI engineering, or analytics-driven product development. 
         Feel free to reach out for collaborations, projects, or discussions around machine learning, GenAI, or data strategy.
       </p>
 
