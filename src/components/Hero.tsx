@@ -2,7 +2,7 @@
 import { useEffect, useRef, useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
-import { Mail, Phone, Download, Github, Linkedin } from "lucide-react";
+import { Mail, Phone } from "lucide-react";
 
 const Hero = () => {
   const canvasRef = useRef<HTMLCanvasElement>(null);
@@ -17,9 +17,10 @@ const Hero = () => {
     canvas.width = window.innerWidth;
     canvas.height = window.innerHeight;
 
-    // Floating particles animation
+    // Neural network animation parameters
     const particlesArray: Particle[] = [];
-    const numberOfParticles = 60;
+    const numberOfParticles = 100;
+    const connectionDistance = 150;
     
     class Particle {
       x: number;
@@ -27,15 +28,15 @@ const Hero = () => {
       size: number;
       speedX: number;
       speedY: number;
-      opacity: number;
+      color: string;
 
       constructor() {
         this.x = Math.random() * canvas.width;
         this.y = Math.random() * canvas.height;
-        this.size = Math.random() * 3 + 1;
-        this.speedX = (Math.random() - 0.5) * 2;
-        this.speedY = (Math.random() - 0.5) * 2;
-        this.opacity = Math.random() * 0.3 + 0.1;
+        this.size = Math.random() * 2 + 1;
+        this.speedX = (Math.random() - 0.5) * 1.5;
+        this.speedY = (Math.random() - 0.5) * 1.5;
+        this.color = `rgba(92, 120, 255, ${Math.random() * 0.5 + 0.2})`;
       }
 
       update() {
@@ -51,7 +52,7 @@ const Hero = () => {
 
       draw() {
         if (!ctx) return;
-        ctx.fillStyle = `rgba(139, 92, 246, ${this.opacity})`;
+        ctx.fillStyle = this.color;
         ctx.beginPath();
         ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
         ctx.fill();
@@ -64,6 +65,27 @@ const Hero = () => {
       }
     };
 
+    const connect = () => {
+      for (let a = 0; a < particlesArray.length; a++) {
+        for (let b = a; b < particlesArray.length; b++) {
+          const dx = particlesArray[a].x - particlesArray[b].x;
+          const dy = particlesArray[a].y - particlesArray[b].y;
+          const distance = Math.sqrt(dx * dx + dy * dy);
+
+          if (distance < connectionDistance) {
+            if (!ctx) return;
+            const opacity = 1 - (distance / connectionDistance);
+            ctx.strokeStyle = `rgba(92, 120, 255, ${opacity * 0.4})`;
+            ctx.lineWidth = 1;
+            ctx.beginPath();
+            ctx.moveTo(particlesArray[a].x, particlesArray[a].y);
+            ctx.lineTo(particlesArray[b].x, particlesArray[b].y);
+            ctx.stroke();
+          }
+        }
+      }
+    };
+
     const animate = () => {
       if (!ctx || !canvas) return;
       ctx.clearRect(0, 0, canvas.width, canvas.height);
@@ -72,9 +94,11 @@ const Hero = () => {
         particlesArray[i].update();
         particlesArray[i].draw();
       }
+      connect();
       requestAnimationFrame(animate);
     };
 
+    // Handle resize
     const handleResize = () => {
       canvas.width = window.innerWidth;
       canvas.height = window.innerHeight;
@@ -93,9 +117,9 @@ const Hero = () => {
 
   const typewriterTexts = useRef<string[]>([
     'ML Engineer',
+    'GenAI Developer',
     'Data Scientist',
-    'AI Developer',
-    'GenAI Specialist',
+    'AI Engineer',
     'Data Engineer'
   ]);
   const [currentTextIndex, setCurrentTextIndex] = useState(0);
@@ -104,10 +128,11 @@ const Hero = () => {
   
   useEffect(() => {
     const currentText = typewriterTexts.current[currentTextIndex];
-    const typeSpeed = isDeleting ? 50 : 120;
+    const typeSpeed = isDeleting ? 50 : 100;
     
     if (!isDeleting && displayText === currentText) {
-      setTimeout(() => setIsDeleting(true), 2000);
+      // Delay before starting to delete
+      setTimeout(() => setIsDeleting(true), 1500);
     } else if (isDeleting && displayText === '') {
       setIsDeleting(false);
       setCurrentTextIndex((currentTextIndex + 1) % typewriterTexts.current.length);
@@ -126,116 +151,79 @@ const Hero = () => {
 
   return (
     <div className="relative min-h-screen flex items-center justify-center overflow-hidden">
-      {/* Animated background */}
+      {/* Neural network animation background */}
       <canvas 
         ref={canvasRef} 
         className="absolute top-0 left-0 w-full h-full z-0"
       />
       
-      {/* Gradient overlay */}
-      <div className="absolute inset-0 bg-gradient-to-br from-white/90 via-gray-50/80 to-slate-100/90 z-0"></div>
-      
-      <div className="relative z-10 flex flex-col lg:flex-row gap-16 items-center py-20 px-6 max-w-7xl mx-auto">
-        {/* Profile Image */}
+      <div className="relative z-10 flex flex-col md:flex-row gap-10 items-center py-16 px-6 max-w-6xl mx-auto">
+        {/* Enlarged Profile Image */}
         <div className="flex-shrink-0 animate-fadeIn">
-          <div className="relative">
-            <div className="absolute -inset-4 bg-gradient-to-r from-violet-600 to-purple-600 rounded-full blur-2xl opacity-30 animate-pulse-ring"></div>
-            <div className="relative w-80 h-80 rounded-full overflow-hidden border-4 border-white shadow-2xl animate-float">
-              <img 
-                src="/lovable-uploads/24ebecb7-c38b-42f7-b4e0-d93e922d9064.png"
-                alt="Jeet Patel"
-                className="w-full h-full object-cover"
-              />
-            </div>
+          <div className="relative w-48 h-48 md:w-72 md:h-72 rounded-full overflow-hidden border-4 border-white/10 shadow-[0_0_40px_rgba(56,114,224,0.3)] animate-float">
+            <div className="absolute inset-0 bg-gradient-to-r from-blue-600/20 to-purple-600/20 z-0"></div>
+            <img 
+              src="/lovable-uploads/24ebecb7-c38b-42f7-b4e0-d93e922d9064.png"
+              alt="Jeet Patel"
+              className="w-full h-full object-cover relative z-10"
+            />
+            <div className="absolute -inset-1 bg-gradient-to-r from-cyan-500 to-blue-600 rounded-full blur opacity-70 group-hover:opacity-90 transition duration-1000 animate-pulse"></div>
           </div>
         </div>
         
         {/* Content */}
-        <div className="flex-1 text-center lg:text-left">
+        <div className="flex-1 text-center md:text-left">
           <div className="animate-slideInUp">
-            <h1 className="text-6xl lg:text-8xl font-bold mb-6 gradient-text leading-tight">
+            <h1 className="text-5xl md:text-7xl font-bold bg-gradient-to-r from-blue-400 via-cyan-300 to-blue-500 text-transparent bg-clip-text drop-shadow-lg">
               Jeet Patel
             </h1>
-            <div className="h-20 mb-8">
-              <h2 className="text-3xl lg:text-4xl text-gray-700 font-light flex items-center justify-center lg:justify-start">
-                <span className="mr-3 text-violet-600">&lt;</span>
-                <span className="min-w-0">{displayText}</span>
-                <span className="animate-pulse ml-1 text-violet-600">|</span>
-                <span className="ml-3 text-violet-600">/&gt;</span>
+            <div className="h-12 mt-4">
+              <h2 className="text-2xl md:text-3xl text-cyan-200 dark:text-cyan-300 inline-flex items-center">
+                <span className="text-3xl md:text-4xl font-light mr-2">&lt;</span>
+                {displayText}
+                <span className="animate-blink ml-1">|</span>
+                <span className="text-3xl md:text-4xl font-light ml-2">/&gt;</span>
               </h2>
             </div>
           </div>
           
-          <div className="flex flex-wrap gap-3 mb-10 justify-center lg:justify-start animate-fadeIn">
-            {['Machine Learning', 'Data Engineering', 'GenAI Systems', 'Cloud Architecture'].map((skill, index) => (
-              <Badge 
-                key={skill}
-                variant="outline" 
-                className={`px-6 py-3 text-sm font-medium rounded-2xl bg-white/80 border-violet-200 text-violet-700 hover:bg-violet-50 transition-all duration-300 delay-${index * 100}`}
-              >
-                {skill}
-              </Badge>
-            ))}
+          <div className="flex flex-wrap gap-3 mt-8 justify-center md:justify-start animate-fadeIn">
+            <Badge variant="outline" className="px-4 py-2 text-sm rounded-xl bg-blue-900/30 border-blue-500/50 text-blue-300 hover:bg-blue-800/30 transition-all">
+              Machine Learning
+            </Badge>
+            <Badge variant="outline" className="px-4 py-2 text-sm rounded-xl bg-purple-900/30 border-purple-500/50 text-purple-300 hover:bg-purple-800/30 transition-all">
+              Data Engineering
+            </Badge>
+            <Badge variant="outline" className="px-4 py-2 text-sm rounded-xl bg-indigo-900/30 border-indigo-500/50 text-indigo-300 hover:bg-indigo-800/30 transition-all">
+              LLM Systems
+            </Badge>
+            <Badge variant="outline" className="px-4 py-2 text-sm rounded-xl bg-cyan-900/30 border-cyan-500/50 text-cyan-300 hover:bg-cyan-800/30 transition-all">
+              AI Infrastructure & MLOps
+            </Badge>
           </div>
           
-          <p className="text-xl text-gray-600 leading-relaxed mb-12 max-w-2xl mx-auto lg:mx-0 animate-fadeIn">
-            Transforming complex data into intelligent solutions with cutting-edge AI and machine learning technologies. 
-            Specialized in building scalable systems that drive innovation and business growth.
+          <p className="mt-8 max-w-lg mx-auto md:mx-0 text-lg text-slate-300 leading-relaxed animate-fadeIn">
+            Building intelligent data-driven solutions with expertise in GenAI, machine learning, 
+            and scalable data architectures.
           </p>
           
-          <div className="flex flex-wrap gap-4 justify-center lg:justify-start animate-slideInRight">
+          <div className="mt-10 flex flex-wrap gap-5 justify-center md:justify-start animate-slideInRight">
             <a href="mailto:jeetp5118@gmail.com" className="inline-block">
-              <Button className="modern-button flex items-center gap-3">
-                <Mail size={20} /> Get In Touch
+              <Button className="flex items-center gap-2 rounded-xl px-6 py-6 bg-gradient-to-r from-blue-600 to-cyan-600 hover:from-blue-700 hover:to-cyan-700 transition-all duration-500 shadow-lg shadow-blue-700/20">
+                <Mail size={18} className="animate-bounce-subtle" /> Contact Me
               </Button>
             </a>
-            <a 
-              href="https://drive.google.com/file/d/1DTSiTMMfJBxAKnztLxeMmhpEetEGvsiS/view?usp=drive_link" 
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-block"
-            >
-              <Button 
-                variant="outline" 
-                className="bg-white/80 border-2 border-violet-200 text-violet-700 hover:bg-violet-50 px-8 py-4 rounded-2xl font-medium transition-all duration-300 flex items-center gap-3"
-              >
-                <Download size={20} /> Download CV
-              </Button>
-            </a>
-          </div>
-
-          {/* Social Links */}
-          <div className="flex gap-4 mt-8 justify-center lg:justify-start">
-            <a 
-              href="https://github.com/Jeet-51" 
-              target="_blank" 
-              rel="noopener noreferrer"
-              className="p-3 rounded-full bg-white/80 border border-gray-200 text-gray-600 hover:text-violet-600 hover:border-violet-200 transition-all duration-300 hover:scale-110"
-            >
-              <Github size={24} />
-            </a>
-            <a 
-              href="https://linkedin.com/in/pateljeet22" 
-              target="_blank" 
-              rel="noopener noreferrer"
-              className="p-3 rounded-full bg-white/80 border border-gray-200 text-gray-600 hover:text-violet-600 hover:border-violet-200 transition-all duration-300 hover:scale-110"
-            >
-              <Linkedin size={24} />
-            </a>
-            <a 
-              href="tel:9303335103"
-              className="p-3 rounded-full bg-white/80 border border-gray-200 text-gray-600 hover:text-violet-600 hover:border-violet-200 transition-all duration-300 hover:scale-110"
-            >
-              <Phone size={24} />
-            </a>
+            <Button variant="outline" className="flex items-center gap-2 rounded-xl px-6 py-6 border-cyan-500/50 text-cyan-300 bg-cyan-900/10 hover:bg-cyan-900/20 transition-all duration-500">
+              <Phone size={18} className="animate-pulse" /> (930) 333-5103
+            </Button>
           </div>
         </div>
       </div>
       
       {/* Scroll indicator */}
-      <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce">
-        <div className="scroll-indicator">
-          <div className="scroll-dot"></div>
+      <div className="absolute bottom-12 left-1/2 transform -translate-x-1/2 animate-bounce">
+        <div className="w-8 h-14 rounded-full border-2 border-cyan-400/50 flex items-center justify-center">
+          <div className="w-1.5 h-3 bg-cyan-400/50 rounded-full animate-scrollDown"></div>
         </div>
       </div>
     </div>
