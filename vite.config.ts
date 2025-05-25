@@ -15,7 +15,7 @@ export default defineConfig(({ mode }) => ({
     mode === 'development' &&
     componentTagger(),
   ].filter(Boolean),
-  base: mode === 'production' ? './' : '/',  // Add base path for GitHub Pages
+  base: mode === 'production' ? './' : '/',
   build: {
     outDir: 'dist',
     sourcemap: true,
