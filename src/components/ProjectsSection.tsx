@@ -3,7 +3,7 @@ import { useState } from "react";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { Code, Github, ExternalLink } from "lucide-react";
+import { Code, Github, ExternalLink, Sparkles } from "lucide-react";
 
 interface Project {
   title: string;
@@ -70,15 +70,23 @@ const ProjectsSection = () => {
   ];
 
   return (
-    <div className="py-16 px-4">
-      <div className="flex items-center gap-2 mb-10 animate-slide-up">
-        <Code className="w-8 h-8 text-[#50BFC3]" />
-        <h2 className="text-3xl font-bold tracking-tight bg-gradient-to-r from-white to-[#50BFC3] text-transparent bg-clip-text">
-          Featured Projects
-        </h2>
+    <div className="section-container">
+      <div className="text-center mb-16 animate-slideInUp">
+        <div className="flex items-center justify-center gap-3 mb-6">
+          <div className="p-3 rounded-2xl bg-gradient-to-r from-violet-100 to-purple-100">
+            <Code className="w-8 h-8 text-violet-600" />
+          </div>
+          <h2 className="text-4xl font-bold gradient-text">
+            Featured Projects
+          </h2>
+          <Sparkles className="w-8 h-8 text-purple-500" />
+        </div>
+        <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+          Showcasing innovative solutions that blend cutting-edge technology with real-world impact
+        </p>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-10">
         {projects.map((project, index) => (
           <div 
             key={index}
@@ -87,47 +95,41 @@ const ProjectsSection = () => {
             onMouseLeave={() => setHoveredIndex(null)}
           >
             <Card 
-              className={`overflow-hidden h-full flex flex-col border-none shadow-xl transition-all duration-700 bg-gradient-to-b from-[#1D3752]/90 to-[#214D72]/90 backdrop-blur-sm project-card
-                ${hoveredIndex === index ? 'transform scale-[1.02]' : ''}`}
+              className={`project-card h-full flex flex-col glass-effect rounded-3xl border-0 shadow-xl overflow-hidden
+                ${hoveredIndex === index ? 'scale-105' : ''}`}
             >
-              <div className="absolute inset-0 overflow-hidden">
-                <div className={`absolute -inset-[10px] bg-gradient-to-r from-[#2C7695]/20 via-[#50BFC3]/20 to-[#F7C232]/20 opacity-0 blur-xl transition-opacity duration-1000 ${hoveredIndex === index ? 'opacity-70' : ''}`}></div>
-              </div>
-              
               {project.imageUrl && (
-                <div className="relative h-56 w-full overflow-hidden">
-                  <div className="absolute inset-0 bg-gradient-to-t from-[#1D3752] via-transparent to-transparent z-10"></div>
+                <div className="relative h-64 w-full overflow-hidden">
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent z-10"></div>
                   <img 
                     src={project.imageUrl} 
                     alt={project.title} 
-                    className={`w-full h-full object-cover object-center transition-all duration-1000 ${hoveredIndex === index ? 'scale-110 filter brightness-110' : 'scale-100'}`}
+                    className={`w-full h-full object-cover transition-all duration-700 ${hoveredIndex === index ? 'scale-110 brightness-110' : 'scale-100'}`}
                     loading="lazy"
                   />
-                  <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-[#2C7695] to-[#50BFC3]"></div>
+                  <div className="absolute top-0 left-0 w-full h-2 bg-gradient-to-r from-violet-500 to-purple-500"></div>
                 </div>
               )}
               
-              <div className="absolute top-0 left-0 w-1 h-full bg-gradient-to-b from-[#50BFC3] to-[#2C7695]"></div>
-              
-              <CardHeader className="relative">
-                <CardTitle className="text-xl text-white">{project.title}</CardTitle>
+              <CardHeader className="relative pb-4">
+                <CardTitle className="text-xl font-bold text-gray-800 leading-tight">{project.title}</CardTitle>
               </CardHeader>
               
-              <CardContent className="flex-grow">
-                <div className="space-y-3 text-gray-300">
+              <CardContent className="flex-grow pb-6">
+                <div className="space-y-4 text-gray-600">
                   {project.description.map((desc, idx) => (
-                    <p key={idx} className={`transition-all duration-500 delay-${idx * 100}`}>{desc}</p>
+                    <p key={idx} className="leading-relaxed">{desc}</p>
                   ))}
                 </div>
               </CardContent>
               
-              <CardFooter className="flex flex-col items-start gap-4 border-t border-[#2C7695]/50 pt-4">
+              <CardFooter className="flex flex-col items-start gap-6 border-t border-gray-100 pt-6">
                 <div className="flex flex-wrap gap-2">
                   {project.tech.map((tech, idx) => (
                     <Badge 
                       key={idx} 
                       variant="secondary" 
-                      className={`text-xs bg-[#214D72]/70 text-[#50BFC3] border border-[#2C7695]/50 transition-all duration-300 delay-${idx * 50} hover:bg-[#214D72]`}
+                      className={`text-xs bg-gradient-to-r from-violet-50 to-purple-50 text-violet-700 border border-violet-200 hover:from-violet-100 hover:to-purple-100 transition-all duration-300 delay-${idx * 50} rounded-full px-3 py-1`}
                     >
                       {tech}
                     </Badge>
@@ -139,11 +141,11 @@ const ProjectsSection = () => {
                     href={project.githubUrl} 
                     target="_blank" 
                     rel="noopener noreferrer" 
-                    className={`flex items-center gap-1 text-[#50BFC3] hover:text-[#F7C232] transition-all duration-300 text-sm font-medium`}
+                    className="flex items-center gap-2 text-violet-600 hover:text-purple-600 transition-all duration-300 font-medium group"
                   >
-                    <Github size={16} className={`transition-transform duration-500 ${hoveredIndex === index ? 'rotate-12' : ''}`} /> 
+                    <Github size={18} className={`transition-transform duration-300 ${hoveredIndex === index ? 'rotate-12' : ''}`} /> 
                     <span>View on GitHub</span>
-                    <ExternalLink size={14} className="ml-1" />
+                    <ExternalLink size={16} className="ml-1 group-hover:translate-x-1 transition-transform duration-300" />
                   </a>
                 )}
               </CardFooter>
