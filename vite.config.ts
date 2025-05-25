@@ -15,7 +15,7 @@ export default defineConfig(({ mode }) => ({
     mode === 'development' &&
     componentTagger(),
   ].filter(Boolean),
-  base: mode === 'production' ? './' : '/',
+  base: mode === 'production' ? '/jeet-patel-portfolio/' : '/',
   build: {
     outDir: 'dist',
     sourcemap: true,
