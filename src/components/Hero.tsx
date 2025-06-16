@@ -1,4 +1,3 @@
-
 import { useEffect, useRef, useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
@@ -6,6 +5,15 @@ import { Mail, Phone } from "lucide-react";
 
 const Hero = () => {
   const canvasRef = useRef<HTMLCanvasElement>(null);
+
+  // Get the correct image path based on environment
+  const getImagePath = () => {
+    const imagePath = "/lovable-uploads/24ebecb7-c38b-42f7-b4e0-d93e922d9064.png";
+    if (process.env.NODE_ENV === 'production' && window.location.hostname.includes('github.io')) {
+      return '/jeet-patel-portfolio' + imagePath;
+    }
+    return imagePath;
+  };
 
   useEffect(() => {
     const canvas = canvasRef.current;
@@ -163,7 +171,7 @@ const Hero = () => {
           <div className="relative w-48 h-48 md:w-72 md:h-72 rounded-full overflow-hidden border-4 border-white/10 shadow-[0_0_40px_rgba(56,114,224,0.3)] animate-float">
             <div className="absolute inset-0 bg-gradient-to-r from-blue-600/20 to-purple-600/20 z-0"></div>
             <img 
-              src="/lovable-uploads/24ebecb7-c38b-42f7-b4e0-d93e922d9064.png"
+              src={getImagePath()}
               alt="Jeet Patel"
               className="w-full h-full object-cover relative z-10"
             />
