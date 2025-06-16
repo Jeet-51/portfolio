@@ -9,12 +9,17 @@ import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
 
+// Use different basename for GitHub Pages vs Lovable
+const basename = process.env.NODE_ENV === 'production' && window.location.hostname.includes('github.io') 
+  ? '/jeet-patel-portfolio' 
+  : '';
+
 const App = () => (
   <QueryClientProvider client={queryClient}>
     <TooltipProvider>
       <Toaster />
       <Sonner />
-      <BrowserRouter basename="/jeet-patel-portfolio">
+      <BrowserRouter basename={basename}>
         <Routes>
           <Route path="/" element={<Index />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}

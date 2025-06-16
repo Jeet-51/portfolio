@@ -15,7 +15,7 @@ export default defineConfig(({ mode }) => ({
     mode === 'development' &&
     componentTagger(),
   ].filter(Boolean),
-  base: '/jeet-patel-portfolio/',
+  base: process.env.GITHUB_ACTIONS ? '/jeet-patel-portfolio/' : '/',
   build: {
     outDir: 'dist',
     sourcemap: true,
