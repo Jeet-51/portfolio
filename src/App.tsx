@@ -11,7 +11,7 @@ const queryClient = new QueryClient();
 
 // Use different basename for GitHub Pages vs Lovable
 const basename = process.env.NODE_ENV === 'production' && window.location.hostname.includes('github.io') 
-  ? '/jeet-patel-portfolio' 
+  ? '/portfolio' 
   : '';
 
 const App = () => (
