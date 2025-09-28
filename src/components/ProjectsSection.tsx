@@ -18,6 +18,26 @@ const ProjectsSection = () => {
   
   const projects: Project[] = [
     {
+      title: "PitchPal – AI Agent for Startup Pitch Evaluation",
+      description: [
+        "Orchestrated an AI-powered startup evaluation platform using LangChain ReAct agents and OpenAI, processing 100+ pitch evaluations with structured 5-dimension scoring and investment recommendations.",
+        "Developed production-ready AI agent system with custom tools for market research and competitor analysis, enabling YC startups and VC firms to accelerate due diligence processes by 60% through automated pitch evaluation."
+      ],
+      tech: ["LangChain", "OpenAI GPT-4", "Pydantic", "Streamlit", "FastAPI", "Plotly"],
+      imageUrl: "https://images.unsplash.com/photo-1677442136019-21780ecad995?auto=format&fit=crop&q=80&w=2070&ixlib=rb-4.0.3",
+      githubUrl: "https://github.com/Jeet-51/PitchPal-AI-Agent-for-Startup-Pitch-Evaluation"
+    },
+    {
+      title: "EPA Greenhouse Gas (GHG) Emissions Dashboard",
+      description: [
+        "Devised a production-style analytics stack by orchestrating dbt models on Snowflake to transform 2021–2023 EPA GHG data into star-schema marts and KPI tables, reducing Tableau latency and enabling self-serve state- and sector-level analysis.",
+        "Applied advanced Tableau techniques including LOD calculations, parameterized what-if simulations, geospatial heatmaps, and YoY delta tracking, cutting analysis time by 40% and surfacing high-emission facilities for sustainability strategy."
+      ],
+      tech: ["Tableau", "dbt", "Snowflake", "SQL", "Python"],
+      imageUrl: "https://images.unsplash.com/photo-1611273426858-450d8e3c9fce?auto=format&fit=crop&q=80&w=2070&ixlib=rb-4.0.3",
+      githubUrl: "https://github.com/Jeet-51/EPA-Greenhouse-Gas-GHG-Emissions-Dashboard"
+    },
+    {
       title: "ClaimGuard: Intelligent Healthcare Service Pattern Analysis",
       description: [
         "Designed a scalable ML pipeline to forecast Medicare billing behaviors using structured claim features and Bio_ClinicalBERT embeddings extracted from 9.7M HCPCS descriptions, achieving R² = 0.95.",
