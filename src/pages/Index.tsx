@@ -28,9 +28,6 @@ const Index = () => {
       {/* Hero Section */}
       <NewHero />
       
-      {/* Projects Section */}
-      <NewProjectsSection />
-      
       {/* Section Divider */}
       <SectionDivider />
       
@@ -51,6 +48,9 @@ const Index = () => {
           </Suspense>
         </div>
       </section>
+      
+      {/* Projects Section */}
+      <NewProjectsSection />
       
       {/* Skills & Contact Sections */}
       <SectionDivider />

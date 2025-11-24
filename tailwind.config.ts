@@ -75,12 +75,12 @@ export default {
 					800: 'hsl(var(--neutral-800))',
 					900: 'hsl(var(--neutral-900))'
 				},
-				blue: {
-					50: 'hsl(var(--blue-50))',
-					100: 'hsl(var(--blue-100))',
-					500: 'hsl(var(--blue-500))',
-					600: 'hsl(var(--blue-600))',
-					700: 'hsl(var(--blue-700))'
+				teal: {
+					50: 'hsl(var(--teal-50))',
+					100: 'hsl(var(--teal-100))',
+					500: 'hsl(var(--teal-500))',
+					600: 'hsl(var(--teal-600))',
+					700: 'hsl(var(--teal-700))'
 				}
 			},
 			fontFamily: {
@@ -190,7 +190,7 @@ export default {
 			backgroundImage: {
 				'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
 				'gradient-conic': 'conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))',
-				'gradient-flowing': 'linear-gradient(135deg, #3b82f6, #06b6d4, #8b5cf6, #06b6d4)',
+				'gradient-flowing': 'linear-gradient(135deg, hsl(185 57% 50%), hsl(180 65% 55%), hsl(185 57% 40%), hsl(180 65% 60%))',
 			}
 		}
 	},

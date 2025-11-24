@@ -61,14 +61,29 @@ const ExperienceItem = ({ title, company, location, period, descriptions, techno
 const ExperienceSection = () => {
   const experiences = [
     {
-      title: "Data Scientist",
-      company: "Project 990 (IU Smart Charity)",
-      location: "Bloomington, Indiana",
-      period: "March 2024 - Present",
+      title: "Machine Learning Engineer",
+      company: "Project 990 Inc. (IU O'Neill School of Public & Environmental Affairs)",
+      location: "Remote",
+      period: "Jan 2025 - Present",
       descriptions: [
-        "Project 990 is a data-driven initiative under IU Smart Charity focused on nonprofit analytics and campaign optimization. I contributed by deploying a RoBERTa model with Alteryx to classify gender across 350K+ records, boosting labeling efficiency by 40%. I also engineered LLM-based pipelines using Mistral-7B to categorize 175K+ mission statements, streamlined ETL workflows by transitioning from Pandas to SQL for 1.5M+ records, and applied graph algorithms in Neo4j to uncover 78 hidden funding networks."
+        "Built a multi-model pipeline on IU's HPC clusters using Mistral-7B for mission statement extraction and Gemma as a 'judge' model for automated quality validation, implementing JSON-based prompt engineering and Cross-Encoder scoring to achieve 98% accurate confidence-tier classification across 175K+ records.",
+        "Developed and deployed a ranking model using PCA for dimensionality reduction and XGBoost (XGBRanker), achieving an NDCG score of 0.95 and streamlining stakeholder ranking with an automated scoring pipeline.",
+        "Deployed an unsupervised RoBERTa-based NLP pipeline for gender classification on 350K+ nonprofit records, leveraging CUDA-enabled GPUs and HPC clusters for large-scale embedding generation, distributed training, and optimized inference to enhance model precision and accelerate data labeling automation."
       ],
-      technologies: ["RoBERTa", "Alteryx", "Mistral-7B", "Prompt Engineering", "SQL", "Neo4j", "ETL"]
+      technologies: ["Mistral-7B", "Gemma", "XGBoost", "RoBERTa", "PCA", "CUDA", "HPC", "Prompt Engineering"]
+    },
+    {
+      title: "Data Analytics Engineer",
+      company: "Project 990 Inc. (IU O'Neill School of Public & Environmental Affairs)",
+      location: "Remote",
+      period: "May 2024 - Dec 2024",
+      descriptions: [
+        "Fixed organization and ZIP-level mismatches across 175K+ grantee financial records by engineering an Alteryx workflow with Python and Microsoft Excel, improving data accuracy by 65% and uncovering anomalies that enhanced fund reconciliation.",
+        "Automated an ETL pipeline processing 1.5M IRS 990 grant records, reducing database update time by 71% (7 hours → 2 hours) through DataFrame pre-conversion and batch optimization, enabling faster UAT environment updates for downstream analytics.",
+        "Developed a KPI-driven Tableau dashboard analyzing 1.5M+ philanthropic and financial records ingested through automated REST APIs with schema validation and incremental sync, helping stakeholders identify underfunded U.S. regions and optimize capital budget allocation.",
+        "Designed graph-based data models in Neo4j and applied Louvain and Leiden algorithms to uncover 78 hidden funding networks, strengthening the project's knowledge graph infrastructure and community detection capabilities."
+      ],
+      technologies: ["Alteryx", "Python", "ETL", "Tableau", "REST APIs", "Neo4j", "Louvain", "Leiden"]
     },
     {
       title: "Associate Instructor",
