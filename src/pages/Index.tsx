@@ -1,5 +1,6 @@
 import { lazy, Suspense } from "react";
 import DarkModeToggle from "@/components/DarkModeToggle";
+import Navigation from "@/components/Navigation";
 import NewHero from "@/components/NewHero";
 import NewProjectsSection from "@/components/NewProjectsSection";
 import SectionDivider from "@/components/SectionDivider";
@@ -22,17 +23,22 @@ const LoadingSkeleton = () => (
 const Index = () => {
   return (
     <div className="min-h-screen bg-background text-foreground">
+      {/* Navigation */}
+      <Navigation />
+      
       {/* Dark Mode Toggle */}
       <DarkModeToggle />
       
       {/* Hero Section */}
-      <NewHero />
+      <div id="home">
+        <NewHero />
+      </div>
       
       {/* Section Divider */}
       <SectionDivider />
       
       {/* Experience Section */}
-      <section className="py-24 px-4">
+      <section id="experience" className="py-24 px-4">
         <div className="container mx-auto max-w-7xl">
           <div className="text-center space-y-4 mb-16">
             <div className="inline-flex items-center gap-2 px-4 py-2 bg-primary/10 text-primary rounded-full text-sm font-medium">
@@ -50,12 +56,14 @@ const Index = () => {
       </section>
       
       {/* Projects Section */}
-      <NewProjectsSection />
+      <div id="projects">
+        <NewProjectsSection />
+      </div>
       
       {/* Skills & Contact Sections */}
       <SectionDivider />
       
-      <section className="py-24 px-4 bg-gradient-to-b from-background to-neutral-50 dark:to-neutral-900">
+      <section id="skills" className="py-24 px-4 bg-gradient-to-b from-background to-neutral-50 dark:to-neutral-900">
         <div className="container mx-auto max-w-7xl">
           <Suspense fallback={<LoadingSkeleton />}>
             <LazySkillsSection />
@@ -65,7 +73,7 @@ const Index = () => {
       
       <SectionDivider />
       
-      <section className="py-24 px-4">
+      <section id="contact" className="py-24 px-4">
         <div className="container mx-auto max-w-7xl">
           <Suspense fallback={<LoadingSkeleton />}>
             <LazyContactSection />

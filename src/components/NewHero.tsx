@@ -74,7 +74,7 @@ const NewHero = () => {
             </div>
             
             <p className="text-xl text-muted-foreground leading-relaxed max-w-2xl animate-slide-up" style={{ animationDelay: '0.2s' }}>
-              Senior ML Engineer & Data Scientist specializing in GenAI, LangChain, and scalable data architectures. 
+              Senior ML Engineer, Data Scientist & Data Analytics specialist working with GenAI, LangChain, and scalable data architectures. 
               Building intelligent solutions that drive business impact through advanced analytics and machine learning.
             </p>
             
