@@ -78,6 +78,23 @@ const NewHero = () => {
               Building intelligent solutions that drive business impact through advanced analytics and machine learning.
             </p>
             
+            {/* Quote Section */}
+            <div className="relative my-8 animate-slide-up" style={{ animationDelay: '0.25s' }}>
+              <div className="absolute -inset-4 bg-gradient-to-r from-primary/20 via-accent/20 to-primary/20 rounded-2xl blur-xl opacity-50"></div>
+              <div className="relative bg-gradient-to-br from-primary/10 to-accent/10 backdrop-blur-sm border border-primary/20 rounded-2xl p-6 md:p-8">
+                <div className="flex items-start gap-3">
+                  <span className="text-4xl text-primary/40 leading-none font-serif">"</span>
+                  <blockquote className="flex-1">
+                    <p className="text-lg md:text-xl font-medium text-foreground leading-relaxed italic">
+                      I don't just build models—I build tools that automate decisions, drive efficiency, and solve real-world problems, 
+                      <span className="text-primary font-semibold"> evolving with every interaction.</span>
+                    </p>
+                  </blockquote>
+                  <span className="text-4xl text-primary/40 leading-none font-serif self-end">"</span>
+                </div>
+              </div>
+            </div>
+            
             <div className="flex flex-wrap gap-3 animate-slide-up" style={{ animationDelay: '0.3s' }}>
               <Badge variant="secondary" className="px-4 py-2 text-sm">
                 Machine Learning
