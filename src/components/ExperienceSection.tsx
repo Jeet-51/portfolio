@@ -121,9 +121,12 @@ const ExperienceSection = () => {
       location: "Mumbai, India",
       period: "June 2022 - May 2023",
       descriptions: [
-        "At Dwarkadas J. Sanghvi College of Engineering, I applied SMOTE and ADASYN to rebalance 800+ imbalanced healthcare records, achieving 94% accuracy with Random Forest and ensemble models. This work strengthened diagnostic decision support and was published in the Scopus-indexed journal Design Engineering, contributing to research in medical AI."
+        "Built ML pipelines on Snowflake for fetal health prediction, applying SMOTE with Bayesian optimization to fix class imbalance.",
+        "Achieved a 94% F1-score by validating resampling strategies through rigorous A/B testing on large clinical datasets.",
+        "Streamlined slow EHR experimentation by integrating Azure Data Lake Analytics to eliminate processing bottlenecks.",
+        "Increased cross-validation throughput by 40% by shifting experimentation to Azure Machine Learning pipelines."
       ],
-      technologies: ["SMOTE", "ADASYN", "Random Forest", "Ensemble Learning", "Research"]
+      technologies: ["Snowflake", "SMOTE", "Bayesian Optimization", "Azure Data Lake", "Azure ML", "A/B Testing"]
     },
     {
       title: "Machine Learning Engineer",
