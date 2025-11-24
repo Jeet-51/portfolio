@@ -86,7 +86,7 @@ const NewHero = () => {
                   <span className="text-4xl text-primary/40 leading-none font-serif">"</span>
                   <blockquote className="flex-1">
                     <p className="text-lg md:text-xl font-medium text-foreground leading-relaxed italic">
-                      I don't just build models—I build tools that automate decisions, drive efficiency, and solve real-world problems, 
+                      I don't just build models, I build tools that automate decisions, drive efficiency, and solve real-world problems, 
                       <span className="text-primary font-semibold"> evolving with every interaction.</span>
                     </p>
                   </blockquote>
