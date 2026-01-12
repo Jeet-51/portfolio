@@ -32,6 +32,19 @@ const NewProjectsSection = () => {
       category: "Backend"
     },
     {
+      title: "LLM Inference Service with Caching and Rate Limiting",
+      description: "A production-grade GPU-backed LLM inference service designed for low-latency, high-concurrency workloads, with built-in caching, rate limiting, and observability to support reliable AI serving at scale.",
+      outcomes: [
+        "Reduced inference latency from ~850ms to ~180ms through quantization and optimized batching",
+        "Supported 100+ concurrent requests with stable performance on GPU infrastructure",
+        "Improved system reliability and visibility with real-time GPU and inference monitoring"
+      ],
+      tech: ["FastAPI", "Python", "vLLM", "Mistral-7B (AWQ)", "Redis", "Docker", "Prometheus", "CUDA"],
+      imageUrl: "https://images.unsplash.com/photo-1620712943543-bcc4688e7485?auto=format&fit=crop&q=80&w=800&h=400",
+      githubUrl: "https://github.com/Jeet-51",
+      category: "AI Infrastructure"
+    },
+    {
       title: "PitchPal – AI Agent for Startup Pitch Evaluation",
       description: "AI-powered startup evaluation platform using LangChain ReAct agents and OpenAI for automated pitch analysis.",
       outcomes: [
