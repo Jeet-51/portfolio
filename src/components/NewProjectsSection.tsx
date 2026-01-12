@@ -19,6 +19,19 @@ const NewProjectsSection = () => {
   
   const projects: Project[] = [
     {
+      title: "Backend – Customer Subscription & Gifting Platform",
+      description: "A production-grade backend system supporting subscription purchases, gifting, renewals, and cancellations, with a strong focus on correctness, idempotency, and low-latency performance.",
+      outcomes: [
+        "Designed idempotent APIs to prevent duplicate charges and ensure transactional safety",
+        "Achieved sub-125ms P95 latency under load with high request concurrency",
+        "Maintained less than 1% error rates across critical payment workflows"
+      ],
+      tech: ["Go", "PostgreSQL", "Redis", "REST APIs", "Docker"],
+      imageUrl: "https://images.unsplash.com/photo-1558494949-ef010cbdcc31?auto=format&fit=crop&q=80&w=800&h=400",
+      githubUrl: "https://github.com/Jeet-51",
+      category: "Backend"
+    },
+    {
       title: "PitchPal – AI Agent for Startup Pitch Evaluation",
       description: "AI-powered startup evaluation platform using LangChain ReAct agents and OpenAI for automated pitch analysis.",
       outcomes: [

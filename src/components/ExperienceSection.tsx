@@ -61,14 +61,12 @@ const ExperienceItem = ({ title, company, location, period, descriptions, techno
 const ExperienceSection = () => {
   const experiences = [
     {
-      title: "Machine Learning Engineer",
+      title: "AI Software Engineer",
       company: "Project 990 Inc. (IU O'Neill School of Public & Environmental Affairs)",
       location: "Remote",
       period: "Jan 2025 - Present",
       descriptions: [
-        "Built a multi-model pipeline on IU's HPC clusters using Mistral-7B for mission statement extraction and Gemma as a 'judge' model for automated quality validation, implementing JSON-based prompt engineering and Cross-Encoder scoring to achieve 98% accurate confidence-tier classification across 175K+ records.",
-        "Developed and deployed a ranking model using PCA for dimensionality reduction and XGBoost (XGBRanker), achieving an NDCG score of 0.95 and streamlining stakeholder ranking with an automated scoring pipeline.",
-        "Deployed an unsupervised RoBERTa-based NLP pipeline for gender classification on 350K+ nonprofit records, leveraging CUDA-enabled GPUs and HPC clusters for large-scale embedding generation, distributed training, and optimized inference to enhance model precision and accelerate data labeling automation."
+        "Building and operating production AI systems at scale, including large-scale model serving and GPU-based inference pipelines. I own backend infrastructure supporting real-world data workflows across 175K+ nonprofit records, delivering reliable ML solutions that power stakeholder insights and automated decision-making."
       ],
       technologies: ["Mistral-7B", "Gemma", "XGBoost", "RoBERTa", "PCA", "CUDA", "HPC", "Prompt Engineering"]
     },
@@ -96,12 +94,12 @@ const ExperienceSection = () => {
       technologies: ["Python", "Matplotlib", "Seaborn", "Plotly", "D3.js", "Data Visualization"]
     },
     {
-      title: "Data Scientist Intern",
+      title: "AI/ML Intern",
       company: "Hyphenova Network",
       location: "Los Angeles, California",
       period: "May 2023 - December 2023",
       descriptions: [
-        "Hyphenova Network is a creator-tech platform leveraging AI to power intelligent experiences. As a Data Scientist, I built a RAG chatbot using FAISS/ChromaDB for contextual LLM responses, developed a BERT-based music classifier with 80% accuracy, optimized embedding pipelines for faster retrieval, and designed a serverless metadata system using DynamoDB and S3 to support 500K+ creator-brand interactions."
+        "Applied AI systems and model serving to power a creator-tech platform. I worked closely with product and ML teams to ship production features, including a RAG chatbot, BERT-based music classifier, and optimized embedding pipelines that supported 500K+ creator-brand interactions."
       ],
       technologies: ["RAG", "FAISS", "ChromaDB", "BERT", "LLMs", "DynamoDB", "S3", "Serverless"]
     },
@@ -129,12 +127,12 @@ const ExperienceSection = () => {
       technologies: ["Snowflake", "SMOTE", "Bayesian Optimization", "Azure Data Lake", "Azure ML", "A/B Testing"]
     },
     {
-      title: "Machine Learning Engineer",
+      title: "Machine Learning Engineer Intern",
       company: "Gustovalley Technovations",
       location: "Remote",
       period: "Feb 2022 - May 2022",
       descriptions: [
-        "At Gustovalley Technovations, I built an LSTM-based deep learning model on 430K+ time series records for early AQI prediction, achieving an R² of 0.91. I improved precision by 25% using Bayesian tuning and feature selection, and deployed the ML pipeline on Azure ML with AKS for real-time inference, accelerating environmental insights by 30%."
+        "Hands-on machine learning experimentation in a fast-paced environment. I focused on data preprocessing, modeling, and evaluation for time series forecasting, gaining early exposure to production-oriented ML workflows including model deployment and real-time inference pipelines."
       ],
       technologies: ["LSTM", "Deep Learning", "Time Series", "Azure ML", "AKS", "Bayesian Optimization"]
     },
