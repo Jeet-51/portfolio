@@ -74,7 +74,7 @@ const ExperienceSection = () => {
       title: "Associate Instructor",
       company: "Luddy School of Informatics, Computing, and Engineering",
       location: "Bloomington, Indiana",
-      period: "Aug 2023 - May 2024",
+      period: "Aug 2024 - May 2025",
       descriptions: [
         "As an Associate Instructor at Indiana University, I led instruction on data visualization using Python libraries like Matplotlib, Seaborn, and Plotly, emphasizing hands-on learning through live coding. I supported student projects involving D3.js and interactive dashboards, helping them build intuitive visuals and effectively communicate data-driven insights."
       ],
