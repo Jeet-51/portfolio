@@ -94,14 +94,14 @@ const ExperienceSection = () => {
       title: "Data Analyst",
       company: "Indiana University School of Public Health",
       location: "Bloomington, Indiana",
-      period: "May 2023 - September 2023",
+      period: "May 2024 - September 2024",
       descriptions: [
         "At the Indiana University School of Public Health, I analyzed 50K+ DHS responses using Stata, reducing data inconsistencies by 30% and strengthening health policy insights. I implemented A/B testing to refine preprocessing for health indicators, boosting model accuracy by 15%, and built an ArcGIS dashboard that cut analysis time by 35% for regional health teams."
       ],
       technologies: ["Stata", "Statistical Analysis", "A/B Testing", "ArcGIS", "Dashboards"]
     },
     {
-      title: "Machine Learning Engineer Intern",
+      title: "AI Research Engineer",
       company: "Dwarkadas J. Sanghvi College of Engineering",
       location: "Mumbai, India",
       period: "June 2022 - May 2023",
