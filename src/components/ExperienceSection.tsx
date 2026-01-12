@@ -64,24 +64,11 @@ const ExperienceSection = () => {
       title: "AI Software Engineer",
       company: "Project 990 Inc. (IU O'Neill School of Public & Environmental Affairs)",
       location: "Remote",
-      period: "Jan 2025 - Present",
+      period: "May 2024 - Present",
       descriptions: [
-        "Building and operating production AI systems at scale, including large-scale model serving and GPU-based inference pipelines. I own backend infrastructure supporting real-world data workflows across 175K+ nonprofit records, delivering reliable ML solutions that power stakeholder insights and automated decision-making."
+        "I build and operate production AI systems that power nonprofit and public-sector data analysis at scale. My work spans large-scale model serving and GPU-based inference pipelines, where I own the backend infrastructure supporting over 175K nonprofit records. I've developed LLM-powered systems including Text-to-SQL interfaces and NLP pipelines that transform unstructured data into actionable insights. This includes multi-model architectures using Mistral-7B for mission extraction and Gemma as a quality validation layer, along with RoBERTa-based classification pipelines running on HPC clusters. The systems I've built enable automated decision-making for stakeholders, streamlining grant analysis, funding network discovery, and organizational ranking through reliable, scalable ML solutions."
       ],
-      technologies: ["Mistral-7B", "Gemma", "XGBoost", "RoBERTa", "PCA", "CUDA", "HPC", "Prompt Engineering"]
-    },
-    {
-      title: "Data Analytics Engineer",
-      company: "Project 990 Inc. (IU O'Neill School of Public & Environmental Affairs)",
-      location: "Remote",
-      period: "May 2024 - Dec 2024",
-      descriptions: [
-        "Fixed organization and ZIP-level mismatches across 175K+ grantee financial records by engineering an Alteryx workflow with Python and Microsoft Excel, improving data accuracy by 65% and uncovering anomalies that enhanced fund reconciliation.",
-        "Automated an ETL pipeline processing 1.5M IRS 990 grant records, reducing database update time by 71% (7 hours → 2 hours) through DataFrame pre-conversion and batch optimization, enabling faster UAT environment updates for downstream analytics.",
-        "Developed a KPI-driven Tableau dashboard analyzing 1.5M+ philanthropic and financial records ingested through automated REST APIs with schema validation and incremental sync, helping stakeholders identify underfunded U.S. regions and optimize capital budget allocation.",
-        "Designed graph-based data models in Neo4j and applied Louvain and Leiden algorithms to uncover 78 hidden funding networks, strengthening the project's knowledge graph infrastructure and community detection capabilities."
-      ],
-      technologies: ["Alteryx", "Python", "ETL", "Tableau", "REST APIs", "Neo4j", "Louvain", "Leiden"]
+      technologies: ["Mistral-7B", "Gemma", "XGBoost", "RoBERTa", "CUDA", "HPC", "Neo4j", "Text-to-SQL", "Prompt Engineering"]
     },
     {
       title: "Associate Instructor",
@@ -94,14 +81,14 @@ const ExperienceSection = () => {
       technologies: ["Python", "Matplotlib", "Seaborn", "Plotly", "D3.js", "Data Visualization"]
     },
     {
-      title: "AI/ML Intern",
+      title: "AI Engineer Intern",
       company: "Hyphenova Network",
       location: "Los Angeles, California",
-      period: "May 2023 - December 2023",
+      period: "May 2024 - December 2024",
       descriptions: [
-        "Applied AI systems and model serving to power a creator-tech platform. I worked closely with product and ML teams to ship production features, including a RAG chatbot, BERT-based music classifier, and optimized embedding pipelines that supported 500K+ creator-brand interactions."
+        "At Hyphenova Network, I worked on applied AI systems and model serving pipelines that powered a creator-tech platform at scale. I focused on inference optimization, MLOps practices, and reliability improvements to ensure consistent performance under production loads. I built backend services designed for high-concurrency workflows, supporting real-time AI-driven features across the platform. My contributions included shipping AI agents and ML-powered features into production, from RAG-based chatbots to BERT classifiers for content analysis. These systems supported over 50K campaigns and facilitated more than 500K creator-brand interactions, directly impacting platform engagement and automation capabilities."
       ],
-      technologies: ["RAG", "FAISS", "ChromaDB", "BERT", "LLMs", "DynamoDB", "S3", "Serverless"]
+      technologies: ["RAG", "FAISS", "ChromaDB", "BERT", "LLMs", "DynamoDB", "S3", "MLOps", "Serverless"]
     },
     {
       title: "Data Analyst",
@@ -114,15 +101,12 @@ const ExperienceSection = () => {
       technologies: ["Stata", "Statistical Analysis", "A/B Testing", "ArcGIS", "Dashboards"]
     },
     {
-      title: "AI Research Engineer",
+      title: "Machine Learning Engineer Intern",
       company: "Dwarkadas J. Sanghvi College of Engineering",
       location: "Mumbai, India",
       period: "June 2022 - May 2023",
       descriptions: [
-        "Built ML pipelines on Snowflake for fetal health prediction, applying SMOTE with Bayesian optimization to fix class imbalance.",
-        "Achieved a 94% F1-score by validating resampling strategies through rigorous A/B testing on large clinical datasets.",
-        "Streamlined slow EHR experimentation by integrating Azure Data Lake Analytics to eliminate processing bottlenecks.",
-        "Increased cross-validation throughput by 40% by shifting experimentation to Azure Machine Learning pipelines."
+        "I led end-to-end ML experimentation on clinical and EHR datasets, focusing on fetal health prediction using structured medical data. My work involved building distributed data processing and experimentation workflows on cloud infrastructure, enabling faster iteration and reproducibility. I implemented rigorous model evaluation and validation pipelines, applying techniques like SMOTE with Bayesian optimization to address class imbalance and achieve a 94% F1-score. By migrating experimentation to Azure Machine Learning pipelines and integrating Azure Data Lake Analytics, I eliminated processing bottlenecks and increased cross-validation throughput by 40%. This role emphasized research rigor, reproducibility, and building scalable ML systems that could handle real-world clinical data challenges."
       ],
       technologies: ["Snowflake", "SMOTE", "Bayesian Optimization", "Azure Data Lake", "Azure ML", "A/B Testing"]
     },
@@ -142,9 +126,9 @@ const ExperienceSection = () => {
       location: "Remote",
       period: "Jun 2021 - Aug 2021",
       descriptions: [
-        "At Technocolabs Software, I implemented a PostgreSQL-based cost tracking system that reduced project expenses by 15%. I optimized MongoDB queries to improve app monitoring and boosted page load performance by 40%. Additionally, I developed RESTful APIs using Python and Flask to enable real-time analytics and speed up financial reporting by 40%."
+        "I worked on backend engineering for data-driven web applications, focusing on building reliable systems that powered real-time analytics. My responsibilities included developing RESTful APIs using Python and Flask, integrating with PostgreSQL and MongoDB databases to support cost tracking and application monitoring features. I optimized database queries and system performance, reducing page load times by 40% and improving overall application responsiveness. I also contributed to real-time dashboards and analytics systems that enabled faster financial reporting and helped reduce project expenses by 15% through better visibility into operational costs."
       ],
-      technologies: ["PostgreSQL", "MongoDB", "Python", "Flask", "RESTful APIs"]
+      technologies: ["PostgreSQL", "MongoDB", "Python", "Flask", "RESTful APIs", "Real-time Analytics"]
     }
   ];
 
