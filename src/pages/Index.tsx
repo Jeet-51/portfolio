@@ -15,9 +15,9 @@ const LazyContactSection = lazy(() => import("@/components/ContactSection"));
 
 const LoadingSkeleton = () => (
   <div className="space-y-4 p-8">
-    <Skeleton className="h-8 w-3/4" />
-    <Skeleton className="h-4 w-full" />
-    <Skeleton className="h-4 w-2/3" />
+    <Skeleton className="h-8 w-3/4 bg-muted/20" />
+    <Skeleton className="h-4 w-full bg-muted/20" />
+    <Skeleton className="h-4 w-2/3 bg-muted/20" />
   </div>
 );
 
@@ -42,11 +42,12 @@ const Index = () => {
       <SectionDivider />
       
       {/* Experience Section */}
-      <section id="experience" className="py-24 px-4">
-        <div className="container mx-auto max-w-7xl">
+      <section id="experience" className="py-24 px-4 relative overflow-hidden">
+        <div className="absolute inset-0 mesh-gradient"></div>
+        <div className="container mx-auto max-w-7xl relative z-10">
           <div className="text-center space-y-4 mb-16">
-            <div className="inline-flex items-center gap-2 px-4 py-2 bg-primary/10 text-primary rounded-full text-sm font-medium">
-              Professional Experience
+            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full text-sm font-medium glass-card badge-glow">
+              <span className="text-primary">Professional Experience</span>
             </div>
             <h2 className="text-4xl md:text-5xl font-bold text-foreground">
               Work Experience
@@ -67,8 +68,9 @@ const Index = () => {
       {/* Skills & Contact Sections */}
       <SectionDivider />
       
-      <section id="skills" className="py-24 px-4 bg-gradient-to-b from-background to-neutral-50 dark:to-neutral-900">
-        <div className="container mx-auto max-w-7xl">
+      <section id="skills" className="py-24 px-4 relative overflow-hidden">
+        <div className="absolute inset-0 mesh-gradient"></div>
+        <div className="container mx-auto max-w-7xl relative z-10">
           <Suspense fallback={<LoadingSkeleton />}>
             <LazySkillsSection />
           </Suspense>
@@ -77,8 +79,9 @@ const Index = () => {
       
       <SectionDivider />
       
-      <section id="contact" className="py-24 px-4">
-        <div className="container mx-auto max-w-7xl">
+      <section id="contact" className="py-24 px-4 relative overflow-hidden">
+        <div className="absolute inset-0 mesh-gradient"></div>
+        <div className="container mx-auto max-w-7xl relative z-10">
           <Suspense fallback={<LoadingSkeleton />}>
             <LazyContactSection />
           </Suspense>
@@ -86,15 +89,16 @@ const Index = () => {
       </section>
       
       {/* Footer */}
-      <footer className="bg-gradient-to-b from-background to-neutral-100 dark:to-neutral-950 border-t border-border py-12">
-        <div className="container mx-auto max-w-7xl px-4">
+      <footer className="relative overflow-hidden border-t border-border/30 py-12">
+        <div className="absolute inset-0 mesh-gradient opacity-50"></div>
+        <div className="container mx-auto max-w-7xl px-4 relative z-10">
           <div className="flex flex-col items-center gap-6">
             <div className="flex items-center gap-6">
               <a 
                 href="https://github.com/Jeet-51" 
                 target="_blank" 
                 rel="noopener noreferrer"
-                className="text-muted-foreground hover:text-primary transition-colors hover:scale-110 transform duration-200"
+                className="text-muted-foreground hover:text-primary transition-all duration-300 hover:drop-shadow-[0_0_8px_hsl(175_85%_50%/0.6)]"
                 aria-label="GitHub Profile"
               >
                 <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
@@ -105,7 +109,7 @@ const Index = () => {
                 href="https://linkedin.com/in/pateljeet22" 
                 target="_blank" 
                 rel="noopener noreferrer"
-                className="text-muted-foreground hover:text-primary transition-colors hover:scale-110 transform duration-200"
+                className="text-muted-foreground hover:text-primary transition-all duration-300 hover:drop-shadow-[0_0_8px_hsl(175_85%_50%/0.6)]"
                 aria-label="LinkedIn Profile"
               >
                 <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
@@ -114,7 +118,7 @@ const Index = () => {
               </a>
               <a 
                 href="mailto:jeetp5118@gmail.com"
-                className="text-muted-foreground hover:text-primary transition-colors hover:scale-110 transform duration-200"
+                className="text-muted-foreground hover:text-primary transition-all duration-300 hover:drop-shadow-[0_0_8px_hsl(175_85%_50%/0.6)]"
                 aria-label="Email"
               >
                 <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -126,7 +130,7 @@ const Index = () => {
               <p className="text-sm text-muted-foreground">
                 © {new Date().getFullYear()} Jeet Patel. Built with React, TypeScript & Tailwind CSS.
               </p>
-              <p className="text-xs text-muted-foreground mt-2">
+              <p className="text-xs text-muted-foreground/60 mt-2">
                 Crafted with precision, powered by innovation.
               </p>
             </div>

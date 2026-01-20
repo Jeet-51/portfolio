@@ -6,8 +6,8 @@ const ContactSection = () => {
   return (
     <div className="space-y-8">
       <div className="text-center space-y-4 mb-12">
-        <div className="inline-flex items-center gap-2 px-4 py-2 bg-primary/10 text-primary rounded-full text-sm font-medium">
-          Let's Connect
+        <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full text-sm font-medium glass-card badge-glow">
+          <span className="text-primary">Let's Connect</span>
         </div>
         <h2 className="text-4xl md:text-5xl font-bold text-foreground">
           Get In Touch
@@ -19,9 +19,9 @@ const ContactSection = () => {
       </div>
 
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 max-w-4xl mx-auto">
-        <Card className="group overflow-hidden border shadow-lg rounded-2xl hover:shadow-2xl transition-all duration-500 hover:scale-105 hover:-translate-y-1">
+        <Card className="group glass-card border-0 overflow-hidden interactive-hover">
           <CardContent className="p-6 flex items-center space-x-4">
-            <div className="bg-gradient-to-br from-primary to-primary/70 p-4 rounded-2xl text-primary-foreground shadow-lg group-hover:scale-110 transition-transform duration-300">
+            <div className="bg-primary/20 p-4 rounded-2xl text-primary shadow-[0_0_20px_hsl(175_85%_50%/0.3)] group-hover:shadow-[0_0_30px_hsl(175_85%_50%/0.5)] transition-all duration-300">
               <Mail className="h-6 w-6" />
             </div>
             <div className="flex-1">
@@ -33,9 +33,9 @@ const ContactSection = () => {
           </CardContent>
         </Card>
         
-        <Card className="group overflow-hidden border shadow-lg rounded-2xl hover:shadow-2xl transition-all duration-500 hover:scale-105 hover:-translate-y-1">
+        <Card className="group glass-card border-0 overflow-hidden interactive-hover">
           <CardContent className="p-6 flex items-center space-x-4">
-            <div className="bg-gradient-to-br from-accent to-accent/70 p-4 rounded-2xl text-accent-foreground shadow-lg group-hover:scale-110 transition-transform duration-300">
+            <div className="bg-primary/20 p-4 rounded-2xl text-primary shadow-[0_0_20px_hsl(175_85%_50%/0.3)] group-hover:shadow-[0_0_30px_hsl(175_85%_50%/0.5)] transition-all duration-300">
               <Phone className="h-6 w-6" />
             </div>
             <div className="flex-1">
@@ -47,9 +47,9 @@ const ContactSection = () => {
           </CardContent>
         </Card>
         
-        <Card className="group overflow-hidden border shadow-lg rounded-2xl hover:shadow-2xl transition-all duration-500 hover:scale-105 hover:-translate-y-1">
+        <Card className="group glass-card border-0 overflow-hidden interactive-hover">
           <CardContent className="p-6 flex items-center space-x-4">
-            <div className="bg-gradient-to-br from-blue-600 to-blue-500 p-4 rounded-2xl text-white shadow-lg group-hover:scale-110 transition-transform duration-300">
+            <div className="bg-primary/20 p-4 rounded-2xl text-primary shadow-[0_0_20px_hsl(175_85%_50%/0.3)] group-hover:shadow-[0_0_30px_hsl(175_85%_50%/0.5)] transition-all duration-300">
               <Linkedin className="h-6 w-6" />
             </div>
             <div className="flex-1">
@@ -66,9 +66,9 @@ const ContactSection = () => {
           </CardContent>
         </Card>
         
-        <Card className="group overflow-hidden border shadow-lg rounded-2xl hover:shadow-2xl transition-all duration-500 hover:scale-105 hover:-translate-y-1">
+        <Card className="group glass-card border-0 overflow-hidden interactive-hover">
           <CardContent className="p-6 flex items-center space-x-4">
-            <div className="bg-gradient-to-br from-gray-800 to-gray-700 p-4 rounded-2xl text-white shadow-lg group-hover:scale-110 transition-transform duration-300">
+            <div className="bg-primary/20 p-4 rounded-2xl text-primary shadow-[0_0_20px_hsl(175_85%_50%/0.3)] group-hover:shadow-[0_0_30px_hsl(175_85%_50%/0.5)] transition-all duration-300">
               <Github className="h-6 w-6" />
             </div>
             <div className="flex-1">
