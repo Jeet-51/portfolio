@@ -99,13 +99,16 @@ const NewProjectsSection = () => {
   ];
 
   return (
-    <section className="py-24 px-4 bg-gradient-to-b from-background to-neutral-50 dark:to-neutral-900">
-      <div className="container mx-auto max-w-7xl">
+    <section className="py-24 px-4 relative overflow-hidden">
+      {/* Mesh gradient background */}
+      <div className="absolute inset-0 mesh-gradient"></div>
+      
+      <div className="container mx-auto max-w-7xl relative z-10">
         {/* Header */}
         <div className="text-center space-y-4 mb-16">
-          <div className="inline-flex items-center gap-2 px-4 py-2 bg-primary/10 text-primary rounded-full text-sm font-medium">
-            <Code2 className="w-4 h-4" />
-            Featured Work
+          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full text-sm font-medium glass-card badge-glow">
+            <Code2 className="w-4 h-4 text-primary" />
+            <span className="text-primary">Featured Work</span>
           </div>
           <h2 className="text-4xl md:text-5xl font-bold text-foreground">
             Projects & Solutions
@@ -117,12 +120,12 @@ const NewProjectsSection = () => {
         </div>
 
         {/* Projects Grid */}
-        <div className="grid md:grid-cols-2 gap-8">
+        <div className="grid md:grid-cols-2 gap-6">
           {projects.map((project, index) => (
             <Card 
               key={index}
-              className={`group h-full overflow-hidden border-0 shadow-lg hover:shadow-2xl transition-all duration-500 bg-card/50 backdrop-blur-sm
-                ${hoveredIndex === index ? 'scale-[1.02] shadow-2xl' : ''}`}
+              className={`group h-full overflow-hidden border-0 glass-card transition-all duration-500
+                ${hoveredIndex === index ? 'scale-[1.02] shadow-[0_0_40px_hsl(175_85%_50%/0.15)]' : ''}`}
               onMouseEnter={() => setHoveredIndex(index)}
               onMouseLeave={() => setHoveredIndex(null)}
             >
@@ -136,9 +139,9 @@ const NewProjectsSection = () => {
                   }`}
                   loading="lazy"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent"></div>
+                <div className="absolute inset-0 bg-gradient-to-t from-background via-background/50 to-transparent"></div>
                 <div className="absolute top-4 left-4">
-                  <Badge className="bg-primary/90 text-primary-foreground">
+                  <Badge className="bg-primary/90 text-primary-foreground shadow-[0_0_10px_hsl(175_85%_50%/0.5)]">
                     {project.category}
                   </Badge>
                 </div>
@@ -157,13 +160,13 @@ const NewProjectsSection = () => {
                 {/* Key Outcomes */}
                 <div className="space-y-3">
                   <h4 className="text-sm font-semibold text-card-foreground flex items-center gap-2">
-                    <TrendingUp className="w-4 h-4 text-primary" />
+                    <TrendingUp className="w-4 h-4 text-primary cyan-glow" />
                     Key Outcomes
                   </h4>
                   <ul className="space-y-2">
                     {project.outcomes.map((outcome, idx) => (
                       <li key={idx} className="text-sm text-muted-foreground flex items-start gap-2">
-                        <div className="w-1.5 h-1.5 bg-primary rounded-full mt-2 flex-shrink-0"></div>
+                        <div className="w-1.5 h-1.5 bg-primary rounded-full mt-2 flex-shrink-0 shadow-[0_0_6px_hsl(175_85%_50%/0.8)]"></div>
                         {outcome}
                       </li>
                     ))}
@@ -173,7 +176,7 @@ const NewProjectsSection = () => {
                 {/* Tech Stack */}
                 <div className="space-y-3">
                   <h4 className="text-sm font-semibold text-card-foreground flex items-center gap-2">
-                    <Zap className="w-4 h-4 text-primary" />
+                    <Zap className="w-4 h-4 text-primary cyan-glow" />
                     Technologies
                   </h4>
                   <div className="flex flex-wrap gap-2">
@@ -181,7 +184,7 @@ const NewProjectsSection = () => {
                       <Badge 
                         key={idx} 
                         variant="outline" 
-                        className="text-xs px-2 py-1 bg-secondary/50 hover:bg-secondary transition-colors"
+                        className="text-xs px-2 py-1 bg-muted/30 border-border/50 text-muted-foreground hover:bg-primary/10 hover:border-primary/30 hover:text-primary transition-all duration-300"
                       >
                         {tech}
                       </Badge>
@@ -190,11 +193,11 @@ const NewProjectsSection = () => {
                 </div>
               </CardContent>
               
-              <CardFooter className="pt-4 border-t border-border/50">
+              <CardFooter className="pt-4 border-t border-border/30">
                 <Button 
                   variant="outline" 
                   size="sm"
-                  className="w-full group/btn"
+                  className="w-full group/btn border-border/50 hover:bg-primary/10 hover:border-primary/30 hover:text-primary transition-all duration-300"
                   asChild
                 >
                   <a 
@@ -218,7 +221,7 @@ const NewProjectsSection = () => {
           <p className="text-muted-foreground mb-6">
             Interested in collaborating on similar projects?
           </p>
-          <Button size="lg" asChild>
+          <Button size="lg" className="btn-premium text-primary-foreground" asChild>
             <a href="mailto:jeetp5118@gmail.com" className="inline-flex items-center gap-2">
               <Users className="w-5 h-5" />
               Let's Work Together

@@ -41,9 +41,9 @@ const Navigation = () => {
   return (
     <>
       <nav 
-        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
           isScrolled 
-            ? "bg-background/80 backdrop-blur-lg border-b border-border shadow-sm" 
+            ? "glass-card shadow-[0_4px_30px_rgba(0,0,0,0.3)]" 
             : "bg-transparent"
         }`}
       >
@@ -52,7 +52,7 @@ const Navigation = () => {
             {/* Logo */}
             <button 
               onClick={() => scrollToSection("home")}
-              className="text-xl font-bold text-foreground hover:text-primary transition-colors"
+              className="text-xl font-bold text-foreground hover:text-primary transition-all duration-300 hover:drop-shadow-[0_0_8px_hsl(175_85%_50%/0.6)]"
             >
               JP
             </button>
@@ -63,7 +63,7 @@ const Navigation = () => {
                 <button
                   key={item.id}
                   onClick={() => scrollToSection(item.id)}
-                  className="px-4 py-2 text-sm font-medium text-muted-foreground hover:text-foreground transition-colors rounded-lg hover:bg-accent"
+                  className="px-4 py-2 text-sm font-medium text-muted-foreground hover:text-primary transition-all duration-300 rounded-lg hover:bg-primary/10"
                 >
                   {item.label}
                 </button>
@@ -74,7 +74,7 @@ const Navigation = () => {
             <Button
               variant="ghost"
               size="icon"
-              className="md:hidden"
+              className="md:hidden hover:bg-primary/10"
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
             >
               {isMobileMenuOpen ? (
@@ -91,17 +91,17 @@ const Navigation = () => {
       {isMobileMenuOpen && (
         <div className="fixed inset-0 z-40 md:hidden">
           <div 
-            className="fixed inset-0 bg-background/80 backdrop-blur-sm"
+            className="fixed inset-0 bg-background/80 backdrop-blur-md"
             onClick={() => setIsMobileMenuOpen(false)}
           />
-          <div className="fixed top-16 left-0 right-0 bg-background border-b border-border shadow-lg animate-slide-down">
+          <div className="fixed top-16 left-0 right-0 glass-card border-t border-border/30 shadow-lg animate-slide-down">
             <div className="container mx-auto px-4 py-4">
               <div className="flex flex-col gap-2">
                 {navItems.map((item) => (
                   <button
                     key={item.id}
                     onClick={() => scrollToSection(item.id)}
-                    className="px-4 py-3 text-left text-sm font-medium text-muted-foreground hover:text-foreground transition-colors rounded-lg hover:bg-accent"
+                    className="px-4 py-3 text-left text-sm font-medium text-muted-foreground hover:text-primary transition-all duration-300 rounded-lg hover:bg-primary/10"
                   >
                     {item.label}
                   </button>

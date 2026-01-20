@@ -81,6 +81,9 @@ export default {
 					500: 'hsl(var(--teal-500))',
 					600: 'hsl(var(--teal-600))',
 					700: 'hsl(var(--teal-700))'
+				},
+				cyan: {
+					glow: 'hsl(var(--cyan-glow))'
 				}
 			},
 			fontFamily: {
