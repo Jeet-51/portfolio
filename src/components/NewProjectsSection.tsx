@@ -1,8 +1,7 @@
-import { useState } from "react";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { Code2, Github, ExternalLink, TrendingUp, Users, Zap } from "lucide-react";
+import { Github, ExternalLink, Mail } from "lucide-react";
 
 interface Project {
   title: string;
@@ -15,8 +14,6 @@ interface Project {
 }
 
 const NewProjectsSection = () => {
-  const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
-  
   const projects: Project[] = [
     {
       title: "Backend – Customer Subscription & Gifting Platform",
@@ -99,21 +96,15 @@ const NewProjectsSection = () => {
   ];
 
   return (
-    <section className="py-24 px-4 relative overflow-hidden">
-      {/* Mesh gradient background */}
-      <div className="absolute inset-0 mesh-gradient"></div>
-      
-      <div className="container mx-auto max-w-7xl relative z-10">
+    <section className="py-24 px-4">
+      <div className="container mx-auto max-w-7xl">
         {/* Header */}
         <div className="text-center space-y-4 mb-16">
-          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full text-sm font-medium glass-card badge-glow">
-            <Code2 className="w-4 h-4 text-primary" />
-            <span className="text-primary">Featured Work</span>
-          </div>
+          <p className="text-sm font-medium text-muted-foreground uppercase tracking-wider">Featured Work</p>
           <h2 className="text-4xl md:text-5xl font-bold text-foreground">
             Projects & Solutions
           </h2>
-          <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
+          <p className="text-lg text-muted-foreground max-w-3xl mx-auto">
             Showcasing impactful AI and data science projects that solve real-world problems 
             with measurable business outcomes.
           </p>
@@ -124,49 +115,43 @@ const NewProjectsSection = () => {
           {projects.map((project, index) => (
             <Card 
               key={index}
-              className={`group h-full overflow-hidden border-0 glass-card transition-all duration-500
-                ${hoveredIndex === index ? 'scale-[1.02] shadow-[0_0_40px_hsl(175_85%_50%/0.15)]' : ''}`}
-              onMouseEnter={() => setHoveredIndex(index)}
-              onMouseLeave={() => setHoveredIndex(null)}
+              className="group h-full overflow-hidden border border-border bg-card hover:border-foreground/20 transition-colors duration-300"
             >
               {/* Project Image */}
               <div className="relative h-48 overflow-hidden">
                 <img 
                   src={project.imageUrl} 
                   alt={project.title}
-                  className={`w-full h-full object-cover transition-transform duration-700 ${
-                    hoveredIndex === index ? 'scale-110' : 'scale-100'
-                  }`}
+                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                   loading="lazy"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-background via-background/50 to-transparent"></div>
+                <div className="absolute inset-0 bg-gradient-to-t from-card via-card/40 to-transparent"></div>
                 <div className="absolute top-4 left-4">
-                  <Badge className="bg-primary/90 text-primary-foreground shadow-[0_0_10px_hsl(175_85%_50%/0.5)]">
+                  <Badge className="bg-foreground text-background text-xs">
                     {project.category}
                   </Badge>
                 </div>
               </div>
               
-              <CardHeader className="pb-4">
-                <CardTitle className="text-xl text-card-foreground line-clamp-2 group-hover:text-primary transition-colors">
+              <CardHeader className="pb-3">
+                <CardTitle className="text-lg text-card-foreground line-clamp-2">
                   {project.title}
                 </CardTitle>
-                <CardDescription className="text-muted-foreground leading-relaxed">
+                <CardDescription className="text-muted-foreground leading-relaxed text-sm">
                   {project.description}
                 </CardDescription>
               </CardHeader>
               
-              <CardContent className="space-y-6">
+              <CardContent className="space-y-5">
                 {/* Key Outcomes */}
-                <div className="space-y-3">
-                  <h4 className="text-sm font-semibold text-card-foreground flex items-center gap-2">
-                    <TrendingUp className="w-4 h-4 text-primary cyan-glow" />
+                <div className="space-y-2">
+                  <h4 className="text-xs font-semibold text-muted-foreground uppercase tracking-wider">
                     Key Outcomes
                   </h4>
-                  <ul className="space-y-2">
+                  <ul className="space-y-1.5">
                     {project.outcomes.map((outcome, idx) => (
                       <li key={idx} className="text-sm text-muted-foreground flex items-start gap-2">
-                        <div className="w-1.5 h-1.5 bg-primary rounded-full mt-2 flex-shrink-0 shadow-[0_0_6px_hsl(175_85%_50%/0.8)]"></div>
+                        <span className="text-foreground mt-1.5 block w-1 h-1 rounded-full bg-muted-foreground flex-shrink-0"></span>
                         {outcome}
                       </li>
                     ))}
@@ -174,30 +159,28 @@ const NewProjectsSection = () => {
                 </div>
                 
                 {/* Tech Stack */}
-                <div className="space-y-3">
-                  <h4 className="text-sm font-semibold text-card-foreground flex items-center gap-2">
-                    <Zap className="w-4 h-4 text-primary cyan-glow" />
+                <div className="space-y-2">
+                  <h4 className="text-xs font-semibold text-muted-foreground uppercase tracking-wider">
                     Technologies
                   </h4>
-                  <div className="flex flex-wrap gap-2">
+                  <div className="flex flex-wrap gap-1.5">
                     {project.tech.map((tech, idx) => (
-                      <Badge 
+                      <span 
                         key={idx} 
-                        variant="outline" 
-                        className="text-xs px-2 py-1 bg-muted/30 border-border/50 text-muted-foreground hover:bg-primary/10 hover:border-primary/30 hover:text-primary transition-all duration-300"
+                        className="text-xs px-2 py-0.5 bg-secondary border border-border rounded text-muted-foreground"
                       >
                         {tech}
-                      </Badge>
+                      </span>
                     ))}
                   </div>
                 </div>
               </CardContent>
               
-              <CardFooter className="pt-4 border-t border-border/30">
+              <CardFooter className="pt-4 border-t border-border">
                 <Button 
                   variant="outline" 
                   size="sm"
-                  className="w-full group/btn border-border/50 hover:bg-primary/10 hover:border-primary/30 hover:text-primary transition-all duration-300"
+                  className="w-full"
                   asChild
                 >
                   <a 
@@ -206,9 +189,9 @@ const NewProjectsSection = () => {
                     rel="noopener noreferrer"
                     className="inline-flex items-center justify-center gap-2"
                   >
-                    <Github className="w-4 h-4 group-hover/btn:rotate-12 transition-transform" />
+                    <Github className="w-4 h-4" />
                     View on GitHub
-                    <ExternalLink className="w-3 h-3 ml-1" />
+                    <ExternalLink className="w-3 h-3" />
                   </a>
                 </Button>
               </CardFooter>
@@ -221,9 +204,9 @@ const NewProjectsSection = () => {
           <p className="text-muted-foreground mb-6">
             Interested in collaborating on similar projects?
           </p>
-          <Button size="lg" className="btn-premium text-primary-foreground" asChild>
+          <Button size="lg" asChild>
             <a href="mailto:jeetp5118@gmail.com" className="inline-flex items-center gap-2">
-              <Users className="w-5 h-5" />
+              <Mail className="w-4 h-4" />
               Let's Work Together
             </a>
           </Button>
