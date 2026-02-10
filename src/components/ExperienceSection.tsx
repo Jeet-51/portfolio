@@ -1,6 +1,4 @@
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { Briefcase } from "lucide-react";
 
 interface ExperienceItemProps {
   title: string;
@@ -12,53 +10,33 @@ interface ExperienceItemProps {
 }
 
 const ExperienceItem = ({ title, company, location, period, descriptions, technologies }: ExperienceItemProps) => (
-  <div className="relative mb-8 pl-8 md:pl-12 group">
-    {/* Timeline dot with glow */}
-    <div className="absolute left-0 top-2 h-4 w-4">
-      <div className="h-4 w-4 rounded-full bg-primary shadow-[0_0_12px_hsl(175_85%_50%/0.8)] group-hover:shadow-[0_0_20px_hsl(175_85%_50%/1)]"></div>
-      <div className="absolute -inset-1 rounded-full bg-primary/30 animate-pulse group-hover:animate-none"></div>
+  <div className="py-8 border-b border-border last:border-b-0">
+    <div className="flex flex-col md:flex-row md:justify-between md:items-start gap-1 mb-4">
+      <div>
+        <h3 className="text-lg font-semibold text-foreground">{title}</h3>
+        <p className="text-muted-foreground">{company} · {location}</p>
+      </div>
+      <span className="text-sm text-muted-foreground whitespace-nowrap">{period}</span>
     </div>
     
-    {/* Timeline line */}
-    <div className="absolute left-2 top-6 bottom-[-32px] w-[1px] bg-gradient-to-b from-primary to-primary/10"></div>
+    <div className="text-muted-foreground">
+      {descriptions.map((desc, index) => (
+        <p key={index} className="text-sm leading-relaxed mb-2">{desc}</p>
+      ))}
+    </div>
     
-    <Card className="glass-card border-0 overflow-hidden transition-all duration-500 interactive-hover">
-      <div className="absolute top-0 left-0 right-0 h-[1px] bg-gradient-to-r from-transparent via-primary/50 to-transparent scale-x-0 group-hover:scale-x-100 transition-transform duration-500"></div>
-      
-      <CardHeader className="pb-3">
-        <div className="flex flex-col md:flex-row md:justify-between md:items-start">
-          <div>
-            <CardTitle className="text-xl text-foreground group-hover:text-primary transition-colors">{title}</CardTitle>
-            <CardDescription className="text-base text-muted-foreground">{company} | {location}</CardDescription>
-          </div>
-          <span className="text-sm text-primary mt-2 md:mt-0 px-3 py-1 rounded-full bg-primary/10 border border-primary/20 whitespace-nowrap">{period}</span>
-        </div>
-      </CardHeader>
-      
-      <CardContent className="pt-2 pb-4">
-        <div className="text-muted-foreground">
-          {descriptions.map((desc, index) => (
-            <p key={index} className="text-sm md:text-base leading-relaxed mb-3">{desc}</p>
-          ))}
-        </div>
-        
-        {technologies && technologies.length > 0 && (
-          <div className="mt-5 pt-3 border-t border-border/30">
-            <div className="flex flex-wrap gap-2 mt-2">
-              {technologies.map((tech, index) => (
-                <Badge 
-                  key={index} 
-                  variant="outline" 
-                  className="bg-muted/30 border-border/50 text-muted-foreground hover:bg-primary/10 hover:border-primary/30 hover:text-primary transition-all duration-300"
-                >
-                  {tech}
-                </Badge>
-              ))}
-            </div>
-          </div>
-        )}
-      </CardContent>
-    </Card>
+    {technologies && technologies.length > 0 && (
+      <div className="flex flex-wrap gap-1.5 mt-4">
+        {technologies.map((tech, index) => (
+          <span 
+            key={index} 
+            className="text-xs px-2 py-0.5 bg-secondary border border-border rounded text-muted-foreground"
+          >
+            {tech}
+          </span>
+        ))}
+      </div>
+    )}
   </div>
 );
 
@@ -137,17 +115,12 @@ const ExperienceSection = () => {
   ];
 
   return (
-    <div className="py-6">
-      <div className="flex items-center gap-3 mb-12">
-        <div className="p-2.5 rounded-xl glass-card">
-          <Briefcase className="w-6 h-6 text-primary cyan-glow" />
-        </div>
-        <h2 className="text-2xl font-bold tracking-tight bg-gradient-to-r from-foreground via-foreground to-muted-foreground bg-clip-text text-transparent">
-          Work Experience
-        </h2>
-      </div>
+    <div className="py-8">
+      <h2 className="text-2xl font-bold tracking-tight mb-2 text-foreground">
+        Work Experience
+      </h2>
       
-      <div className="space-y-12 relative pl-2">
+      <div>
         {experiences.map((exp, idx) => (
           <ExperienceItem key={idx} {...exp} />
         ))}

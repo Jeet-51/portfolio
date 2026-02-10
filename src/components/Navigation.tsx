@@ -10,7 +10,6 @@ const Navigation = () => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 50);
     };
-
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
@@ -21,11 +20,7 @@ const Navigation = () => {
       const offset = 80;
       const elementPosition = element.getBoundingClientRect().top;
       const offsetPosition = elementPosition + window.pageYOffset - offset;
-
-      window.scrollTo({
-        top: offsetPosition,
-        behavior: "smooth"
-      });
+      window.scrollTo({ top: offsetPosition, behavior: "smooth" });
       setIsMobileMenuOpen(false);
     }
   };
@@ -41,67 +36,59 @@ const Navigation = () => {
   return (
     <>
       <nav 
-        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
+        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
           isScrolled 
-            ? "glass-card shadow-[0_4px_30px_rgba(0,0,0,0.3)]" 
+            ? "bg-background/95 backdrop-blur-sm border-b border-border shadow-sm" 
             : "bg-transparent"
         }`}
       >
         <div className="container mx-auto max-w-7xl px-4">
           <div className="flex items-center justify-between h-16">
-            {/* Logo */}
             <button 
               onClick={() => scrollToSection("home")}
-              className="text-xl font-bold text-foreground hover:text-primary transition-all duration-300 hover:drop-shadow-[0_0_8px_hsl(175_85%_50%/0.6)]"
+              className="text-xl font-bold text-foreground hover:text-muted-foreground transition-colors"
             >
               JP
             </button>
 
-            {/* Desktop Navigation */}
             <div className="hidden md:flex items-center gap-1">
               {navItems.map((item) => (
                 <button
                   key={item.id}
                   onClick={() => scrollToSection(item.id)}
-                  className="px-4 py-2 text-sm font-medium text-muted-foreground hover:text-primary transition-all duration-300 rounded-lg hover:bg-primary/10"
+                  className="px-4 py-2 text-sm font-medium text-muted-foreground hover:text-foreground transition-colors rounded-md"
                 >
                   {item.label}
                 </button>
               ))}
             </div>
 
-            {/* Mobile Menu Button */}
             <Button
               variant="ghost"
               size="icon"
-              className="md:hidden hover:bg-primary/10"
+              className="md:hidden"
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
             >
-              {isMobileMenuOpen ? (
-                <X className="h-5 w-5" />
-              ) : (
-                <Menu className="h-5 w-5" />
-              )}
+              {isMobileMenuOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
             </Button>
           </div>
         </div>
       </nav>
 
-      {/* Mobile Menu */}
       {isMobileMenuOpen && (
         <div className="fixed inset-0 z-40 md:hidden">
           <div 
-            className="fixed inset-0 bg-background/80 backdrop-blur-md"
+            className="fixed inset-0 bg-background/80 backdrop-blur-sm"
             onClick={() => setIsMobileMenuOpen(false)}
           />
-          <div className="fixed top-16 left-0 right-0 glass-card border-t border-border/30 shadow-lg animate-slide-down">
-            <div className="container mx-auto px-4 py-4">
-              <div className="flex flex-col gap-2">
+          <div className="fixed top-16 left-0 right-0 bg-background border-b border-border shadow-sm animate-slide-down">
+            <div className="container mx-auto px-4 py-3">
+              <div className="flex flex-col gap-1">
                 {navItems.map((item) => (
                   <button
                     key={item.id}
                     onClick={() => scrollToSection(item.id)}
-                    className="px-4 py-3 text-left text-sm font-medium text-muted-foreground hover:text-primary transition-all duration-300 rounded-lg hover:bg-primary/10"
+                    className="px-4 py-3 text-left text-sm font-medium text-muted-foreground hover:text-foreground transition-colors rounded-md"
                   >
                     {item.label}
                   </button>
