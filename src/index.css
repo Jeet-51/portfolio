@@ -152,6 +152,12 @@
   to { transform: translateY(0); opacity: 1; }
 }
 
+@keyframes mesh-drift {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  33% { transform: translate(5%, -5%) scale(1.05); }
+  66% { transform: translate(-3%, 4%) scale(0.97); }
+}
+
 #root {
   margin: 0 auto;
 }
