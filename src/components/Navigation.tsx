@@ -38,7 +38,7 @@ const Navigation = () => {
       <nav 
         className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
           isScrolled 
-            ? "bg-background/95 backdrop-blur-sm border-b border-border shadow-sm" 
+            ? "bg-background/80 backdrop-blur-xl border-b border-border/50 shadow-sm" 
             : "bg-transparent"
         }`}
       >
@@ -46,7 +46,7 @@ const Navigation = () => {
           <div className="flex items-center justify-between h-16">
             <button 
               onClick={() => scrollToSection("home")}
-              className="text-xl font-bold text-foreground hover:text-muted-foreground transition-colors"
+              className="text-xl font-bold gradient-text hover:opacity-80 transition-opacity"
             >
               JP
             </button>
@@ -56,7 +56,7 @@ const Navigation = () => {
                 <button
                   key={item.id}
                   onClick={() => scrollToSection(item.id)}
-                  className="px-4 py-2 text-sm font-medium text-muted-foreground hover:text-foreground transition-colors rounded-md"
+                  className="px-4 py-2 text-sm font-medium text-muted-foreground hover:text-foreground transition-colors rounded-md hover:bg-accent/50"
                 >
                   {item.label}
                 </button>
@@ -81,7 +81,7 @@ const Navigation = () => {
             className="fixed inset-0 bg-background/80 backdrop-blur-sm"
             onClick={() => setIsMobileMenuOpen(false)}
           />
-          <div className="fixed top-16 left-0 right-0 bg-background border-b border-border shadow-sm animate-slide-down">
+          <div className="fixed top-16 left-0 right-0 bg-background/95 backdrop-blur-xl border-b border-border/50 shadow-sm animate-slide-down">
             <div className="container mx-auto px-4 py-3">
               <div className="flex flex-col gap-1">
                 {navItems.map((item) => (

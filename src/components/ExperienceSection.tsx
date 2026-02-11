@@ -1,5 +1,3 @@
-import { Badge } from "@/components/ui/badge";
-
 interface ExperienceItemProps {
   title: string;
   company: string;
@@ -10,33 +8,41 @@ interface ExperienceItemProps {
 }
 
 const ExperienceItem = ({ title, company, location, period, descriptions, technologies }: ExperienceItemProps) => (
-  <div className="py-8 border-b border-border last:border-b-0">
-    <div className="flex flex-col md:flex-row md:justify-between md:items-start gap-1 mb-4">
-      <div>
-        <h3 className="text-lg font-semibold text-foreground">{title}</h3>
-        <p className="text-muted-foreground">{company} · {location}</p>
+  <div className="relative pl-8 pb-10 last:pb-0 group">
+    {/* Timeline line */}
+    <div className="absolute left-[7px] top-3 bottom-0 w-px bg-gradient-to-b from-primary/40 via-border to-transparent group-last:hidden"></div>
+    {/* Timeline dot */}
+    <div className="absolute left-0 top-2 w-[15px] h-[15px] rounded-full border-2 border-primary/50 bg-background group-hover:border-primary group-hover:shadow-[0_0_8px_hsl(215_80%_55%/0.3)] transition-all duration-300"></div>
+    
+    <div className="glass-card rounded-xl p-6 hover:border-primary/20 transition-all duration-300">
+      <div className="flex flex-col md:flex-row md:justify-between md:items-start gap-1 mb-4">
+        <div>
+          <h3 className="text-lg font-semibold text-foreground">{title}</h3>
+          <p className="text-primary/80 font-medium">{company}</p>
+          <p className="text-sm text-muted-foreground">{location}</p>
+        </div>
+        <span className="text-sm text-muted-foreground whitespace-nowrap font-mono">{period}</span>
       </div>
-      <span className="text-sm text-muted-foreground whitespace-nowrap">{period}</span>
-    </div>
-    
-    <div className="text-muted-foreground">
-      {descriptions.map((desc, index) => (
-        <p key={index} className="text-sm leading-relaxed mb-2">{desc}</p>
-      ))}
-    </div>
-    
-    {technologies && technologies.length > 0 && (
-      <div className="flex flex-wrap gap-1.5 mt-4">
-        {technologies.map((tech, index) => (
-          <span 
-            key={index} 
-            className="text-xs px-2 py-0.5 bg-secondary border border-border rounded text-muted-foreground"
-          >
-            {tech}
-          </span>
+      
+      <div className="text-muted-foreground">
+        {descriptions.map((desc, index) => (
+          <p key={index} className="text-sm leading-relaxed mb-2">{desc}</p>
         ))}
       </div>
-    )}
+      
+      {technologies && technologies.length > 0 && (
+        <div className="flex flex-wrap gap-1.5 mt-4">
+          {technologies.map((tech, index) => (
+            <span 
+              key={index} 
+              className="text-xs px-2 py-0.5 bg-primary/10 border border-primary/20 rounded text-primary/80"
+            >
+              {tech}
+            </span>
+          ))}
+        </div>
+      )}
+    </div>
   </div>
 );
 
@@ -116,7 +122,7 @@ const ExperienceSection = () => {
 
   return (
     <div className="py-8">
-      <h2 className="text-2xl font-bold tracking-tight mb-2 text-foreground">
+      <h2 className="text-2xl font-bold tracking-tight mb-10 text-foreground">
         Work Experience
       </h2>
       

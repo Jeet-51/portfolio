@@ -11,7 +11,7 @@ const ContactSection = () => {
   return (
     <div className="space-y-8">
       <div className="text-center space-y-4 mb-12">
-        <p className="text-sm font-medium text-muted-foreground uppercase tracking-wider">Let's Connect</p>
+        <p className="text-sm font-medium text-primary uppercase tracking-wider">Let's Connect</p>
         <h2 className="text-4xl md:text-5xl font-bold text-foreground">
           Get In Touch
         </h2>
@@ -28,9 +28,11 @@ const ContactSection = () => {
             href={href}
             target={external ? "_blank" : undefined}
             rel={external ? "noopener noreferrer" : undefined}
-            className="flex items-center gap-4 p-5 rounded-lg border border-border bg-card hover:border-foreground/20 transition-colors"
+            className="flex items-center gap-4 p-5 rounded-xl glass-card hover:border-primary/30 hover:shadow-lg hover:shadow-primary/5 transition-all duration-300 group"
           >
-            <Icon className="h-5 w-5 text-muted-foreground flex-shrink-0" />
+            <div className="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center group-hover:bg-primary/20 transition-colors duration-300">
+              <Icon className="h-5 w-5 text-primary flex-shrink-0" />
+            </div>
             <div>
               <p className="text-sm font-medium text-foreground">{label}</p>
               <p className="text-sm text-muted-foreground break-all">{value}</p>

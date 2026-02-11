@@ -4,9 +4,9 @@ interface SectionDividerProps {
 
 const SectionDivider = ({ className = "" }: SectionDividerProps) => {
   return (
-    <div className={`py-8 ${className}`}>
-      <div className="container mx-auto max-w-6xl px-4">
-        <div className="h-px bg-border"></div>
+    <div className={`py-10 ${className}`}>
+      <div className="container mx-auto max-w-5xl px-4">
+        <div className="h-px bg-gradient-to-r from-transparent via-border to-transparent"></div>
       </div>
     </div>
   );
