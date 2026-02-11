@@ -100,7 +100,7 @@ const NewProjectsSection = () => {
       <div className="container mx-auto max-w-7xl">
         {/* Header */}
         <div className="text-center space-y-4 mb-16">
-          <p className="text-sm font-medium text-muted-foreground uppercase tracking-wider">Featured Work</p>
+          <p className="text-sm font-medium text-primary uppercase tracking-wider">Featured Work</p>
           <h2 className="text-4xl md:text-5xl font-bold text-foreground">
             Projects & Solutions
           </h2>
@@ -115,7 +115,7 @@ const NewProjectsSection = () => {
           {projects.map((project, index) => (
             <Card 
               key={index}
-              className="group h-full overflow-hidden border border-border bg-card hover:border-foreground/20 transition-colors duration-300"
+              className="group h-full overflow-hidden glass-card hover:border-primary/30 transition-all duration-300 hover:shadow-lg hover:shadow-primary/5"
             >
               {/* Project Image */}
               <div className="relative h-48 overflow-hidden">
@@ -127,7 +127,7 @@ const NewProjectsSection = () => {
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-card via-card/40 to-transparent"></div>
                 <div className="absolute top-4 left-4">
-                  <Badge className="bg-foreground text-background text-xs">
+                  <Badge className="bg-primary text-primary-foreground text-xs border-0">
                     {project.category}
                   </Badge>
                 </div>
@@ -151,7 +151,7 @@ const NewProjectsSection = () => {
                   <ul className="space-y-1.5">
                     {project.outcomes.map((outcome, idx) => (
                       <li key={idx} className="text-sm text-muted-foreground flex items-start gap-2">
-                        <span className="text-foreground mt-1.5 block w-1 h-1 rounded-full bg-muted-foreground flex-shrink-0"></span>
+                        <span className="mt-1.5 block w-1 h-1 rounded-full bg-primary flex-shrink-0"></span>
                         {outcome}
                       </li>
                     ))}
@@ -167,7 +167,7 @@ const NewProjectsSection = () => {
                     {project.tech.map((tech, idx) => (
                       <span 
                         key={idx} 
-                        className="text-xs px-2 py-0.5 bg-secondary border border-border rounded text-muted-foreground"
+                        className="text-xs px-2 py-0.5 bg-primary/10 border border-primary/20 rounded text-primary/80"
                       >
                         {tech}
                       </span>
@@ -176,11 +176,11 @@ const NewProjectsSection = () => {
                 </div>
               </CardContent>
               
-              <CardFooter className="pt-4 border-t border-border">
+              <CardFooter className="pt-4 border-t border-border/40">
                 <Button 
                   variant="outline" 
                   size="sm"
-                  className="w-full"
+                  className="w-full border-border/60 hover:border-primary/40 hover:bg-primary/5 transition-all duration-300"
                   asChild
                 >
                   <a 
@@ -204,7 +204,7 @@ const NewProjectsSection = () => {
           <p className="text-muted-foreground mb-6">
             Interested in collaborating on similar projects?
           </p>
-          <Button size="lg" asChild>
+          <Button size="lg" className="bg-primary hover:bg-primary/90 shadow-lg shadow-primary/20 hover:shadow-primary/30 transition-all duration-300" asChild>
             <a href="mailto:jeetp5118@gmail.com" className="inline-flex items-center gap-2">
               <Mail className="w-4 h-4" />
               Let's Work Together

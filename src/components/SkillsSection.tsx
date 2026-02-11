@@ -75,17 +75,20 @@ const SkillsSection = () => {
         Skills & Expertise
       </h2>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-12 gap-y-8">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
         {skillCategories.map((category, idx) => (
-          <div key={idx}>
-            <h3 className="text-sm font-semibold text-foreground uppercase tracking-wider mb-3">
+          <div 
+            key={idx} 
+            className="glass-card rounded-xl p-5 hover:border-primary/30 transition-all duration-300 group"
+          >
+            <h3 className="text-sm font-semibold text-primary uppercase tracking-wider mb-4">
               {category.category}
             </h3>
             <div className="flex flex-wrap gap-2">
               {category.skills.map((skill, skillIdx) => (
                 <span
                   key={skillIdx}
-                  className="text-sm text-muted-foreground px-2.5 py-1 rounded-md bg-secondary border border-border"
+                  className="text-sm text-muted-foreground px-2.5 py-1 rounded-md bg-secondary/60 border border-border/40 hover:border-primary/30 hover:text-foreground transition-all duration-200 cursor-default"
                 >
                   {skill}
                 </span>
