@@ -51,6 +51,11 @@ const NewHero = () => {
       {/* Neural network canvas animation */}
       <NeuralNetworkBackground />
 
+      {/* Radial spotlight behind content */}
+      <div className="absolute inset-0 pointer-events-none z-[1]">
+        <div className="absolute top-1/2 left-1/3 -translate-x-1/2 -translate-y-1/2 w-[70vw] h-[60vh] rounded-full bg-primary/8 blur-[120px]" />
+      </div>
+
       <div className="container mx-auto max-w-6xl relative z-10">
         <div className="grid lg:grid-cols-2 gap-16 items-center">
           {/* Content */}
@@ -61,12 +66,16 @@ const NewHero = () => {
                 <span>Available for opportunities</span>
               </div>
               
-              <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold text-foreground leading-tight animate-slide-up">
-                Jeet Patel
-              </h1>
+              {/* Name with glow */}
+              <div className="relative">
+                <div className="absolute -inset-4 bg-primary/10 blur-3xl rounded-full pointer-events-none" />
+                <h1 className="relative text-5xl md:text-6xl lg:text-7xl font-extrabold text-foreground leading-tight animate-slide-up tracking-tight">
+                  Jeet Patel
+                </h1>
+              </div>
               
               <div className="h-16 flex items-center animate-slide-up" style={{ animationDelay: '0.1s' }}>
-                <h2 className="text-2xl md:text-3xl lg:text-4xl inline-flex items-center font-mono">
+                <h2 className="text-2xl md:text-3xl lg:text-4xl inline-flex items-center font-mono font-light tracking-wide">
                   <span className="min-w-[200px] text-left gradient-text">{displayText}</span>
                   <span className="animate-pulse ml-1 text-primary/60">|</span>
                 </h2>
@@ -102,7 +111,7 @@ const NewHero = () => {
             <div className="flex flex-wrap gap-3 animate-slide-up" style={{ animationDelay: '0.4s' }}>
               <Button 
                 size="lg" 
-                className="h-11 px-6 font-medium bg-primary hover:bg-primary/90 shadow-lg shadow-primary/20 hover:shadow-primary/30 transition-all duration-300"
+                className="h-11 px-6 font-medium bg-gradient-to-r from-primary to-cyan-500 hover:from-primary/90 hover:to-cyan-500/90 shadow-lg shadow-primary/25 hover:shadow-primary/40 hover:-translate-y-0.5 transition-all duration-300"
                 asChild
               >
                 <a href="mailto:jeetp5118@gmail.com" className="inline-flex items-center gap-2">
@@ -114,7 +123,7 @@ const NewHero = () => {
               <Button 
                 variant="outline" 
                 size="lg"
-                className="h-11 px-6 font-medium border-border/60 hover:border-primary/40 hover:bg-primary/5 transition-all duration-300"
+                className="h-11 px-6 font-medium border-border/60 hover:border-primary/40 hover:bg-primary/5 hover:-translate-y-0.5 transition-all duration-300"
                 asChild
               >
                 <a href="#" className="inline-flex items-center gap-2">
@@ -159,12 +168,12 @@ const NewHero = () => {
           {/* Profile Image */}
           <div className="flex justify-center order-1 lg:order-2 animate-fade-in">
             <div className="relative group">
-              <div className="absolute -inset-1 bg-gradient-to-br from-primary/20 via-transparent to-primary/10 rounded-2xl blur-sm opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-              <div className="relative w-72 h-72 lg:w-80 lg:h-80 rounded-2xl overflow-hidden border border-border/60">
+              <div className="absolute -inset-2 bg-gradient-to-br from-primary/25 via-cyan-500/15 to-primary/10 rounded-2xl blur-md opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+              <div className="relative w-72 h-72 lg:w-80 lg:h-80 rounded-2xl overflow-hidden border border-border/60 shadow-xl shadow-primary/5 group-hover:shadow-primary/15 transition-all duration-500">
                 <img 
                   src={getImagePath()}
                   alt="Jeet Patel - ML Engineer & Data Scientist"
-                  className="w-full h-full object-cover"
+                  className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-[1.03]"
                   loading="eager"
                 />
               </div>

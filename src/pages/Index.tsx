@@ -1,4 +1,4 @@
-import { lazy, Suspense } from "react";
+import { lazy, Suspense, useRef, useEffect } from "react";
 import DarkModeToggle from "@/components/DarkModeToggle";
 import Navigation from "@/components/Navigation";
 import BackToTop from "@/components/BackToTop";
@@ -20,6 +20,37 @@ const LoadingSkeleton = () => (
   </div>
 );
 
+const ScrollReveal = ({ children, className = "" }: { children: React.ReactNode; className?: string }) => {
+  const ref = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+      el.style.opacity = "1";
+      return;
+    }
+    el.style.opacity = "0";
+    el.style.transform = "translateY(28px)";
+    el.style.transition = "opacity 0.7s ease-out, transform 0.7s ease-out";
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          el.style.opacity = "1";
+          el.style.transform = "translateY(0)";
+          observer.unobserve(el);
+        }
+      },
+      { threshold: 0.08 }
+    );
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, []);
+
+  return <div ref={ref} className={className}>{children}</div>;
+};
+
 const Index = () => {
   return (
     <div className="min-h-screen bg-background text-foreground scroll-smooth">
@@ -33,39 +64,47 @@ const Index = () => {
       
       <SectionDivider />
       
-      <section id="experience" className="py-16 px-4">
-        <div className="container mx-auto max-w-5xl">
-          <Suspense fallback={<LoadingSkeleton />}>
-            <LazyExperienceSection />
-          </Suspense>
-        </div>
-      </section>
+      <ScrollReveal>
+        <section id="experience" className="py-16 px-4">
+          <div className="container mx-auto max-w-5xl">
+            <Suspense fallback={<LoadingSkeleton />}>
+              <LazyExperienceSection />
+            </Suspense>
+          </div>
+        </section>
+      </ScrollReveal>
       
       <SectionDivider />
       
-      <div id="projects">
-        <NewProjectsSection />
-      </div>
+      <ScrollReveal>
+        <div id="projects">
+          <NewProjectsSection />
+        </div>
+      </ScrollReveal>
       
       <SectionDivider />
       
-      <section id="skills" className="py-16 px-4">
-        <div className="container mx-auto max-w-5xl">
-          <Suspense fallback={<LoadingSkeleton />}>
-            <LazySkillsSection />
-          </Suspense>
-        </div>
-      </section>
+      <ScrollReveal>
+        <section id="skills" className="py-16 px-4">
+          <div className="container mx-auto max-w-5xl">
+            <Suspense fallback={<LoadingSkeleton />}>
+              <LazySkillsSection />
+            </Suspense>
+          </div>
+        </section>
+      </ScrollReveal>
       
       <SectionDivider />
       
-      <section id="contact" className="py-16 px-4">
-        <div className="container mx-auto max-w-5xl">
-          <Suspense fallback={<LoadingSkeleton />}>
-            <LazyContactSection />
-          </Suspense>
-        </div>
-      </section>
+      <ScrollReveal>
+        <section id="contact" className="py-16 px-4">
+          <div className="container mx-auto max-w-5xl">
+            <Suspense fallback={<LoadingSkeleton />}>
+              <LazyContactSection />
+            </Suspense>
+          </div>
+        </section>
+      </ScrollReveal>
       
       <footer className="border-t border-border/40 py-10">
         <div className="container mx-auto max-w-5xl px-4">
