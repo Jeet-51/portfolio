@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import NeuralNetworkBackground from "./NeuralNetworkBackground";
 import { Button } from "@/components/ui/button";
 import { Mail, Phone, Github, Linkedin, Download, MapPin } from "lucide-react";
 
@@ -47,12 +48,8 @@ const NewHero = () => {
 
   return (
     <section className="relative min-h-screen flex items-center justify-center px-4 py-20 overflow-hidden">
-      {/* Animated mesh gradient background */}
-      <div className="absolute inset-0 pointer-events-none overflow-hidden">
-        <div className="mesh-orb mesh-orb-1" />
-        <div className="mesh-orb mesh-orb-2" />
-        <div className="mesh-orb mesh-orb-3" />
-      </div>
+      {/* Neural network canvas animation */}
+      <NeuralNetworkBackground />
 
       <div className="container mx-auto max-w-6xl relative z-10">
         <div className="grid lg:grid-cols-2 gap-16 items-center">
