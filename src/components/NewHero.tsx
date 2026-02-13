@@ -49,9 +49,9 @@ const NewHero = () => {
     <section className="relative min-h-screen flex items-center justify-center px-4 py-20 overflow-hidden">
       {/* Animated mesh gradient background */}
       <div className="absolute inset-0 pointer-events-none overflow-hidden">
-        <div className="absolute -top-1/4 -right-1/4 w-[60vw] h-[60vw] rounded-full opacity-[0.07] blur-[100px] animate-[mesh-drift_20s_ease-in-out_infinite] bg-[radial-gradient(circle,hsl(215_80%_55%),transparent_70%)]"></div>
-        <div className="absolute -bottom-1/4 -left-1/4 w-[50vw] h-[50vw] rounded-full opacity-[0.05] blur-[100px] animate-[mesh-drift_25s_ease-in-out_infinite_reverse] bg-[radial-gradient(circle,hsl(195_80%_50%),transparent_70%)]"></div>
-        <div className="absolute top-1/3 left-1/2 -translate-x-1/2 w-[40vw] h-[40vw] rounded-full opacity-[0.04] blur-[120px] animate-[mesh-drift_18s_ease-in-out_infinite_2s] bg-[radial-gradient(circle,hsl(260_60%_60%),transparent_70%)]"></div>
+        <div className="mesh-orb mesh-orb-1" />
+        <div className="mesh-orb mesh-orb-2" />
+        <div className="mesh-orb mesh-orb-3" />
       </div>
 
       <div className="container mx-auto max-w-6xl relative z-10">
