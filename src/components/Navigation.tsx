@@ -5,12 +5,29 @@ import { Button } from "@/components/ui/button";
 const Navigation = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [activeSection, setActiveSection] = useState("home");
+  const [scrollProgress, setScrollProgress] = useState(0);
 
   useEffect(() => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 50);
+
+      // Scroll progress
+      const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+      setScrollProgress(docHeight > 0 ? (window.scrollY / docHeight) * 100 : 0);
+
+      // Scroll spy — find which section is in view
+      const sectionIds = ["home", "experience", "projects", "skills", "contact"];
+      let current = "home";
+      for (const id of sectionIds) {
+        const el = document.getElementById(id);
+        if (el && el.getBoundingClientRect().top <= 120) {
+          current = id;
+        }
+      }
+      setActiveSection(current);
     };
-    window.addEventListener("scroll", handleScroll);
+    window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
@@ -35,6 +52,14 @@ const Navigation = () => {
 
   return (
     <>
+      {/* Scroll progress bar */}
+      <div className="fixed top-0 left-0 right-0 z-[60] h-[2px] bg-transparent">
+        <div
+          className="h-full bg-gradient-to-r from-primary to-cyan-400 transition-all duration-75"
+          style={{ width: `${scrollProgress}%` }}
+        />
+      </div>
+
       <nav 
         className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
           isScrolled 
@@ -56,9 +81,16 @@ const Navigation = () => {
                 <button
                   key={item.id}
                   onClick={() => scrollToSection(item.id)}
-                  className="px-4 py-2 text-sm font-medium text-muted-foreground hover:text-foreground transition-colors rounded-md hover:bg-accent/50"
+                  className={`relative px-4 py-2 text-sm font-medium transition-colors rounded-md hover:bg-accent/50 ${
+                    activeSection === item.id
+                      ? "text-foreground"
+                      : "text-muted-foreground hover:text-foreground"
+                  }`}
                 >
                   {item.label}
+                  {activeSection === item.id && (
+                    <span className="absolute bottom-0.5 left-1/2 -translate-x-1/2 w-4 h-0.5 rounded-full bg-gradient-to-r from-primary to-cyan-400" />
+                  )}
                 </button>
               ))}
             </div>

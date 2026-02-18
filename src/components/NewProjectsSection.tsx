@@ -1,3 +1,4 @@
+import { useRef, useEffect, useState, useCallback } from "react";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
@@ -12,6 +13,74 @@ interface Project {
   githubUrl: string;
   category: string;
 }
+
+// 3D tilt card wrapper
+const TiltCard = ({ children, className = "" }: { children: React.ReactNode; className?: string }) => {
+  const ref = useRef<HTMLDivElement>(null);
+  const reducedMotion = useRef(window.matchMedia("(prefers-reduced-motion: reduce)").matches);
+
+  const handleMouseMove = useCallback((e: MouseEvent) => {
+    if (reducedMotion.current) return;
+    const el = ref.current;
+    if (!el) return;
+    const rect = el.getBoundingClientRect();
+    const x = (e.clientX - rect.left) / rect.width - 0.5;   // -0.5 to 0.5
+    const y = (e.clientY - rect.top) / rect.height - 0.5;
+    el.style.transform = `perspective(800px) rotateY(${x * 6}deg) rotateX(${-y * 6}deg) translateZ(4px)`;
+  }, []);
+
+  const handleMouseLeave = useCallback(() => {
+    const el = ref.current;
+    if (!el) return;
+    el.style.transform = "perspective(800px) rotateY(0deg) rotateX(0deg) translateZ(0px)";
+  }, []);
+
+  useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+    el.style.transition = "transform 0.15s ease-out";
+    el.addEventListener("mousemove", handleMouseMove);
+    el.addEventListener("mouseleave", handleMouseLeave);
+    return () => {
+      el.removeEventListener("mousemove", handleMouseMove);
+      el.removeEventListener("mouseleave", handleMouseLeave);
+    };
+  }, [handleMouseMove, handleMouseLeave]);
+
+  return <div ref={ref} className={className}>{children}</div>;
+};
+
+// Staggered reveal wrapper
+const RevealCard = ({ children, index }: { children: React.ReactNode; index: number }) => {
+  const ref = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+      el.style.opacity = "1";
+      return;
+    }
+    el.style.opacity = "0";
+    el.style.transform = "translateY(32px)";
+    el.style.transition = `opacity 0.6s ease-out ${index * 0.1}s, transform 0.6s ease-out ${index * 0.1}s`;
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          el.style.opacity = "1";
+          el.style.transform = "translateY(0)";
+          observer.unobserve(el);
+        }
+      },
+      { threshold: 0.08 }
+    );
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, [index]);
+
+  return <div ref={ref}>{children}</div>;
+};
 
 const NewProjectsSection = () => {
   const projects: Project[] = [
@@ -113,89 +182,92 @@ const NewProjectsSection = () => {
         {/* Projects Grid */}
         <div className="grid md:grid-cols-2 gap-6">
           {projects.map((project, index) => (
-            <Card 
-              key={index}
-              className="group h-full overflow-hidden glass-card hover:border-primary/30 transition-all duration-300 hover:shadow-lg hover:shadow-primary/5"
-            >
-              {/* Project Image */}
-              <div className="relative h-48 overflow-hidden">
-                <img 
-                  src={project.imageUrl} 
-                  alt={project.title}
-                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                  loading="lazy"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-card via-card/40 to-transparent"></div>
-                <div className="absolute top-4 left-4">
-                  <Badge className="bg-primary text-primary-foreground text-xs border-0">
-                    {project.category}
-                  </Badge>
-                </div>
-              </div>
-              
-              <CardHeader className="pb-3">
-                <CardTitle className="text-lg text-card-foreground line-clamp-2">
-                  {project.title}
-                </CardTitle>
-                <CardDescription className="text-muted-foreground leading-relaxed text-sm">
-                  {project.description}
-                </CardDescription>
-              </CardHeader>
-              
-              <CardContent className="space-y-5">
-                {/* Key Outcomes */}
-                <div className="space-y-2">
-                  <h4 className="text-xs font-semibold text-muted-foreground uppercase tracking-wider">
-                    Key Outcomes
-                  </h4>
-                  <ul className="space-y-1.5">
-                    {project.outcomes.map((outcome, idx) => (
-                      <li key={idx} className="text-sm text-muted-foreground flex items-start gap-2">
-                        <span className="mt-1.5 block w-1 h-1 rounded-full bg-primary flex-shrink-0"></span>
-                        {outcome}
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-                
-                {/* Tech Stack */}
-                <div className="space-y-2">
-                  <h4 className="text-xs font-semibold text-muted-foreground uppercase tracking-wider">
-                    Technologies
-                  </h4>
-                  <div className="flex flex-wrap gap-1.5">
-                    {project.tech.map((tech, idx) => (
-                      <span 
-                        key={idx} 
-                        className="text-xs px-2 py-0.5 bg-primary/10 border border-primary/20 rounded text-primary/80"
-                      >
-                        {tech}
-                      </span>
-                    ))}
-                  </div>
-                </div>
-              </CardContent>
-              
-              <CardFooter className="pt-4 border-t border-border/40">
-                <Button 
-                  variant="outline" 
-                  size="sm"
-                  className="w-full border-border/60 hover:border-primary/40 hover:bg-primary/5 transition-all duration-300"
-                  asChild
+            <RevealCard key={index} index={index}>
+              <TiltCard className="h-full">
+                <Card 
+                  className="group h-full overflow-hidden glass-card hover:border-primary/30 transition-all duration-300 hover:shadow-xl hover:shadow-primary/10"
                 >
-                  <a 
-                    href={project.githubUrl} 
-                    target="_blank" 
-                    rel="noopener noreferrer"
-                    className="inline-flex items-center justify-center gap-2"
-                  >
-                    <Github className="w-4 h-4" />
-                    View on GitHub
-                    <ExternalLink className="w-3 h-3" />
-                  </a>
-                </Button>
-              </CardFooter>
-            </Card>
+                  {/* Project Image */}
+                  <div className="relative h-48 overflow-hidden">
+                    <img 
+                      src={project.imageUrl} 
+                      alt={project.title}
+                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                      loading="lazy"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-card via-card/40 to-transparent"></div>
+                    <div className="absolute top-4 left-4">
+                      <Badge className="bg-primary text-primary-foreground text-xs border-0">
+                        {project.category}
+                      </Badge>
+                    </div>
+                  </div>
+                  
+                  <CardHeader className="pb-3">
+                    <CardTitle className="text-lg text-card-foreground line-clamp-2">
+                      {project.title}
+                    </CardTitle>
+                    <CardDescription className="text-muted-foreground leading-relaxed text-sm">
+                      {project.description}
+                    </CardDescription>
+                  </CardHeader>
+                  
+                  <CardContent className="space-y-5">
+                    {/* Key Outcomes */}
+                    <div className="space-y-2">
+                      <h4 className="text-xs font-semibold text-muted-foreground uppercase tracking-wider">
+                        Key Outcomes
+                      </h4>
+                      <ul className="space-y-1.5">
+                        {project.outcomes.map((outcome, idx) => (
+                          <li key={idx} className="text-sm text-muted-foreground flex items-start gap-2">
+                            <span className="mt-1.5 block w-1 h-1 rounded-full bg-primary flex-shrink-0"></span>
+                            {outcome}
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                    
+                    {/* Tech Stack */}
+                    <div className="space-y-2">
+                      <h4 className="text-xs font-semibold text-muted-foreground uppercase tracking-wider">
+                        Technologies
+                      </h4>
+                      <div className="flex flex-wrap gap-1.5">
+                        {project.tech.map((tech, idx) => (
+                          <span 
+                            key={idx} 
+                            className="text-xs px-2 py-0.5 bg-primary/10 border border-primary/20 rounded text-primary/80"
+                          >
+                            {tech}
+                          </span>
+                        ))}
+                      </div>
+                    </div>
+                  </CardContent>
+                  
+                  <CardFooter className="pt-4 border-t border-border/40">
+                    <Button 
+                      variant="outline" 
+                      size="sm"
+                      className="w-full border-border/60 hover:border-primary/40 hover:bg-primary/5 transition-all duration-300"
+                      asChild
+                    >
+                      <a 
+                        href={project.githubUrl} 
+                        target="_blank" 
+                        rel="noopener noreferrer"
+                        className="inline-flex items-center justify-center gap-2"
+                      >
+                        <Github className="w-4 h-4" />
+                        View on GitHub
+                        <ExternalLink className="w-3 h-3" />
+                      </a>
+                    </Button>
+                  </CardFooter>
+                </Card>
+              </TiltCard>
+            </RevealCard>
           ))}
         </div>
 
