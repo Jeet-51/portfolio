@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import NeuralNetworkBackground from "./NeuralNetworkBackground";
 import { Button } from "@/components/ui/button";
-import { Mail, Phone, Github, Linkedin, Download, MapPin } from "lucide-react";
+import { Mail, Phone, Github, Linkedin, Download } from "lucide-react";
 
 const NewHero = () => {
   const typewriterTexts = [
@@ -40,45 +40,55 @@ const NewHero = () => {
 
   return (
     <section className="relative min-h-screen flex items-center px-4 py-20 overflow-hidden">
-      {/* Neural network canvas animation */}
       <NeuralNetworkBackground />
 
-      {/* Radial spotlight behind content */}
       <div className="absolute inset-0 pointer-events-none z-[1]">
         <div className="absolute top-1/2 left-1/3 -translate-x-1/2 -translate-y-1/2 w-[70vw] h-[60vh] rounded-full bg-primary/8 blur-[120px]" />
       </div>
 
       <div className="container mx-auto max-w-4xl relative z-10">
         <div className="space-y-8">
-          <div className="space-y-4">
-            <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full text-sm font-medium glass-card text-muted-foreground animate-fade-in">
-              <MapPin className="w-3.5 h-3.5 text-primary" />
-              <span>Available for opportunities</span>
-            </div>
-            
-            {/* Name with glow */}
+          {/* Greeting */}
+          <div className="space-y-4 animate-slide-up">
             <div className="relative">
               <div className="absolute -inset-4 bg-primary/10 blur-3xl rounded-full pointer-events-none" />
-              <h1 className="relative text-5xl md:text-6xl lg:text-7xl font-extrabold text-foreground leading-tight animate-slide-up tracking-tight">
-                Jeet Patel
+              <h1 className="relative text-5xl md:text-6xl lg:text-7xl font-extrabold text-foreground leading-tight tracking-tight">
+                Hey, I'm <span className="gradient-text">Jeet</span>
               </h1>
             </div>
-            
-            <div className="h-16 flex items-center animate-slide-up" style={{ animationDelay: '0.1s' }}>
-              <h2 className="text-2xl md:text-3xl lg:text-4xl inline-flex items-center font-mono font-light tracking-wide">
-                <span className="min-w-[200px] text-left gradient-text">{displayText}</span>
-                <span className="animate-pulse ml-1 text-primary/60">|</span>
-              </h2>
-            </div>
           </div>
-          
-          <p className="text-lg text-muted-foreground leading-relaxed max-w-2xl animate-slide-up" style={{ animationDelay: '0.2s' }}>
-            Senior ML Engineer, Data Scientist & Data Analytics specialist working with GenAI, LangChain, and scalable data architectures. 
-            Building intelligent solutions that drive business impact through advanced analytics and machine learning.
+
+          {/* Subtitle with pipe separators */}
+          <p className="text-lg md:text-xl text-muted-foreground font-medium tracking-wide animate-slide-up" style={{ animationDelay: '0.05s' }}>
+            Engineer <span className="text-border mx-2">|</span> Builder <span className="text-border mx-2">|</span> Lifelong Learner
           </p>
-          
-          {/* Quote Section */}
-          <div className="my-6 animate-slide-up" style={{ animationDelay: '0.25s' }}>
+
+          {/* Typewriter */}
+          <div className="h-12 flex items-center animate-slide-up" style={{ animationDelay: '0.1s' }}>
+            <h2 className="text-xl md:text-2xl inline-flex items-center font-mono font-light tracking-wide">
+              <span className="min-w-[180px] text-left gradient-text">{displayText}</span>
+              <span className="animate-pulse ml-1 text-primary/60">|</span>
+            </h2>
+          </div>
+
+          {/* About paragraphs */}
+          <div className="space-y-5 max-w-3xl animate-slide-up" style={{ animationDelay: '0.15s' }}>
+            <p className="text-base md:text-lg text-muted-foreground leading-relaxed">
+              I'm a Software Engineer with a passion for building things that work in the real world, not just in notebooks. I recently completed my MS in Data Science at Indiana University and have spent the last couple of years shipping production AI systems, LLM pipelines, and full-stack platforms across healthcare, nonprofit analytics, and creator economy products.
+            </p>
+            <p className="text-base md:text-lg text-muted-foreground leading-relaxed">
+              I've worked across the full stack, from GPU-accelerated inference and RAG-based agents to scalable backend services and data pipelines handling millions of records. I care deeply about writing clean, reliable code and building software that actually solves problems for real people.
+            </p>
+            <p className="text-base md:text-lg text-muted-foreground leading-relaxed">
+              Outside of engineering, I'm obsessed with learning new things, whether that's a new framework, a new domain, or a new way to think about a problem.
+            </p>
+            <p className="text-base md:text-lg text-muted-foreground leading-relaxed">
+              If you want to connect, collaborate, or just chat about building things, feel free to reach out!
+            </p>
+          </div>
+
+          {/* Quote */}
+          <div className="my-4 animate-slide-up" style={{ animationDelay: '0.2s' }}>
             <div className="border-l-2 border-primary/40 pl-6 py-2">
               <p className="text-lg text-muted-foreground leading-relaxed italic">
                 "I don't just build models, I build tools that automate decisions, drive efficiency, and solve real-world problems, 
@@ -86,8 +96,9 @@ const NewHero = () => {
               </p>
             </div>
           </div>
-          
-          <div className="flex flex-wrap gap-2 animate-slide-up" style={{ animationDelay: '0.3s' }}>
+
+          {/* Skill tags */}
+          <div className="flex flex-wrap gap-2 animate-slide-up" style={{ animationDelay: '0.25s' }}>
             {["Machine Learning", "GenAI & LLMs", "Data Engineering", "MLOps"].map((skill) => (
               <span 
                 key={skill}
@@ -98,7 +109,8 @@ const NewHero = () => {
             ))}
           </div>
           
-          <div className="flex flex-wrap gap-3 animate-slide-up" style={{ animationDelay: '0.4s' }}>
+          {/* CTA Buttons */}
+          <div className="flex flex-wrap gap-3 animate-slide-up" style={{ animationDelay: '0.3s' }}>
             <Button 
               size="lg" 
               className="h-11 px-6 font-medium bg-gradient-to-r from-primary to-cyan-500 hover:from-primary/90 hover:to-cyan-500/90 shadow-lg shadow-primary/25 hover:shadow-primary/40 hover:-translate-y-0.5 transition-all duration-300"
@@ -123,7 +135,8 @@ const NewHero = () => {
             </Button>
           </div>
           
-          <div className="flex items-center gap-6 pt-2 animate-slide-up" style={{ animationDelay: '0.5s' }}>
+          {/* Contact links */}
+          <div className="flex items-center gap-6 pt-2 animate-slide-up" style={{ animationDelay: '0.35s' }}>
             <a 
               href="tel:+19303335103" 
               className="inline-flex items-center gap-2 text-muted-foreground hover:text-foreground transition-colors"
@@ -156,7 +169,7 @@ const NewHero = () => {
         </div>
         
         {/* Scroll indicator */}
-        <div className="flex justify-center mt-20 animate-fade-in" style={{ animationDelay: '0.6s' }}>
+        <div className="flex justify-center mt-20 animate-fade-in" style={{ animationDelay: '0.5s' }}>
           <div className="flex flex-col items-center gap-2 text-muted-foreground">
             <span className="text-sm">Scroll to explore</span>
             <div className="w-5 h-8 rounded-full border-2 border-border/60 flex justify-center">
