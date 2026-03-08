@@ -1,4 +1,4 @@
-import { useRef, useEffect, useState, useCallback } from "react";
+import { useRef, useEffect, useCallback } from "react";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
@@ -24,21 +24,21 @@ const TiltCard = ({ children, className = "" }: { children: React.ReactNode; cla
     const el = ref.current;
     if (!el) return;
     const rect = el.getBoundingClientRect();
-    const x = (e.clientX - rect.left) / rect.width - 0.5;   // -0.5 to 0.5
+    const x = (e.clientX - rect.left) / rect.width - 0.5;
     const y = (e.clientY - rect.top) / rect.height - 0.5;
-    el.style.transform = `perspective(800px) rotateY(${x * 6}deg) rotateX(${-y * 6}deg) translateZ(4px)`;
+    el.style.transform = `perspective(1000px) rotateY(${x * 8}deg) rotateX(${-y * 8}deg) translateZ(10px)`;
   }, []);
 
   const handleMouseLeave = useCallback(() => {
     const el = ref.current;
     if (!el) return;
-    el.style.transform = "perspective(800px) rotateY(0deg) rotateX(0deg) translateZ(0px)";
+    el.style.transform = "perspective(1000px) rotateY(0deg) rotateX(0deg) translateZ(0px)";
   }, []);
 
   useEffect(() => {
     const el = ref.current;
     if (!el) return;
-    el.style.transition = "transform 0.15s ease-out";
+    el.style.transition = "transform 0.2s ease-out";
     el.addEventListener("mousemove", handleMouseMove);
     el.addEventListener("mouseleave", handleMouseLeave);
     return () => {
@@ -47,11 +47,11 @@ const TiltCard = ({ children, className = "" }: { children: React.ReactNode; cla
     };
   }, [handleMouseMove, handleMouseLeave]);
 
-  return <div ref={ref} className={className}>{children}</div>;
+  return <div ref={ref} className={className} style={{ transformStyle: 'preserve-3d' }}>{children}</div>;
 };
 
 // Staggered reveal wrapper
-const RevealCard = ({ children, index }: { children: React.ReactNode; index: number }) => {
+const RevealCard = ({ children, index, className = "" }: { children: React.ReactNode; index: number; className?: string }) => {
   const ref = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -79,7 +79,7 @@ const RevealCard = ({ children, index }: { children: React.ReactNode; index: num
     return () => observer.disconnect();
   }, [index]);
 
-  return <div ref={ref}>{children}</div>;
+  return <div ref={ref} className={className}>{children}</div>;
 };
 
 const NewProjectsSection = () => {
@@ -88,9 +88,9 @@ const NewProjectsSection = () => {
       title: "Backend – Customer Subscription & Gifting Platform",
       description: "A production-grade backend system supporting subscription purchases, gifting, renewals, and cancellations, with a strong focus on correctness, idempotency, and low-latency performance.",
       outcomes: [
-        "Designed idempotent APIs to prevent duplicate charges and ensure transactional safety",
-        "Achieved sub-125ms P95 latency under load with high request concurrency",
-        "Maintained less than 1% error rates across critical payment workflows"
+        "Designed idempotent APIs to prevent duplicate charges",
+        "Achieved sub-125ms P95 latency under load",
+        "Maintained <1% error rates across workflows"
       ],
       tech: ["Go", "PostgreSQL", "Redis", "REST APIs", "Docker"],
       imageUrl: "https://images.unsplash.com/photo-1558494949-ef010cbdcc31?auto=format&fit=crop&q=80&w=800&h=400",
@@ -98,43 +98,28 @@ const NewProjectsSection = () => {
       category: "Backend"
     },
     {
-      title: "LLM Inference Service with Caching and Rate Limiting",
-      description: "A production-grade GPU-backed LLM inference service designed for low-latency, high-concurrency workloads, with built-in caching, rate limiting, and observability to support reliable AI serving at scale.",
+      title: "LLM Inference Service",
+      description: "GPU-backed LLM inference service designed for low-latency, high-concurrency workloads.",
       outcomes: [
-        "Reduced inference latency from ~850ms to ~180ms through quantization and optimized batching",
-        "Supported 100+ concurrent requests with stable performance on GPU infrastructure",
-        "Improved system reliability and visibility with real-time GPU and inference monitoring"
+        "Reduced latency to ~180ms",
+        "Supported 100+ concurrent requests"
       ],
-      tech: ["FastAPI", "Python", "vLLM", "Mistral-7B (AWQ)", "Redis", "Docker", "Prometheus", "CUDA"],
+      tech: ["FastAPI", "Python", "vLLM", "CUDA", "Mistral-7B"],
       imageUrl: "https://images.unsplash.com/photo-1620712943543-bcc4688e7485?auto=format&fit=crop&q=80&w=800&h=400",
       githubUrl: "https://github.com/Jeet-51",
       category: "AI Infrastructure"
     },
     {
-      title: "PitchPal – AI Agent for Startup Pitch Evaluation",
-      description: "AI-powered startup evaluation platform using LangChain ReAct agents and OpenAI for automated pitch analysis.",
+      title: "PitchPal – AI Evaluator",
+      description: "AI-powered startup evaluation platform using LangChain ReAct agents.",
       outcomes: [
-        "Processed 100+ pitch evaluations with 5-dimension scoring",
-        "Accelerated due diligence processes by 60%",
-        "Enabled YC startups and VC firms automation"
+        "Processed 100+ pitch evaluations",
+        "Accelerated due diligence by 60%"
       ],
-      tech: ["LangChain", "OpenAI GPT-4", "Pydantic", "Streamlit", "FastAPI", "Plotly"],
+      tech: ["LangChain", "OpenAI GPT-4", "Streamlit"],
       imageUrl: "https://images.unsplash.com/photo-1677442136019-21780ecad995?auto=format&fit=crop&q=80&w=800&h=400",
       githubUrl: "https://github.com/Jeet-51/PitchPal-AI-Agent-for-Startup-Pitch-Evaluation",
       category: "GenAI"
-    },
-    {
-      title: "EPA Greenhouse Gas Emissions Dashboard",
-      description: "Production-style analytics stack with dbt models on Snowflake transforming EPA GHG data into actionable insights.",
-      outcomes: [
-        "Reduced Tableau latency through star-schema optimization",
-        "Cut analysis time by 40% with advanced techniques",
-        "Enabled self-serve state and sector-level analysis"
-      ],
-      tech: ["Tableau", "dbt", "Snowflake", "SQL", "Python"],
-      imageUrl: "https://images.unsplash.com/photo-1611273426858-450d8e3c9fce?auto=format&fit=crop&q=80&w=800&h=400",
-      githubUrl: "https://github.com/Jeet-51/EPA-Greenhouse-Gas-GHG-Emissions-Dashboard",
-      category: "Analytics"
     },
     {
       title: "ClaimGuard: Healthcare Pattern Analysis",
@@ -150,14 +135,25 @@ const NewProjectsSection = () => {
       category: "ML Engineering"
     },
     {
-      title: "FinanceFlow: Cloud Analytics Platform",
+      title: "EPA GHG Dashboard",
+      description: "Production-style analytics stack with dbt models on Snowflake.",
+      outcomes: [
+        "Reduced Tableau latency",
+        "Cut analysis time by 40%"
+      ],
+      tech: ["Tableau", "dbt", "Snowflake"],
+      imageUrl: "https://images.unsplash.com/photo-1611273426858-450d8e3c9fce?auto=format&fit=crop&q=80&w=800&h=400",
+      githubUrl: "https://github.com/Jeet-51/EPA-Greenhouse-Gas-GHG-Emissions-Dashboard",
+      category: "Analytics"
+    },
+    {
+      title: "FinanceFlow: Cloud Analytics",
       description: "Real-time ETL pipeline using PySpark and AWS services for enhanced fraud detection.",
       outcomes: [
         "Boosted fraud detection accuracy by 40%",
-        "Delivered 40% faster insights via QuickSight",
-        "Enabled real-time transaction anomaly identification"
+        "Delivered 40% faster insights"
       ],
-      tech: ["AWS", "S3", "SageMaker", "Redshift", "QuickSight", "PySpark"],
+      tech: ["AWS", "S3", "SageMaker", "PySpark"],
       imageUrl: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&q=80&w=800&h=400",
       githubUrl: "https://github.com/Jeet-51/FinanceFlow-Cloud-Enabled-Analytics-for-Fraud-Detection",
       category: "Data Engineering"
@@ -165,121 +161,94 @@ const NewProjectsSection = () => {
   ];
 
   return (
-    <section className="py-24 px-4">
+    <section className="py-24 px-4 relative z-10">
       <div className="container mx-auto max-w-7xl">
-        {/* Header */}
         <div className="text-center space-y-4 mb-16">
-          <p className="text-sm font-medium text-primary uppercase tracking-wider">Featured Work</p>
+          <p className="text-sm font-mono text-primary uppercase tracking-wider">&gt;_ System.out.println("Featured Work")</p>
           <h2 className="text-4xl md:text-5xl font-bold text-foreground">
             Projects & Solutions
           </h2>
           <p className="text-lg text-muted-foreground max-w-3xl mx-auto">
-            Showcasing impactful AI and data science projects that solve real-world problems 
-            with measurable business outcomes.
+            Showcasing impactful AI and data science projects that solve real-world problems.
           </p>
         </div>
 
-        {/* Projects Grid */}
-        <div className="grid md:grid-cols-2 gap-6">
-          {projects.map((project, index) => (
-            <RevealCard key={index} index={index}>
-              <TiltCard className="h-full">
-                <Card 
-                  className="group h-full overflow-hidden glass-card hover:border-primary/30 transition-all duration-300 hover:shadow-xl hover:shadow-primary/10"
-                >
-                  {/* Project Image */}
-                  <div className="relative h-48 overflow-hidden">
-                    <img 
-                      src={project.imageUrl} 
-                      alt={project.title}
-                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                      loading="lazy"
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-card via-card/40 to-transparent"></div>
-                    <div className="absolute top-4 left-4">
-                      <Badge className="bg-primary text-primary-foreground text-xs border-0">
-                        {project.category}
-                      </Badge>
-                    </div>
-                  </div>
-                  
-                  <CardHeader className="pb-3">
-                    <CardTitle className="text-lg text-card-foreground line-clamp-2">
-                      {project.title}
-                    </CardTitle>
-                    <CardDescription className="text-muted-foreground leading-relaxed text-sm">
-                      {project.description}
-                    </CardDescription>
-                  </CardHeader>
-                  
-                  <CardContent className="space-y-5">
-                    {/* Key Outcomes */}
-                    <div className="space-y-2">
-                      <h4 className="text-xs font-semibold text-muted-foreground uppercase tracking-wider">
-                        Key Outcomes
-                      </h4>
-                      <ul className="space-y-1.5">
-                        {project.outcomes.map((outcome, idx) => (
-                          <li key={idx} className="text-sm text-muted-foreground flex items-start gap-2">
-                            <span className="mt-1.5 block w-1 h-1 rounded-full bg-primary flex-shrink-0"></span>
-                            {outcome}
-                          </li>
-                        ))}
-                      </ul>
-                    </div>
+        {/* Bento Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 auto-rows-[auto]">
+          {projects.map((project, index) => {
+            // Bento Grid Layout logic
+            let gridClass = "md:col-span-1 md:row-span-1";
+            if (index === 0) gridClass = "md:col-span-2 md:row-span-2"; // Large primary
+            else if (index === 3) gridClass = "md:col-span-2 md:row-span-1"; // Wide
+            else if (index === 4) gridClass = "md:col-span-1 md:row-span-1"; // Normal
+            
+            return (
+              <RevealCard key={index} index={index} className={gridClass}>
+                <TiltCard className="h-full">
+                  <Card className="group h-full overflow-hidden glass-card flex flex-col border-white/10 hover:border-primary/40 transition-all duration-500">
+                    <div className="absolute inset-0 bg-gradient-to-br from-primary/[0.03] to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"></div>
                     
-                    {/* Tech Stack */}
-                    <div className="space-y-2">
-                      <h4 className="text-xs font-semibold text-muted-foreground uppercase tracking-wider">
-                        Technologies
-                      </h4>
-                      <div className="flex flex-wrap gap-1.5">
-                        {project.tech.map((tech, idx) => (
-                          <span 
-                            key={idx} 
-                            className="text-xs px-2 py-0.5 bg-primary/10 border border-primary/20 rounded text-primary/80"
-                          >
-                            {tech}
-                          </span>
-                        ))}
+                    <div className="p-6 relative z-10 flex flex-col h-full">
+                      <div className="flex justify-between items-start mb-4">
+                        <Badge className="bg-primary/10 text-primary hover:bg-primary/20 border-primary/20 font-mono text-xs">
+                          {project.category}
+                        </Badge>
+                        <a 
+                          href={project.githubUrl} 
+                          target="_blank" 
+                          rel="noopener noreferrer"
+                          className="text-muted-foreground hover:text-primary transition-colors p-2 magnetic cursor-none"
+                        >
+                          <Github className="w-5 h-5" />
+                        </a>
+                      </div>
+                      
+                      <CardTitle className="text-xl md:text-2xl font-bold text-foreground mb-3 leading-tight group-hover:text-primary transition-colors">
+                        {project.title}
+                      </CardTitle>
+                      
+                      <CardDescription className="text-muted-foreground/80 line-clamp-3 mb-6 flex-grow">
+                        {project.description}
+                      </CardDescription>
+
+                      <div className="space-y-4 mt-auto">
+                        <ul className="space-y-1.5 hidden md:block">
+                          {project.outcomes.slice(0, 2).map((outcome, idx) => (
+                            <li key={idx} className="text-xs text-muted-foreground flex items-start gap-2">
+                              <span className="mt-1 block w-1 h-1 rounded-full bg-primary/60 flex-shrink-0"></span>
+                              {outcome}
+                            </li>
+                          ))}
+                        </ul>
+
+                        <div className="flex flex-wrap gap-2 pt-4 border-t border-white/5">
+                          {project.tech.map((tech, idx) => (
+                            <span 
+                              key={idx} 
+                              className="text-xs font-mono px-2 py-1 bg-white/5 border border-white/10 rounded text-foreground/70 group-hover:border-primary/30 group-hover:text-primary group-hover:shadow-[0_0_10px_hsl(var(--primary)/0.2)] transition-all duration-300"
+                            >
+                              {tech}
+                            </span>
+                          ))}
+                        </div>
                       </div>
                     </div>
-                  </CardContent>
-                  
-                  <CardFooter className="pt-4 border-t border-border/40">
-                    <Button 
-                      variant="outline" 
-                      size="sm"
-                      className="w-full border-border/60 hover:border-primary/40 hover:bg-primary/5 transition-all duration-300"
-                      asChild
-                    >
-                      <a 
-                        href={project.githubUrl} 
-                        target="_blank" 
-                        rel="noopener noreferrer"
-                        className="inline-flex items-center justify-center gap-2"
-                      >
-                        <Github className="w-4 h-4" />
-                        View on GitHub
-                        <ExternalLink className="w-3 h-3" />
-                      </a>
-                    </Button>
-                  </CardFooter>
-                </Card>
-              </TiltCard>
-            </RevealCard>
-          ))}
+                  </Card>
+                </TiltCard>
+              </RevealCard>
+            );
+          })}
         </div>
 
         {/* CTA */}
-        <div className="text-center mt-16">
-          <p className="text-muted-foreground mb-6">
-            Interested in collaborating on similar projects?
+        <div className="text-center mt-20">
+          <p className="text-muted-foreground mb-6 font-mono text-sm">
+            Ready to deploy your next big idea?
           </p>
-          <Button size="lg" className="bg-primary hover:bg-primary/90 shadow-lg shadow-primary/20 hover:shadow-primary/30 transition-all duration-300" asChild>
+          <Button size="lg" className="magnetic bg-primary hover:bg-primary/90 shadow-[0_0_20px_hsl(var(--primary)/0.3)] hover:shadow-[0_0_30px_hsl(var(--primary)/0.5)] transition-all duration-300 cursor-none" asChild>
             <a href="mailto:jeetp5118@gmail.com" className="inline-flex items-center gap-2">
               <Mail className="w-4 h-4" />
-              Let's Work Together
+              Let's Build Together
             </a>
           </Button>
         </div>

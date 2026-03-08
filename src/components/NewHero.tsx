@@ -66,7 +66,8 @@ const NewHero = () => {
           {/* Typewriter */}
           <div className="h-12 flex items-center animate-slide-up" style={{ animationDelay: '0.1s' }}>
             <h2 className="text-xl md:text-2xl inline-flex items-center font-mono font-light tracking-wide">
-              <span className="min-w-[180px] text-left gradient-text">{displayText}</span>
+              <span className="text-primary mr-3 font-bold">&gt;_</span>
+              <span className="min-w-[180px] text-left gradient-text font-bold">{displayText}</span>
               <span className="animate-pulse ml-1 text-primary/60">|</span>
             </h2>
           </div>

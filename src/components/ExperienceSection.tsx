@@ -1,50 +1,4 @@
-interface ExperienceItemProps {
-  title: string;
-  company: string;
-  location: string;
-  period: string;
-  descriptions: string[];
-  technologies?: string[];
-}
-
-const ExperienceItem = ({ title, company, location, period, descriptions, technologies }: ExperienceItemProps) => (
-  <div className="relative pl-8 pb-10 last:pb-0 group">
-    {/* Timeline line */}
-    <div className="absolute left-[7px] top-3 bottom-0 w-px bg-gradient-to-b from-primary/40 via-border to-transparent group-last:hidden"></div>
-    {/* Timeline dot */}
-    <div className="absolute left-0 top-2 w-[15px] h-[15px] rounded-full border-2 border-primary/50 bg-background group-hover:border-primary group-hover:shadow-[0_0_8px_hsl(215_80%_55%/0.3)] transition-all duration-300"></div>
-    
-    <div className="glass-card rounded-xl p-6 hover:border-primary/20 transition-all duration-300">
-      <div className="flex flex-col md:flex-row md:justify-between md:items-start gap-1 mb-4">
-        <div>
-          <h3 className="text-lg font-semibold text-foreground">{title}</h3>
-          <p className="text-primary/80 font-medium">{company}</p>
-          <p className="text-sm text-muted-foreground">{location}</p>
-        </div>
-        <span className="text-sm text-muted-foreground whitespace-nowrap font-mono">{period}</span>
-      </div>
-      
-      <div className="text-muted-foreground">
-        {descriptions.map((desc, index) => (
-          <p key={index} className="text-sm leading-relaxed mb-2">{desc}</p>
-        ))}
-      </div>
-      
-      {technologies && technologies.length > 0 && (
-        <div className="flex flex-wrap gap-1.5 mt-4">
-          {technologies.map((tech, index) => (
-            <span 
-              key={index} 
-              className="text-xs px-2 py-0.5 bg-primary/10 border border-primary/20 rounded text-primary/80"
-            >
-              {tech}
-            </span>
-          ))}
-        </div>
-      )}
-    </div>
-  </div>
-);
+import { useEffect, useRef, useState } from "react";
 
 const ExperienceSection = () => {
   const experiences = [
@@ -120,16 +74,91 @@ const ExperienceSection = () => {
     }
   ];
 
-  return (
-    <div className="py-8">
-      <h2 className="text-2xl font-bold tracking-tight mb-10 text-foreground">
-        Work Experience
-      </h2>
+  const [activeIndex, setActiveIndex] = useState(0);
+  const containerRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const items = document.querySelectorAll('.experience-item');
+      let newActiveIndex = activeIndex;
       
-      <div>
-        {experiences.map((exp, idx) => (
-          <ExperienceItem key={idx} {...exp} />
-        ))}
+      items.forEach((item, idx) => {
+        const rect = item.getBoundingClientRect();
+        // Highlight if the item is in the top/middle of the screen
+        if (rect.top <= window.innerHeight * 0.6 && rect.bottom >= window.innerHeight * 0.2) {
+          newActiveIndex = idx;
+        }
+      });
+      
+      if (newActiveIndex !== activeIndex) {
+        setActiveIndex(newActiveIndex);
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    handleScroll(); // Initial check
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, [activeIndex]);
+
+  return (
+    <div className="py-12 relative z-10" ref={containerRef}>
+      <div className="mb-16">
+        <h2 className="text-3xl font-bold tracking-tight text-foreground flex items-center gap-3">
+          <span className="text-primary font-mono text-xl">&gt;_</span> 
+          System.Experience
+        </h2>
+      </div>
+      
+      <div className="relative border-l border-white/10 ml-3 md:ml-4 space-y-12 pb-12">
+        {experiences.map((exp, idx) => {
+          const isActive = idx === activeIndex;
+          return (
+            <div 
+              key={idx} 
+              className={`experience-item relative pl-8 md:pl-12 transition-all duration-700 ${isActive ? 'opacity-100 scale-100' : 'opacity-40 scale-[0.98]'}`}
+            >
+              {/* Glowing Dot */}
+              <div className={`absolute -left-[5px] top-4 w-2.5 h-2.5 rounded-full transition-all duration-500 ${isActive ? 'bg-primary shadow-[0_0_15px_hsl(var(--primary))] scale-150' : 'bg-white/20'}`} />
+              
+              <div className={`glass-card rounded-xl p-6 md:p-8 transition-all duration-500 ${isActive ? 'border-primary/30 shadow-[0_0_30px_rgba(var(--primary),0.1)] translate-x-2 bg-white/[0.05]' : 'border-white/5 hover:border-white/10'}`}>
+                <div className="flex flex-col xl:flex-row xl:justify-between xl:items-start gap-3 mb-4">
+                  <div>
+                    <h3 className={`text-xl font-bold transition-colors duration-300 ${isActive ? 'text-primary' : 'text-foreground'}`}>
+                      {exp.title}
+                    </h3>
+                    <p className="text-foreground/80 font-medium text-lg mt-1">{exp.company}</p>
+                    <p className="text-sm text-muted-foreground mt-1 flex items-center gap-2">
+                      <span className="w-1 h-1 rounded-full bg-muted-foreground/50" />
+                      {exp.location}
+                    </p>
+                  </div>
+                  <span className="text-sm text-primary/90 whitespace-nowrap font-mono bg-primary/10 px-3 py-1.5 rounded-full border border-primary/20">
+                    {exp.period}
+                  </span>
+                </div>
+                
+                <div className="text-muted-foreground/90 space-y-3 mt-6">
+                  {exp.descriptions.map((desc, index) => (
+                    <p key={index} className="text-sm md:text-base leading-relaxed">{desc}</p>
+                  ))}
+                </div>
+                
+                {exp.technologies && exp.technologies.length > 0 && (
+                  <div className="flex flex-wrap gap-2 mt-6">
+                    {exp.technologies.map((tech, tIdx) => (
+                      <span 
+                        key={tIdx} 
+                        className={`text-xs font-mono px-2.5 py-1 rounded transition-all duration-300 ${isActive ? 'bg-primary/10 border border-primary/30 text-primary shadow-[0_0_10px_hsl(var(--primary)/0.2)]' : 'bg-white/5 border border-white/10 text-muted-foreground'}`}
+                      >
+                        {tech}
+                      </span>
+                    ))}
+                  </div>
+                )}
+              </div>
+            </div>
+          );
+        })}
       </div>
     </div>
   );

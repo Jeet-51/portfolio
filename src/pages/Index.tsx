@@ -5,6 +5,8 @@ import NewProjectsSection from "@/components/NewProjectsSection";
 import SectionDivider from "@/components/SectionDivider";
 import PortfolioSidebar from "@/components/PortfolioSidebar";
 import { Skeleton } from "@/components/ui/skeleton";
+import CursorSpotlight from "@/components/CursorSpotlight";
+import ScrollProgress from "@/components/ScrollProgress";
 
 const LazyExperienceSection = lazy(() => import("@/components/ExperienceSection"));
 const LazyEducationSection = lazy(() => import("@/components/EducationSection"));
@@ -53,6 +55,8 @@ const ScrollReveal = ({ children, className = "" }: { children: React.ReactNode;
 const Index = () => {
   return (
     <div className="min-h-screen bg-background text-foreground scroll-smooth">
+      <CursorSpotlight />
+      <ScrollProgress />
       <PortfolioSidebar />
       <BackToTop />
       

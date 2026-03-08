@@ -1,4 +1,6 @@
 
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -46,40 +48,40 @@
   }
 
   .dark {
-    --background: 228 20% 7%;
-    --foreground: 220 15% 90%;
+    --background: 0 0% 4%; /* #0a0a0a */
+    --foreground: 0 0% 90%;
 
-    --card: 228 18% 10%;
-    --card-foreground: 220 15% 90%;
+    --card: 0 0% 6%;
+    --card-foreground: 0 0% 90%;
 
-    --popover: 228 18% 10%;
-    --popover-foreground: 220 15% 90%;
+    --popover: 0 0% 6%;
+    --popover-foreground: 0 0% 90%;
 
     --primary: 215 80% 55%;
     --primary-foreground: 0 0% 100%;
 
-    --secondary: 228 15% 14%;
-    --secondary-foreground: 220 15% 85%;
+    --secondary: 228 15% 10%;
+    --secondary-foreground: 0 0% 85%;
 
-    --muted: 228 15% 16%;
-    --muted-foreground: 220 10% 55%;
+    --muted: 228 15% 12%;
+    --muted-foreground: 0 0% 60%;
 
-    --accent: 228 15% 18%;
-    --accent-foreground: 220 15% 90%;
+    --accent: 215 80% 55%;
+    --accent-foreground: 0 0% 100%;
 
     --destructive: 0 62% 50%;
-    --destructive-foreground: 220 10% 90%;
+    --destructive-foreground: 0 0% 90%;
 
-    --border: 228 12% 16%;
+    --border: 0 0% 100%; /* For 1px border-white/10 using classes directly */
     --input: 228 12% 16%;
     --ring: 215 80% 55%;
 
-    --sidebar-background: 228 20% 7%;
-    --sidebar-foreground: 220 15% 90%;
+    --sidebar-background: 0 0% 4%;
+    --sidebar-foreground: 0 0% 90%;
     --sidebar-primary: 215 80% 55%;
     --sidebar-primary-foreground: 0 0% 100%;
-    --sidebar-accent: 228 15% 14%;
-    --sidebar-accent-foreground: 220 15% 90%;
+    --sidebar-accent: 228 15% 10%;
+    --sidebar-accent-foreground: 0 0% 90%;
     --sidebar-border: 228 12% 16%;
     --sidebar-ring: 215 80% 55%;
   }
@@ -100,6 +102,11 @@
     font-family: 'Inter', system-ui, -apple-system, sans-serif;
     line-height: 1.6;
     font-size: 16px;
+    cursor: none;
+  }
+
+  a, button, [role="button"], input, select, textarea {
+    cursor: none !important;
   }
 
   h1, h2, h3, h4, h5, h6 {
@@ -109,7 +116,7 @@
     letter-spacing: -0.025em;
   }
 
-  code, pre {
+  code, pre, .font-mono {
     font-family: 'JetBrains Mono', 'Fira Code', monospace;
   }
 }
@@ -128,12 +135,12 @@
   }
 
   .glass-card {
-    @apply bg-card/60 backdrop-blur-md border border-border/60;
+    @apply bg-white/[0.03] backdrop-blur-xl border border-white/[0.08] shadow-lg hover:border-white/[0.15] hover:bg-white/[0.05] transition-all duration-300;
   }
 
   .gradient-text {
     @apply bg-clip-text text-transparent;
-    background-image: linear-gradient(135deg, hsl(215 80% 55%), hsl(195 80% 55%), hsl(260 60% 65%));
+    background-image: linear-gradient(135deg, hsl(215 80% 65%), hsl(195 80% 55%), hsl(260 60% 70%));
   }
 }
 
