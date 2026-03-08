@@ -74,7 +74,7 @@ const NewHero = () => {
           {/* About paragraphs */}
           <div className="space-y-5 max-w-3xl animate-slide-up" style={{ animationDelay: '0.15s' }}>
             <p className="text-base md:text-lg text-muted-foreground leading-relaxed">
-              I'm a Software Engineer with a passion for building things that work in the real world, not just in notebooks. I recently completed my MS in Data Science at Indiana University and have spent the last couple of years shipping production AI systems, LLM pipelines, and full-stack platforms across healthcare, nonprofit analytics, and creator economy products.
+              I'm a Software Engineer with a passion for building things that work in the real world, not just in notebooks. I recently completed my MS in Data Science at Indiana University and have spent the last couple of years shipping production AI systems, LLM pipelines, and full-stack platforms across healthcare, social impact analytics, and creator economy products.
             </p>
             <p className="text-base md:text-lg text-muted-foreground leading-relaxed">
               I've worked across the full stack, from GPU-accelerated inference and RAG-based agents to scalable backend services and data pipelines handling millions of records. I care deeply about writing clean, reliable code and building software that actually solves problems for real people.
