@@ -102,11 +102,6 @@
     font-family: 'Inter', system-ui, -apple-system, sans-serif;
     line-height: 1.6;
     font-size: 16px;
-    cursor: none;
-  }
-
-  a, button, [role="button"], input, select, textarea {
-    cursor: none !important;
   }
 
   h1, h2, h3, h4, h5, h6 {
