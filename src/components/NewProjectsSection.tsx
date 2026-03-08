@@ -1,8 +1,8 @@
 import { useRef, useEffect, useCallback } from "react";
-import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
+import { Card, CardDescription, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { Github, ExternalLink, Mail } from "lucide-react";
+import { Github, Mail } from "lucide-react";
 
 interface Project {
   title: string;
@@ -14,7 +14,6 @@ interface Project {
   category: string;
 }
 
-// 3D tilt card wrapper
 const TiltCard = ({ children, className = "" }: { children: React.ReactNode; className?: string }) => {
   const ref = useRef<HTMLDivElement>(null);
   const reducedMotion = useRef(window.matchMedia("(prefers-reduced-motion: reduce)").matches);
@@ -50,7 +49,6 @@ const TiltCard = ({ children, className = "" }: { children: React.ReactNode; cla
   return <div ref={ref} className={className} style={{ transformStyle: 'preserve-3d' }}>{children}</div>;
 };
 
-// Staggered reveal wrapper
 const RevealCard = ({ children, index, className = "" }: { children: React.ReactNode; index: number; className?: string }) => {
   const ref = useRef<HTMLDivElement>(null);
 
@@ -176,44 +174,53 @@ const NewProjectsSection = () => {
         {/* Bento Grid */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 auto-rows-[auto]">
           {projects.map((project, index) => {
-            // Bento Grid Layout logic
             let gridClass = "md:col-span-1 md:row-span-1";
-            if (index === 0) gridClass = "md:col-span-2 md:row-span-2"; // Large primary
-            else if (index === 3) gridClass = "md:col-span-2 md:row-span-1"; // Wide
-            else if (index === 4) gridClass = "md:col-span-1 md:row-span-1"; // Normal
-            
+            if (index === 0) gridClass = "md:col-span-2 md:row-span-2";
+            else if (index === 3) gridClass = "md:col-span-2 md:row-span-1";
+            else if (index === 5) gridClass = "md:col-span-3"; // FinanceFlow full width
+
+            const isLarge = index === 0 || index === 5;
+
             return (
               <RevealCard key={index} index={index} className={gridClass}>
                 <TiltCard className="h-full">
                   <Card className="group h-full overflow-hidden glass-card flex flex-col border-white/10 hover:border-primary/40 transition-all duration-500">
                     <div className="absolute inset-0 bg-gradient-to-br from-primary/[0.03] to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"></div>
-                    
-                    <div className="p-6 relative z-10 flex flex-col h-full">
-                      <div className="flex justify-between items-start mb-4">
-                        <Badge className="bg-primary/10 text-primary hover:bg-primary/20 border-primary/20 font-mono text-xs">
-                          {project.category}
-                        </Badge>
-                        <a 
-                          href={project.githubUrl} 
-                          target="_blank" 
-                          rel="noopener noreferrer"
-                          className="text-muted-foreground hover:text-primary transition-colors p-2 magnetic cursor-none"
-                        >
-                          <Github className="w-5 h-5" />
-                        </a>
-                      </div>
-                      
+
+                    {/* Project image */}
+                    <div className={`relative overflow-hidden ${isLarge ? 'h-52' : 'h-40'}`}>
+                      <img
+                        src={project.imageUrl}
+                        alt={project.title}
+                        className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                        loading="lazy"
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-card via-card/60 to-transparent" />
+                      <Badge className="absolute top-3 left-3 bg-primary/20 text-primary backdrop-blur-md border-primary/20 font-mono text-xs">
+                        {project.category}
+                      </Badge>
+                      <a
+                        href={project.githubUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="absolute top-3 right-3 text-foreground/70 hover:text-primary transition-colors p-2 rounded-full bg-background/40 backdrop-blur-md"
+                      >
+                        <Github className="w-4 h-4" />
+                      </a>
+                    </div>
+
+                    <div className="p-6 relative z-10 flex flex-col flex-grow">
                       <CardTitle className="text-xl md:text-2xl font-bold text-foreground mb-3 leading-tight group-hover:text-primary transition-colors">
                         {project.title}
                       </CardTitle>
-                      
+
                       <CardDescription className="text-muted-foreground/80 line-clamp-3 mb-6 flex-grow">
                         {project.description}
                       </CardDescription>
 
                       <div className="space-y-4 mt-auto">
                         <ul className="space-y-1.5 hidden md:block">
-                          {project.outcomes.slice(0, 2).map((outcome, idx) => (
+                          {project.outcomes.slice(0, isLarge ? 3 : 2).map((outcome, idx) => (
                             <li key={idx} className="text-xs text-muted-foreground flex items-start gap-2">
                               <span className="mt-1 block w-1 h-1 rounded-full bg-primary/60 flex-shrink-0"></span>
                               {outcome}
@@ -223,8 +230,8 @@ const NewProjectsSection = () => {
 
                         <div className="flex flex-wrap gap-2 pt-4 border-t border-white/5">
                           {project.tech.map((tech, idx) => (
-                            <span 
-                              key={idx} 
+                            <span
+                              key={idx}
                               className="text-xs font-mono px-2 py-1 bg-white/5 border border-white/10 rounded text-foreground/70 group-hover:border-primary/30 group-hover:text-primary group-hover:shadow-[0_0_10px_hsl(var(--primary)/0.2)] transition-all duration-300"
                             >
                               {tech}
@@ -245,7 +252,7 @@ const NewProjectsSection = () => {
           <p className="text-muted-foreground mb-6 font-mono text-sm">
             Ready to deploy your next big idea?
           </p>
-          <Button size="lg" className="magnetic bg-primary hover:bg-primary/90 shadow-[0_0_20px_hsl(var(--primary)/0.3)] hover:shadow-[0_0_30px_hsl(var(--primary)/0.5)] transition-all duration-300 cursor-none" asChild>
+          <Button size="lg" className="bg-primary hover:bg-primary/90 shadow-[0_0_20px_hsl(var(--primary)/0.3)] hover:shadow-[0_0_30px_hsl(var(--primary)/0.5)] transition-all duration-300" asChild>
             <a href="mailto:jeetp5118@gmail.com" className="inline-flex items-center gap-2">
               <Mail className="w-4 h-4" />
               Let's Build Together
