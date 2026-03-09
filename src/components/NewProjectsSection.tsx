@@ -40,7 +40,7 @@ const RevealCard = ({ children, index, className = "" }: { children: React.React
     return () => observer.disconnect();
   }, [index]);
 
-  return <div ref={ref} className={className}>{children}</div>;
+  return <div ref={ref} className={`${className} h-full`}>{children}</div>;
 };
 
 const projects: Project[] = [
