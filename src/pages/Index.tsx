@@ -6,6 +6,7 @@ import SectionDivider from "@/components/SectionDivider";
 import PortfolioSidebar from "@/components/PortfolioSidebar";
 import { Skeleton } from "@/components/ui/skeleton";
 import ScrollProgress from "@/components/ScrollProgress";
+import NeuralNetworkBackground from "@/components/NeuralNetworkBackground";
 
 const LazyExperienceSection = lazy(() => import("@/components/ExperienceSection"));
 const LazyEducationSection = lazy(() => import("@/components/EducationSection"));
