@@ -76,21 +76,18 @@ const iconMap: Record<string, React.ReactNode> = {
   Git: <GitBranch className="w-3.5 h-3.5" />,
   Postman: <Globe className="w-3.5 h-3.5" />,
   Jira: <FileText className="w-3.5 h-3.5" />,
-  "Stakeholder Communication": <Users className="w-3.5 h-3.5" />,
-  "Technical Writing": <FileText className="w-3.5 h-3.5" />,
-  "Cross-Functional Collaboration": <Users className="w-3.5 h-3.5" />,
-  "Project Ownership": <Shield className="w-3.5 h-3.5" />,
-  Mentorship: <Users className="w-3.5 h-3.5" />,
 };
 
+// Core/primary skills get emphasized sizing
 const coreSkills = new Set([
   "Python", "Go", "PyTorch", "Kubernetes", "Docker",
   "TensorFlow", "PostgreSQL", "Apache Spark (PySpark)",
   "Kafka", "Redis", "FastAPI", "LLM Serving",
 ]);
 
+// Staggered spring-pop chip
 const SkillChip = ({ skill, index }: { skill: string; index: number }) => {
-  const ref = useRef<HTMLDivElement>(null);
+  const ref = useRef<HTMLSpanElement>(null);
   const isCore = coreSkills.has(skill);
 
   useEffect(() => {
@@ -119,23 +116,22 @@ const SkillChip = ({ skill, index }: { skill: string; index: number }) => {
   }, [index]);
 
   return (
-    <div
+    <span
       ref={ref}
       className={`
-        flex items-center justify-center gap-2 font-mono
+        group/chip inline-flex items-center gap-2 font-mono
         border border-border/30 rounded-lg cursor-default
         transition-all duration-300
         hover:border-primary/50 hover:shadow-[0_0_12px_-3px_hsl(var(--primary)/0.3)]
         hover:bg-primary/[0.04]
-        ${isCore ? "text-sm text-foreground font-medium" : "text-xs text-muted-foreground"}
-        px-3 py-2.5
+        ${isCore ? "px-4 py-2.5 text-sm text-foreground" : "px-3 py-2 text-xs text-muted-foreground"}
       `}
     >
-      <span className="text-muted-foreground group-hover:text-primary transition-colors duration-300 flex-shrink-0">
+      <span className="text-muted-foreground group-hover/chip:text-primary transition-colors duration-300">
         {iconMap[skill] ?? <Code className="w-3.5 h-3.5" />}
       </span>
-      <span className="truncate">{skill}</span>
-    </div>
+      {skill}
+    </span>
   );
 };
 
@@ -152,6 +148,7 @@ const SkillsSection = () => {
         "LangChain", "LangGraph", "LlamaIndex", "Prompt Engineering",
         "AI Agents", "Guardrails",
       ],
+      span: "md:col-span-2",
     },
     {
       title: "Systems & Backend",
@@ -162,6 +159,7 @@ const SkillsSection = () => {
         "High-Concurrency Services", "API Design", "Idempotency",
         "Caching", "Rate Limiting", "WebSockets", "Linux",
       ],
+      span: "md:col-span-1",
     },
     {
       title: "Data Engineering",
@@ -173,6 +171,7 @@ const SkillsSection = () => {
         "PostgreSQL", "MySQL", "MongoDB", "Redis", "DynamoDB",
         "Snowflake", "Data Modeling", "Data Warehousing", "Delta Lake",
       ],
+      span: "md:col-span-1",
     },
     {
       title: "Cloud & DevOps",
@@ -183,6 +182,7 @@ const SkillsSection = () => {
         "Logging & Monitoring", "Profiling", "Load Testing",
         "Git", "Postman", "Jira",
       ],
+      span: "md:col-span-1",
     },
     {
       title: "Collaboration & Leadership",
@@ -191,9 +191,11 @@ const SkillsSection = () => {
         "Stakeholder Communication", "Technical Writing",
         "Cross-Functional Collaboration", "Project Ownership", "Mentorship",
       ],
+      span: "md:col-span-1",
     },
   ];
 
+  // Build a running index counter for global stagger
   let globalIndex = 0;
 
   return (
@@ -202,7 +204,7 @@ const SkillsSection = () => {
         Skills & Expertise
       </h2>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
         {categories.map((cat) => {
           const startIndex = globalIndex;
           globalIndex += cat.skills.length;
@@ -210,7 +212,7 @@ const SkillsSection = () => {
           return (
             <div
               key={cat.title}
-              className="glass-card rounded-2xl p-6 min-h-[280px] transition-all duration-300 hover:border-primary/20"
+              className={`glass-card rounded-2xl p-6 ${cat.span} transition-all duration-300 hover:border-primary/20`}
             >
               <div className="flex items-center gap-3 mb-5">
                 <span className="text-primary">{cat.icon}</span>
@@ -218,7 +220,7 @@ const SkillsSection = () => {
                   {cat.title}
                 </h3>
               </div>
-              <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3">
+              <div className="flex flex-wrap gap-3">
                 {cat.skills.map((skill, i) => (
                   <SkillChip key={skill} skill={skill} index={startIndex + i} />
                 ))}
