@@ -9,7 +9,7 @@ const EducationSection = () => {
       location: "Indiana, United States",
       period: "August 2023 - May 2025",
       gpa: "3.8/4.0",
-      logoUrl: "/images/iu-logo.svg",
+      logoUrl: `${import.meta.env.BASE_URL}images/iu-logo.svg`,
       logoBg: "bg-red-950/40",
       accentColor: "from-red-500 to-red-700",
       courses: [
