@@ -54,7 +54,7 @@ const ScrollReveal = ({ children, className = "" }: { children: React.ReactNode;
 
 const Index = () => {
   return (
-    <div className="min-h-screen bg-background text-foreground scroll-smooth relative">
+    <div className="min-h-screen text-foreground scroll-smooth relative" style={{ backgroundColor: 'transparent' }}>
       {/* Global background layers */}
       <NeuralNetworkBackground />
       <div className="mesh-orb mesh-orb-1" />
@@ -66,7 +66,7 @@ const Index = () => {
       <BackToTop />
       
       {/* Main content area — offset by sidebar on desktop, top bar on mobile */}
-      <main className="lg:ml-56 pt-14 lg:pt-0">
+      <main className="lg:ml-56 pt-14 lg:pt-0 relative z-10">
         <div id="home">
           <NewHero />
         </div>
