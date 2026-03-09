@@ -54,7 +54,7 @@ const ScrollReveal = ({ children, className = "" }: { children: React.ReactNode;
 
 const Index = () => {
   return (
-    <div className="min-h-screen bg-background text-foreground scroll-smooth relative">
+    <div className="min-h-screen text-foreground scroll-smooth relative" style={{ backgroundColor: 'transparent' }}>
       {/* Global background layers */}
       <NeuralNetworkBackground />
       <div className="mesh-orb mesh-orb-1" />
