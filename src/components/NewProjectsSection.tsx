@@ -1,6 +1,4 @@
 import { useRef, useEffect, useCallback } from "react";
-import { Card, CardDescription, CardTitle } from "@/components/ui/card";
-import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Github, Mail } from "lucide-react";
 
@@ -13,41 +11,6 @@ interface Project {
   githubUrl: string;
   category: string;
 }
-
-const TiltCard = ({ children, className = "" }: { children: React.ReactNode; className?: string }) => {
-  const ref = useRef<HTMLDivElement>(null);
-  const reducedMotion = useRef(window.matchMedia("(prefers-reduced-motion: reduce)").matches);
-
-  const handleMouseMove = useCallback((e: MouseEvent) => {
-    if (reducedMotion.current) return;
-    const el = ref.current;
-    if (!el) return;
-    const rect = el.getBoundingClientRect();
-    const x = (e.clientX - rect.left) / rect.width - 0.5;
-    const y = (e.clientY - rect.top) / rect.height - 0.5;
-    el.style.transform = `perspective(1000px) rotateY(${x * 8}deg) rotateX(${-y * 8}deg) translateZ(10px)`;
-  }, []);
-
-  const handleMouseLeave = useCallback(() => {
-    const el = ref.current;
-    if (!el) return;
-    el.style.transform = "perspective(1000px) rotateY(0deg) rotateX(0deg) translateZ(0px)";
-  }, []);
-
-  useEffect(() => {
-    const el = ref.current;
-    if (!el) return;
-    el.style.transition = "transform 0.2s ease-out";
-    el.addEventListener("mousemove", handleMouseMove);
-    el.addEventListener("mouseleave", handleMouseLeave);
-    return () => {
-      el.removeEventListener("mousemove", handleMouseMove);
-      el.removeEventListener("mouseleave", handleMouseLeave);
-    };
-  }, [handleMouseMove, handleMouseLeave]);
-
-  return <div ref={ref} className={className} style={{ transformStyle: 'preserve-3d' }}>{children}</div>;
-};
 
 const RevealCard = ({ children, index, className = "" }: { children: React.ReactNode; index: number; className?: string }) => {
   const ref = useRef<HTMLDivElement>(null);
@@ -80,84 +43,132 @@ const RevealCard = ({ children, index, className = "" }: { children: React.React
   return <div ref={ref} className={className}>{children}</div>;
 };
 
-const NewProjectsSection = () => {
-  const projects: Project[] = [
-    {
-      title: "Backend – Customer Subscription & Gifting Platform",
-      description: "A production-grade backend system supporting subscription purchases, gifting, renewals, and cancellations, with a strong focus on correctness, idempotency, and low-latency performance.",
-      outcomes: [
-        "Designed idempotent APIs to prevent duplicate charges",
-        "Achieved sub-125ms P95 latency under load",
-        "Maintained <1% error rates across workflows"
-      ],
-      tech: ["Go", "PostgreSQL", "Redis", "REST APIs", "Docker"],
-      imageUrl: "https://images.unsplash.com/photo-1558494949-ef010cbdcc31?auto=format&fit=crop&q=80&w=800&h=400",
-      githubUrl: "https://github.com/Jeet-51",
-      category: "Backend"
-    },
-    {
-      title: "LLM Inference Service",
-      description: "GPU-backed LLM inference service designed for low-latency, high-concurrency workloads.",
-      outcomes: [
-        "Reduced latency to ~180ms",
-        "Supported 100+ concurrent requests"
-      ],
-      tech: ["FastAPI", "Python", "vLLM", "CUDA", "Mistral-7B"],
-      imageUrl: "https://images.unsplash.com/photo-1620712943543-bcc4688e7485?auto=format&fit=crop&q=80&w=800&h=400",
-      githubUrl: "https://github.com/Jeet-51",
-      category: "AI Infrastructure"
-    },
-    {
-      title: "PitchPal – AI Evaluator",
-      description: "AI-powered startup evaluation platform using LangChain ReAct agents.",
-      outcomes: [
-        "Processed 100+ pitch evaluations",
-        "Accelerated due diligence by 60%"
-      ],
-      tech: ["LangChain", "OpenAI GPT-4", "Streamlit"],
-      imageUrl: "https://images.unsplash.com/photo-1677442136019-21780ecad995?auto=format&fit=crop&q=80&w=800&h=400",
-      githubUrl: "https://github.com/Jeet-51/PitchPal-AI-Agent-for-Startup-Pitch-Evaluation",
-      category: "GenAI"
-    },
-    {
-      title: "ClaimGuard: Healthcare Pattern Analysis",
-      description: "Scalable ML pipeline forecasting Medicare billing behaviors using Bio_ClinicalBERT embeddings.",
-      outcomes: [
-        "Achieved R² = 0.95 prediction accuracy",
-        "Processed 200K+ claims with semantic classification",
-        "Implemented MLflow tracking and SHAP interpretability"
-      ],
-      tech: ["Delta Lake", "MLflow", "SHAP", "XGBoost", "PySpark", "Transformers"],
-      imageUrl: "https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?auto=format&fit=crop&q=80&w=800&h=400",
-      githubUrl: "https://github.com/Jeet-51/ClaimGuard-Intelligent-Healthcare-Service-Pattern-Analysis",
-      category: "ML Engineering"
-    },
-    {
-      title: "EPA GHG Dashboard",
-      description: "Production-style analytics stack with dbt models on Snowflake.",
-      outcomes: [
-        "Reduced Tableau latency",
-        "Cut analysis time by 40%"
-      ],
-      tech: ["Tableau", "dbt", "Snowflake"],
-      imageUrl: "https://images.unsplash.com/photo-1611273426858-450d8e3c9fce?auto=format&fit=crop&q=80&w=800&h=400",
-      githubUrl: "https://github.com/Jeet-51/EPA-Greenhouse-Gas-GHG-Emissions-Dashboard",
-      category: "Analytics"
-    },
-    {
-      title: "FinanceFlow: Cloud Analytics",
-      description: "Real-time ETL pipeline using PySpark and AWS services for enhanced fraud detection.",
-      outcomes: [
-        "Boosted fraud detection accuracy by 40%",
-        "Delivered 40% faster insights"
-      ],
-      tech: ["AWS", "S3", "SageMaker", "PySpark"],
-      imageUrl: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&q=80&w=800&h=400",
-      githubUrl: "https://github.com/Jeet-51/FinanceFlow-Cloud-Enabled-Analytics-for-Fraud-Detection",
-      category: "Data Engineering"
-    }
-  ];
+const projects: Project[] = [
+  {
+    title: "Backend – Customer Subscription & Gifting Platform",
+    description: "A production-grade backend system supporting subscription purchases, gifting, renewals, and cancellations, with a strong focus on correctness, idempotency, and low-latency performance.",
+    outcomes: ["Designed idempotent APIs to prevent duplicate charges", "Achieved sub-125ms P95 latency under load", "Maintained <1% error rates across workflows"],
+    tech: ["Go", "PostgreSQL", "Redis", "REST APIs", "Docker"],
+    imageUrl: "https://images.unsplash.com/photo-1558494949-ef010cbdcc31?auto=format&fit=crop&q=80&w=1200&h=800",
+    githubUrl: "https://github.com/Jeet-51",
+    category: "Backend"
+  },
+  {
+    title: "LLM Inference Service",
+    description: "GPU-backed LLM inference service designed for low-latency, high-concurrency workloads.",
+    outcomes: ["Reduced latency to ~180ms", "Supported 100+ concurrent requests"],
+    tech: ["FastAPI", "Python", "vLLM", "CUDA", "Mistral-7B"],
+    imageUrl: "https://images.unsplash.com/photo-1620712943543-bcc4688e7485?auto=format&fit=crop&q=80&w=1200&h=800",
+    githubUrl: "https://github.com/Jeet-51",
+    category: "AI Infrastructure"
+  },
+  {
+    title: "PitchPal – AI Evaluator",
+    description: "AI-powered startup evaluation platform using LangChain ReAct agents.",
+    outcomes: ["Processed 100+ pitch evaluations", "Accelerated due diligence by 60%"],
+    tech: ["LangChain", "OpenAI GPT-4", "Streamlit"],
+    imageUrl: "https://images.unsplash.com/photo-1677442136019-21780ecad995?auto=format&fit=crop&q=80&w=1200&h=800",
+    githubUrl: "https://github.com/Jeet-51/PitchPal-AI-Agent-for-Startup-Pitch-Evaluation",
+    category: "GenAI"
+  },
+  {
+    title: "ClaimGuard: Healthcare Pattern Analysis",
+    description: "Scalable ML pipeline forecasting Medicare billing behaviors using Bio_ClinicalBERT embeddings.",
+    outcomes: ["Achieved R² = 0.95 prediction accuracy", "Processed 200K+ claims with semantic classification", "Implemented MLflow tracking and SHAP interpretability"],
+    tech: ["Delta Lake", "MLflow", "SHAP", "XGBoost", "PySpark", "Transformers"],
+    imageUrl: "https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?auto=format&fit=crop&q=80&w=1200&h=800",
+    githubUrl: "https://github.com/Jeet-51/ClaimGuard-Intelligent-Healthcare-Service-Pattern-Analysis",
+    category: "ML Engineering"
+  },
+  {
+    title: "EPA GHG Dashboard",
+    description: "Production-style analytics stack with dbt models on Snowflake.",
+    outcomes: ["Reduced Tableau latency", "Cut analysis time by 40%"],
+    tech: ["Tableau", "dbt", "Snowflake"],
+    imageUrl: "https://images.unsplash.com/photo-1611273426858-450d8e3c9fce?auto=format&fit=crop&q=80&w=1200&h=800",
+    githubUrl: "https://github.com/Jeet-51/EPA-Greenhouse-Gas-GHG-Emissions-Dashboard",
+    category: "Analytics"
+  },
+  {
+    title: "FinanceFlow: Cloud Analytics",
+    description: "Real-time ETL pipeline using PySpark and AWS services for enhanced fraud detection.",
+    outcomes: ["Boosted fraud detection accuracy by 40%", "Delivered 40% faster insights"],
+    tech: ["AWS", "S3", "SageMaker", "PySpark"],
+    imageUrl: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&q=80&w=1200&h=800",
+    githubUrl: "https://github.com/Jeet-51/FinanceFlow-Cloud-Enabled-Analytics-for-Fraud-Detection",
+    category: "Data Engineering"
+  }
+];
 
+const ProjectCard = ({ project, isWide, isTall }: { project: Project; isWide?: boolean; isTall?: boolean }) => {
+  const minH = isTall ? "min-h-[480px]" : isWide ? "min-h-[320px]" : "min-h-[360px]";
+
+  return (
+    <div className={`group relative overflow-hidden rounded-[24px] ${minH} cursor-pointer`}>
+      {/* Background image */}
+      <img
+        src={project.imageUrl}
+        alt={project.title}
+        className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105"
+        loading="lazy"
+      />
+
+      {/* Dark gradient overlay */}
+      <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent" />
+
+      {/* GitHub link */}
+      <a
+        href={project.githubUrl}
+        target="_blank"
+        rel="noopener noreferrer"
+        className="absolute top-4 right-4 z-20 text-white/70 hover:text-white transition-colors p-2 rounded-full bg-white/10 backdrop-blur-sm"
+      >
+        <Github className="w-4 h-4" />
+      </a>
+
+      {/* Category badge */}
+      <span className="absolute top-4 left-4 z-20 text-xs font-mono px-3 py-1 rounded-full bg-white/10 backdrop-blur-sm text-white/80 border border-white/10">
+        {project.category}
+      </span>
+
+      {/* Content */}
+      <div className="absolute inset-0 z-10 flex flex-col justify-end p-6">
+        <h3 className="text-xl md:text-2xl font-bold text-white mb-2 leading-tight">
+          {project.title}
+        </h3>
+
+        {/* Description - slides up on hover */}
+        <p className="text-white/70 text-sm leading-relaxed max-h-0 opacity-0 group-hover:max-h-24 group-hover:opacity-100 transition-all duration-500 ease-out overflow-hidden mb-0 group-hover:mb-3">
+          {project.description}
+        </p>
+
+        {/* Outcomes on hover */}
+        <ul className="space-y-1 max-h-0 opacity-0 group-hover:max-h-32 group-hover:opacity-100 transition-all duration-500 ease-out delay-75 overflow-hidden mb-0 group-hover:mb-4">
+          {project.outcomes.slice(0, 2).map((outcome, idx) => (
+            <li key={idx} className="text-xs text-white/60 flex items-start gap-2">
+              <span className="mt-1 block w-1 h-1 rounded-full bg-primary flex-shrink-0" />
+              {outcome}
+            </li>
+          ))}
+        </ul>
+
+        {/* Tech tags at bottom left */}
+        <div className="flex flex-wrap gap-1.5">
+          {project.tech.map((t, idx) => (
+            <span
+              key={idx}
+              className="text-[10px] font-mono px-2 py-0.5 rounded-full bg-white/10 backdrop-blur-sm text-white/70 border border-white/10"
+            >
+              {t}
+            </span>
+          ))}
+        </div>
+      </div>
+    </div>
+  );
+};
+
+const NewProjectsSection = () => {
   return (
     <section className="py-24 px-4 relative z-10">
       <div className="container mx-auto max-w-7xl">
@@ -172,79 +183,30 @@ const NewProjectsSection = () => {
         </div>
 
         {/* Bento Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 auto-rows-[auto]">
-          {projects.map((project, index) => {
-            let gridClass = "md:col-span-1 md:row-span-1";
-            if (index === 0) gridClass = "md:col-span-2 md:row-span-2";
-            else if (index === 3) gridClass = "md:col-span-2 md:row-span-1";
-            else if (index === 5) gridClass = "md:col-span-3"; // FinanceFlow full width
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+          {/* Row 1: large + small */}
+          <RevealCard index={0} className="md:col-span-2 md:row-span-2">
+            <ProjectCard project={projects[0]} isWide isTall />
+          </RevealCard>
+          <RevealCard index={1} className="md:col-span-1">
+            <ProjectCard project={projects[1]} />
+          </RevealCard>
+          <RevealCard index={2} className="md:col-span-1">
+            <ProjectCard project={projects[2]} />
+          </RevealCard>
 
-            const isLarge = index === 0 || index === 5;
+          {/* Row 2: wide + single */}
+          <RevealCard index={3} className="md:col-span-2">
+            <ProjectCard project={projects[3]} isWide />
+          </RevealCard>
+          <RevealCard index={4} className="md:col-span-1">
+            <ProjectCard project={projects[4]} />
+          </RevealCard>
 
-            return (
-              <RevealCard key={index} index={index} className={gridClass}>
-                <TiltCard className="h-full">
-                  <Card className="group h-full overflow-hidden glass-card flex flex-col border-white/10 hover:border-primary/40 transition-all duration-500">
-                    <div className="absolute inset-0 bg-gradient-to-br from-primary/[0.03] to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"></div>
-
-                    {/* Project image */}
-                    <div className={`relative overflow-hidden ${isLarge ? 'h-52' : 'h-40'}`}>
-                      <img
-                        src={project.imageUrl}
-                        alt={project.title}
-                        className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
-                        loading="lazy"
-                      />
-                      <div className="absolute inset-0 bg-gradient-to-t from-card via-card/60 to-transparent" />
-                      <Badge className="absolute top-3 left-3 bg-primary/20 text-primary backdrop-blur-md border-primary/20 font-mono text-xs">
-                        {project.category}
-                      </Badge>
-                      <a
-                        href={project.githubUrl}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="absolute top-3 right-3 text-foreground/70 hover:text-primary transition-colors p-2 rounded-full bg-background/40 backdrop-blur-md"
-                      >
-                        <Github className="w-4 h-4" />
-                      </a>
-                    </div>
-
-                    <div className="p-6 relative z-10 flex flex-col flex-grow">
-                      <CardTitle className="text-xl md:text-2xl font-bold text-foreground mb-3 leading-tight group-hover:text-primary transition-colors">
-                        {project.title}
-                      </CardTitle>
-
-                      <CardDescription className="text-muted-foreground/80 line-clamp-3 mb-6 flex-grow">
-                        {project.description}
-                      </CardDescription>
-
-                      <div className="space-y-4 mt-auto">
-                        <ul className="space-y-1.5 hidden md:block">
-                          {project.outcomes.slice(0, isLarge ? 3 : 2).map((outcome, idx) => (
-                            <li key={idx} className="text-xs text-muted-foreground flex items-start gap-2">
-                              <span className="mt-1 block w-1 h-1 rounded-full bg-primary/60 flex-shrink-0"></span>
-                              {outcome}
-                            </li>
-                          ))}
-                        </ul>
-
-                        <div className="flex flex-wrap gap-2 pt-4 border-t border-white/5">
-                          {project.tech.map((tech, idx) => (
-                            <span
-                              key={idx}
-                              className="text-xs font-mono px-2 py-1 bg-white/5 border border-white/10 rounded text-foreground/70 group-hover:border-primary/30 group-hover:text-primary group-hover:shadow-[0_0_10px_hsl(var(--primary)/0.2)] transition-all duration-300"
-                            >
-                              {tech}
-                            </span>
-                          ))}
-                        </div>
-                      </div>
-                    </div>
-                  </Card>
-                </TiltCard>
-              </RevealCard>
-            );
-          })}
+          {/* Row 3: full width */}
+          <RevealCard index={5} className="md:col-span-3">
+            <ProjectCard project={projects[5]} isWide />
+          </RevealCard>
         </div>
 
         {/* CTA */}
