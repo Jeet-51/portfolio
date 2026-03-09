@@ -9,7 +9,7 @@ const EducationSection = () => {
       location: "Indiana, United States",
       period: "August 2023 - May 2025",
       gpa: "3.8/4.0",
-      logoUrl: "/images/iu-logo.svg",
+      logoUrl: `${import.meta.env.BASE_URL}images/iu-logo.svg`,
       logoBg: "bg-red-950/40",
       accentColor: "from-red-500 to-red-700",
       courses: [
@@ -28,7 +28,7 @@ const EducationSection = () => {
       location: "Maharashtra, India",
       period: "August 2019 - June 2023",
       gpa: "3.7/4.0",
-      logoUrl: "/images/djsce-logo.png",
+      logoUrl: `${import.meta.env.BASE_URL}images/djsce-logo.png`,
       logoBg: "bg-blue-950/40",
       accentColor: "from-blue-500 to-indigo-600",
       courses: [
