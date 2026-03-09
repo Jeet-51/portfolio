@@ -1,94 +1,85 @@
-import { useRef, useEffect } from "react";
 import {
-  Brain, Server, Database, Cloud, Users,
+  Brain, Server, Database, Cloud,
   Code, Cpu, Zap, GitBranch, Terminal,
   BarChart3, Layers, Shield, Globe, Settings,
   Box, HardDrive, Workflow, MessageSquare, FileText,
 } from "lucide-react";
+import { useRef, useEffect } from "react";
 
 const iconMap: Record<string, React.ReactNode> = {
-  Python: <Terminal className="w-3.5 h-3.5" />,
-  Go: <Code className="w-3.5 h-3.5" />,
-  "C++": <Code className="w-3.5 h-3.5" />,
-  Java: <Code className="w-3.5 h-3.5" />,
-  Scala: <Code className="w-3.5 h-3.5" />,
-  SQL: <Database className="w-3.5 h-3.5" />,
-  Bash: <Terminal className="w-3.5 h-3.5" />,
-  PyTorch: <Brain className="w-3.5 h-3.5" />,
-  TensorFlow: <Brain className="w-3.5 h-3.5" />,
-  Transformers: <Cpu className="w-3.5 h-3.5" />,
-  "Hugging Face": <Brain className="w-3.5 h-3.5" />,
-  "scikit-learn": <BarChart3 className="w-3.5 h-3.5" />,
-  XGBoost: <Zap className="w-3.5 h-3.5" />,
-  CUDA: <Cpu className="w-3.5 h-3.5" />,
-  "GPU Inference": <Cpu className="w-3.5 h-3.5" />,
-  Quantization: <Settings className="w-3.5 h-3.5" />,
-  Batching: <Layers className="w-3.5 h-3.5" />,
-  "Model Evaluation": <BarChart3 className="w-3.5 h-3.5" />,
-  "LLM Serving": <Server className="w-3.5 h-3.5" />,
-  RAG: <Brain className="w-3.5 h-3.5" />,
-  "Vector Search (FAISS, Pinecone)": <Database className="w-3.5 h-3.5" />,
-  vLLM: <Zap className="w-3.5 h-3.5" />,
-  LangChain: <Workflow className="w-3.5 h-3.5" />,
-  LangGraph: <Workflow className="w-3.5 h-3.5" />,
-  LlamaIndex: <Database className="w-3.5 h-3.5" />,
-  "Prompt Engineering": <MessageSquare className="w-3.5 h-3.5" />,
-  "AI Agents": <Brain className="w-3.5 h-3.5" />,
-  Guardrails: <Shield className="w-3.5 h-3.5" />,
-  "REST APIs": <Globe className="w-3.5 h-3.5" />,
-  gRPC: <Zap className="w-3.5 h-3.5" />,
-  Microservices: <Box className="w-3.5 h-3.5" />,
-  "Distributed Systems": <Server className="w-3.5 h-3.5" />,
-  "High-Concurrency Services": <Zap className="w-3.5 h-3.5" />,
-  "API Design": <Globe className="w-3.5 h-3.5" />,
-  Idempotency: <Shield className="w-3.5 h-3.5" />,
-  Caching: <HardDrive className="w-3.5 h-3.5" />,
-  "Rate Limiting": <Shield className="w-3.5 h-3.5" />,
-  WebSockets: <Globe className="w-3.5 h-3.5" />,
-  Linux: <Terminal className="w-3.5 h-3.5" />,
-  PostgreSQL: <Database className="w-3.5 h-3.5" />,
-  MySQL: <Database className="w-3.5 h-3.5" />,
-  MongoDB: <Database className="w-3.5 h-3.5" />,
-  Redis: <Database className="w-3.5 h-3.5" />,
-  DynamoDB: <Database className="w-3.5 h-3.5" />,
-  Snowflake: <Database className="w-3.5 h-3.5" />,
-  "Data Modeling": <Layers className="w-3.5 h-3.5" />,
-  "Data Warehousing": <HardDrive className="w-3.5 h-3.5" />,
-  "Delta Lake": <Database className="w-3.5 h-3.5" />,
-  "Apache Spark (PySpark)": <Zap className="w-3.5 h-3.5" />,
-  Kafka: <Workflow className="w-3.5 h-3.5" />,
-  Airflow: <Workflow className="w-3.5 h-3.5" />,
-  dbt: <Layers className="w-3.5 h-3.5" />,
-  "Batch Pipelines": <Workflow className="w-3.5 h-3.5" />,
-  "Streaming Pipelines": <Workflow className="w-3.5 h-3.5" />,
-  "ETL/ELT": <Workflow className="w-3.5 h-3.5" />,
-  "Feature Engineering": <Settings className="w-3.5 h-3.5" />,
-  FastAPI: <Zap className="w-3.5 h-3.5" />,
-  Docker: <Box className="w-3.5 h-3.5" />,
-  Kubernetes: <Box className="w-3.5 h-3.5" />,
-  Terraform: <Layers className="w-3.5 h-3.5" />,
-  "CI/CD (GitHub Actions, Jenkins)": <GitBranch className="w-3.5 h-3.5" />,
-  Prometheus: <BarChart3 className="w-3.5 h-3.5" />,
-  Grafana: <BarChart3 className="w-3.5 h-3.5" />,
-  "Logging & Monitoring": <BarChart3 className="w-3.5 h-3.5" />,
-  Profiling: <Settings className="w-3.5 h-3.5" />,
-  "Load Testing": <Zap className="w-3.5 h-3.5" />,
-  Git: <GitBranch className="w-3.5 h-3.5" />,
-  Postman: <Globe className="w-3.5 h-3.5" />,
-  Jira: <FileText className="w-3.5 h-3.5" />,
+  Python: <Terminal className="w-4 h-4" />,
+  Go: <Code className="w-4 h-4" />,
+  "C++": <Code className="w-4 h-4" />,
+  Java: <Code className="w-4 h-4" />,
+  Scala: <Code className="w-4 h-4" />,
+  SQL: <Database className="w-4 h-4" />,
+  Bash: <Terminal className="w-4 h-4" />,
+  PyTorch: <Brain className="w-4 h-4" />,
+  TensorFlow: <Brain className="w-4 h-4" />,
+  Transformers: <Cpu className="w-4 h-4" />,
+  "Hugging Face": <Brain className="w-4 h-4" />,
+  "scikit-learn": <BarChart3 className="w-4 h-4" />,
+  XGBoost: <Zap className="w-4 h-4" />,
+  CUDA: <Cpu className="w-4 h-4" />,
+  "GPU Inference": <Cpu className="w-4 h-4" />,
+  Quantization: <Settings className="w-4 h-4" />,
+  Batching: <Layers className="w-4 h-4" />,
+  "Model Eval": <BarChart3 className="w-4 h-4" />,
+  "LLM Serving": <Server className="w-4 h-4" />,
+  RAG: <Brain className="w-4 h-4" />,
+  "Vector Search": <Database className="w-4 h-4" />,
+  vLLM: <Zap className="w-4 h-4" />,
+  LangChain: <Workflow className="w-4 h-4" />,
+  LangGraph: <Workflow className="w-4 h-4" />,
+  LlamaIndex: <Database className="w-4 h-4" />,
+  "Prompt Eng.": <MessageSquare className="w-4 h-4" />,
+  "AI Agents": <Brain className="w-4 h-4" />,
+  Guardrails: <Shield className="w-4 h-4" />,
+  "REST APIs": <Globe className="w-4 h-4" />,
+  gRPC: <Zap className="w-4 h-4" />,
+  Microservices: <Box className="w-4 h-4" />,
+  "Distributed Sys": <Server className="w-4 h-4" />,
+  "High Concurrency": <Zap className="w-4 h-4" />,
+  "API Design": <Globe className="w-4 h-4" />,
+  Idempotency: <Shield className="w-4 h-4" />,
+  Caching: <HardDrive className="w-4 h-4" />,
+  "Rate Limiting": <Shield className="w-4 h-4" />,
+  WebSockets: <Globe className="w-4 h-4" />,
+  Linux: <Terminal className="w-4 h-4" />,
+  PostgreSQL: <Database className="w-4 h-4" />,
+  MySQL: <Database className="w-4 h-4" />,
+  MongoDB: <Database className="w-4 h-4" />,
+  Redis: <Database className="w-4 h-4" />,
+  DynamoDB: <Database className="w-4 h-4" />,
+  Snowflake: <Database className="w-4 h-4" />,
+  "Data Modeling": <Layers className="w-4 h-4" />,
+  "Data Warehouse": <HardDrive className="w-4 h-4" />,
+  "Delta Lake": <Database className="w-4 h-4" />,
+  PySpark: <Zap className="w-4 h-4" />,
+  Kafka: <Workflow className="w-4 h-4" />,
+  Airflow: <Workflow className="w-4 h-4" />,
+  dbt: <Layers className="w-4 h-4" />,
+  "Batch Pipelines": <Workflow className="w-4 h-4" />,
+  "Stream Pipelines": <Workflow className="w-4 h-4" />,
+  "ETL/ELT": <Workflow className="w-4 h-4" />,
+  "Feature Eng.": <Settings className="w-4 h-4" />,
+  FastAPI: <Zap className="w-4 h-4" />,
+  Docker: <Box className="w-4 h-4" />,
+  Kubernetes: <Box className="w-4 h-4" />,
+  Terraform: <Layers className="w-4 h-4" />,
+  "CI/CD": <GitBranch className="w-4 h-4" />,
+  Prometheus: <BarChart3 className="w-4 h-4" />,
+  Grafana: <BarChart3 className="w-4 h-4" />,
+  Monitoring: <BarChart3 className="w-4 h-4" />,
+  Profiling: <Settings className="w-4 h-4" />,
+  "Load Testing": <Zap className="w-4 h-4" />,
+  Git: <GitBranch className="w-4 h-4" />,
+  Postman: <Globe className="w-4 h-4" />,
+  Jira: <FileText className="w-4 h-4" />,
 };
 
-// Core/primary skills get emphasized sizing
-const coreSkills = new Set([
-  "Python", "Go", "PyTorch", "Kubernetes", "Docker",
-  "TensorFlow", "PostgreSQL", "Apache Spark (PySpark)",
-  "Kafka", "Redis", "FastAPI", "LLM Serving",
-]);
-
-// Staggered spring-pop chip
-const SkillChip = ({ skill, index }: { skill: string; index: number }) => {
-  const ref = useRef<HTMLSpanElement>(null);
-  const isCore = coreSkills.has(skill);
+const SkillCard = ({ skill, index }: { skill: string; index: number }) => {
+  const ref = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const el = ref.current;
@@ -98,14 +89,14 @@ const SkillChip = ({ skill, index }: { skill: string; index: number }) => {
       return;
     }
     el.style.opacity = "0";
-    el.style.transform = "scale(0.7) translateY(8px)";
-    el.style.transition = `opacity 0.4s cubic-bezier(0.34,1.56,0.64,1) ${index * 0.04}s, transform 0.4s cubic-bezier(0.34,1.56,0.64,1) ${index * 0.04}s`;
+    el.style.transform = "scale(0.85)";
+    el.style.transition = `opacity 0.35s cubic-bezier(0.34,1.56,0.64,1) ${index * 0.03}s, transform 0.35s cubic-bezier(0.34,1.56,0.64,1) ${index * 0.03}s`;
 
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
           el.style.opacity = "1";
-          el.style.transform = "scale(1) translateY(0)";
+          el.style.transform = "scale(1)";
           observer.unobserve(el);
         }
       },
@@ -116,87 +107,65 @@ const SkillChip = ({ skill, index }: { skill: string; index: number }) => {
   }, [index]);
 
   return (
-    <span
+    <div
       ref={ref}
-      className={`
-        group/chip inline-flex items-center gap-2 font-mono
-        border border-border/30 rounded-lg cursor-default
-        transition-all duration-300
-        hover:border-primary/50 hover:shadow-[0_0_12px_-3px_hsl(var(--primary)/0.3)]
-        hover:bg-primary/[0.04]
-        ${isCore ? "px-4 py-2.5 text-sm text-foreground" : "px-3 py-2 text-xs text-muted-foreground"}
-      `}
+      className="h-14 flex items-center justify-center gap-2 rounded-lg border border-border/10 bg-white/[0.04] font-mono text-xs text-muted-foreground transition-all duration-300 hover:border-primary/40 hover:bg-primary/[0.06] hover:text-foreground hover:shadow-[0_0_16px_-4px_hsl(var(--primary)/0.25)] cursor-default"
     >
-      <span className="text-muted-foreground group-hover/chip:text-primary transition-colors duration-300">
-        {iconMap[skill] ?? <Code className="w-3.5 h-3.5" />}
+      <span className="text-muted-foreground/70">
+        {iconMap[skill] ?? <Code className="w-4 h-4" />}
       </span>
-      {skill}
-    </span>
+      <span className="truncate">{skill}</span>
+    </div>
   );
 };
 
-const SkillsSection = () => {
-  const categories = [
-    {
-      title: "AI & Machine Learning",
-      icon: <Brain className="w-5 h-5" />,
-      skills: [
-        "PyTorch", "TensorFlow", "Transformers", "Hugging Face",
-        "scikit-learn", "XGBoost", "CUDA", "GPU Inference",
-        "Quantization", "Batching", "Model Evaluation",
-        "LLM Serving", "RAG", "Vector Search (FAISS, Pinecone)", "vLLM",
-        "LangChain", "LangGraph", "LlamaIndex", "Prompt Engineering",
-        "AI Agents", "Guardrails",
-      ],
-      span: "md:col-span-2",
-    },
-    {
-      title: "Systems & Backend",
-      icon: <Server className="w-5 h-5" />,
-      skills: [
-        "Go", "Python", "C++", "Java", "Scala", "SQL", "Bash",
-        "REST APIs", "gRPC", "Microservices", "Distributed Systems",
-        "High-Concurrency Services", "API Design", "Idempotency",
-        "Caching", "Rate Limiting", "WebSockets", "Linux",
-      ],
-      span: "md:col-span-1",
-    },
-    {
-      title: "Data Engineering",
-      icon: <Workflow className="w-5 h-5" />,
-      skills: [
-        "Apache Spark (PySpark)", "Kafka", "Airflow", "dbt",
-        "Batch Pipelines", "Streaming Pipelines", "ETL/ELT",
-        "Feature Engineering", "FastAPI",
-        "PostgreSQL", "MySQL", "MongoDB", "Redis", "DynamoDB",
-        "Snowflake", "Data Modeling", "Data Warehousing", "Delta Lake",
-      ],
-      span: "md:col-span-1",
-    },
-    {
-      title: "Cloud & DevOps",
-      icon: <Cloud className="w-5 h-5" />,
-      skills: [
-        "Docker", "Kubernetes", "Terraform",
-        "CI/CD (GitHub Actions, Jenkins)", "Prometheus", "Grafana",
-        "Logging & Monitoring", "Profiling", "Load Testing",
-        "Git", "Postman", "Jira",
-      ],
-      span: "md:col-span-1",
-    },
-    {
-      title: "Collaboration & Leadership",
-      icon: <Users className="w-5 h-5" />,
-      skills: [
-        "Stakeholder Communication", "Technical Writing",
-        "Cross-Functional Collaboration", "Project Ownership", "Mentorship",
-      ],
-      span: "md:col-span-1",
-    },
-  ];
+const categories = [
+  {
+    title: "AI & Core Intelligence",
+    icon: <Brain className="w-5 h-5" />,
+    skills: [
+      "PyTorch", "TensorFlow", "Transformers", "Hugging Face",
+      "scikit-learn", "XGBoost", "CUDA", "GPU Inference",
+      "Quantization", "Batching", "Model Eval", "LLM Serving",
+      "RAG", "Vector Search", "vLLM", "LangChain",
+      "LangGraph", "LlamaIndex", "Prompt Eng.", "AI Agents",
+    ],
+  },
+  {
+    title: "Systems & Backend",
+    icon: <Server className="w-5 h-5" />,
+    skills: [
+      "Go", "Python", "C++", "Java",
+      "Scala", "SQL", "Bash", "REST APIs",
+      "gRPC", "Microservices", "Distributed Sys", "High Concurrency",
+      "API Design", "Idempotency", "Caching", "Rate Limiting",
+      "WebSockets", "Linux", "FastAPI", "Guardrails",
+    ],
+  },
+  {
+    title: "Data & Infrastructure",
+    icon: <Database className="w-5 h-5" />,
+    skills: [
+      "PostgreSQL", "MySQL", "MongoDB", "Redis",
+      "DynamoDB", "Snowflake", "Delta Lake", "Data Modeling",
+      "Data Warehouse", "PySpark", "Kafka", "Airflow",
+      "dbt", "Batch Pipelines", "Stream Pipelines", "ETL/ELT",
+      "Feature Eng.", "Profiling", "Postman", "Jira",
+    ],
+  },
+  {
+    title: "Cloud & DevOps",
+    icon: <Cloud className="w-5 h-5" />,
+    skills: [
+      "Docker", "Kubernetes", "Terraform", "CI/CD",
+      "Prometheus", "Grafana", "Monitoring", "Load Testing",
+      "Git", "Linux", "Caching", "WebSockets",
+    ],
+  },
+];
 
-  // Build a running index counter for global stagger
-  let globalIndex = 0;
+const SkillsSection = () => {
+  let globalIdx = 0;
 
   return (
     <div className="py-8">
@@ -204,15 +173,15 @@ const SkillsSection = () => {
         Skills & Expertise
       </h2>
 
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         {categories.map((cat) => {
-          const startIndex = globalIndex;
-          globalIndex += cat.skills.length;
+          const startIdx = globalIdx;
+          globalIdx += cat.skills.length;
 
           return (
             <div
               key={cat.title}
-              className={`glass-card rounded-2xl p-6 ${cat.span} transition-all duration-300 hover:border-primary/20`}
+              className="glass-card rounded-2xl p-6 transition-all duration-300 hover:border-primary/20"
             >
               <div className="flex items-center gap-3 mb-5">
                 <span className="text-primary">{cat.icon}</span>
@@ -220,9 +189,9 @@ const SkillsSection = () => {
                   {cat.title}
                 </h3>
               </div>
-              <div className="flex flex-wrap gap-3">
+              <div className="grid grid-cols-2 sm:grid-cols-4 gap-2">
                 {cat.skills.map((skill, i) => (
-                  <SkillChip key={skill} skill={skill} index={startIndex + i} />
+                  <SkillCard key={skill} skill={skill} index={startIdx + i} />
                 ))}
               </div>
             </div>
