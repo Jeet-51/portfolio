@@ -66,7 +66,7 @@ const Index = () => {
       <BackToTop />
       
       {/* Main content area — offset by sidebar on desktop, top bar on mobile */}
-      <main className="lg:ml-56 pt-14 lg:pt-0">
+      <main className="lg:ml-56 pt-14 lg:pt-0 relative z-10">
         <div id="home">
           <NewHero />
         </div>
