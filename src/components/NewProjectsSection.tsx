@@ -104,7 +104,7 @@ const ProjectCard = ({ project, isWide, isTall }: { project: Project; isWide?: b
   const minH = isTall ? "min-h-[480px]" : isWide ? "min-h-[320px]" : "min-h-[360px]";
 
   return (
-    <div className={`group relative overflow-hidden rounded-[24px] ${minH} cursor-pointer`}>
+    <div className={`group relative overflow-hidden rounded-[24px] ${minH} h-full cursor-pointer`}>
       {/* Background image */}
       <img
         src={project.imageUrl}
