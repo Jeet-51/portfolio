@@ -206,7 +206,7 @@ const NewHero = () => {
               <div className="relative rounded-full p-[3px] bg-gradient-to-br from-primary via-accent to-primary/50 shadow-2xl shadow-primary/20">
                 <div className="rounded-full overflow-hidden w-72 h-72 xl:w-80 xl:h-80 bg-muted">
                   <img
-                    src="/images/profile.jpg"
+                    src={`${import.meta.env.BASE_URL}profile.jpeg`}
                     alt="Jeet Patel"
                     className="w-full h-full object-cover object-top"
                     loading="eager"
