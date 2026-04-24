@@ -57,7 +57,7 @@ const PortfolioSidebar = () => {
 
   const getImagePath = () => {
     const imagePath = "/lovable-uploads/24ebecb7-c38b-42f7-b4e0-d93e922d9064.png";
-    if (process.env.NODE_ENV === 'production' && window.location.hostname.includes('github.io')) {
+    if (import.meta.env.PROD && window.location.hostname.includes('github.io')) {
       return '/portfolio' + imagePath;
     }
     return imagePath;
