@@ -81,84 +81,110 @@ const ExperienceSection = () => {
     const handleScroll = () => {
       const items = document.querySelectorAll('.experience-item');
       let newActiveIndex = activeIndex;
-      
       items.forEach((item, idx) => {
         const rect = item.getBoundingClientRect();
-        // Highlight if the item is in the top/middle of the screen
         if (rect.top <= window.innerHeight * 0.6 && rect.bottom >= window.innerHeight * 0.2) {
           newActiveIndex = idx;
         }
       });
-      
-      if (newActiveIndex !== activeIndex) {
-        setActiveIndex(newActiveIndex);
-      }
+      if (newActiveIndex !== activeIndex) setActiveIndex(newActiveIndex);
     };
-
     window.addEventListener('scroll', handleScroll);
-    handleScroll(); // Initial check
+    handleScroll();
     return () => window.removeEventListener('scroll', handleScroll);
   }, [activeIndex]);
 
   return (
     <div className="py-12 relative z-10" ref={containerRef}>
-      <div className="mb-16">
-        <h2 className="text-3xl font-bold tracking-tight text-foreground flex items-center gap-3">
-          <span className="text-primary font-mono text-xl">&gt;_</span> 
-          System.Experience
+      <div className="space-y-4 mb-20">
+        <p className="text-xs font-mono text-primary uppercase tracking-[0.2em]">
+          &gt;_ Career Path
+        </p>
+        <h2 className="font-display text-4xl md:text-6xl font-light tracking-tight text-foreground">
+          Experience
         </h2>
       </div>
-      
-      <div className="relative border-l border-white/10 ml-3 md:ml-4 space-y-12 pb-12">
-        {experiences.map((exp, idx) => {
-          const isActive = idx === activeIndex;
-          return (
-            <div 
-              key={idx} 
-              className={`experience-item relative pl-8 md:pl-12 transition-all duration-700 ${isActive ? 'opacity-100 scale-100' : 'opacity-40 scale-[0.98]'}`}
-            >
-              {/* Glowing Dot */}
-              <div className={`absolute -left-[5px] top-4 w-2.5 h-2.5 rounded-full transition-all duration-500 ${isActive ? 'bg-primary shadow-[0_0_15px_hsl(var(--primary))] scale-150' : 'bg-white/20'}`} />
-              
-              <div className={`glass-card rounded-xl p-6 md:p-8 transition-all duration-500 ${isActive ? 'border-primary/30 shadow-[0_0_30px_rgba(var(--primary),0.1)] translate-x-2 bg-white/[0.05]' : 'border-white/5 hover:border-white/10'}`}>
-                <div className="flex flex-col xl:flex-row xl:justify-between xl:items-start gap-3 mb-4">
-                  <div>
-                    <h3 className={`text-xl font-bold transition-colors duration-300 ${isActive ? 'text-primary' : 'text-foreground'}`}>
-                      {exp.title}
-                    </h3>
-                    <p className="text-foreground/80 font-medium text-lg mt-1">{exp.company}</p>
-                    <p className="text-sm text-muted-foreground mt-1 flex items-center gap-2">
-                      <span className="w-1 h-1 rounded-full bg-muted-foreground/50" />
-                      {exp.location}
-                    </p>
-                  </div>
-                  <span className="text-sm text-primary/90 whitespace-nowrap font-mono bg-primary/10 px-3 py-1.5 rounded-full border border-primary/20">
-                    {exp.period}
-                  </span>
-                </div>
-                
-                <div className="text-muted-foreground/90 space-y-3 mt-6">
-                  {exp.descriptions.map((desc, index) => (
-                    <p key={index} className="text-sm md:text-base leading-relaxed">{desc}</p>
-                  ))}
-                </div>
-                
-                {exp.technologies && exp.technologies.length > 0 && (
-                  <div className="flex flex-wrap gap-2 mt-6">
-                    {exp.technologies.map((tech, tIdx) => (
-                      <span 
-                        key={tIdx} 
-                        className={`text-xs font-mono px-2.5 py-1 rounded transition-all duration-300 ${isActive ? 'bg-primary/10 border border-primary/30 text-primary shadow-[0_0_10px_hsl(var(--primary)/0.2)]' : 'bg-white/5 border border-white/10 text-muted-foreground'}`}
-                      >
-                        {tech}
+
+      {/* Glowing vertical line + items */}
+      <div className="relative pl-8 md:pl-12">
+        {/* Glowing line */}
+        <div className="absolute left-2 md:left-3 top-2 bottom-2 w-px bg-gradient-to-b from-transparent via-primary/40 to-transparent">
+          <div className="absolute inset-0 blur-sm bg-gradient-to-b from-transparent via-primary/60 to-transparent" />
+        </div>
+
+        <div className="space-y-16 pb-8">
+          {experiences.map((exp, idx) => {
+            const isActive = idx === activeIndex;
+            return (
+              <div
+                key={idx}
+                className={`experience-item relative transition-all duration-700 ${
+                  isActive ? "opacity-100" : "opacity-55"
+                }`}
+              >
+                {/* Glowing dot on the line */}
+                <div
+                  className={`absolute -left-[26px] md:-left-[34px] top-3 w-2.5 h-2.5 rounded-full transition-all duration-500 ${
+                    isActive
+                      ? "bg-primary shadow-[0_0_20px_hsl(var(--primary)),0_0_40px_hsl(var(--primary)/0.4)] scale-150"
+                      : "bg-white/25"
+                  }`}
+                />
+
+                <div
+                  className={`transition-all duration-500 ${
+                    isActive ? "translate-x-1" : ""
+                  }`}
+                >
+                  {/* Header */}
+                  <div className="flex flex-col xl:flex-row xl:justify-between xl:items-start gap-3 mb-4">
+                    <div>
+                      <span className="inline-block text-[11px] font-mono uppercase tracking-[0.18em] text-muted-foreground mb-2">
+                        {exp.location}
                       </span>
+                      <h3
+                        className={`font-display text-2xl md:text-3xl font-light tracking-tight transition-colors duration-300 ${
+                          isActive ? "text-foreground" : "text-foreground/80"
+                        }`}
+                      >
+                        {exp.title}
+                      </h3>
+                      <p className="text-foreground/70 font-medium text-base md:text-lg mt-1">
+                        {exp.company}
+                      </p>
+                    </div>
+                    <span className="text-xs text-primary/90 whitespace-nowrap font-mono bg-primary/10 px-3 py-1.5 rounded-full border border-primary/20 self-start">
+                      {exp.period}
+                    </span>
+                  </div>
+
+                  {/* Description */}
+                  <div className="text-muted-foreground space-y-3 mt-5 max-w-3xl">
+                    {exp.descriptions.map((desc, i) => (
+                      <p key={i} className="text-sm md:text-base leading-relaxed">
+                        {desc}
+                      </p>
                     ))}
                   </div>
-                )}
+
+                  {/* Tech */}
+                  {exp.technologies?.length > 0 && (
+                    <div className="flex flex-wrap gap-1.5 mt-5">
+                      {exp.technologies.map((tech, tIdx) => (
+                        <span
+                          key={tIdx}
+                          className="text-[10px] font-mono px-2 py-1 rounded-md bg-white/[0.04] text-muted-foreground border border-white/[0.06]"
+                        >
+                          {tech}
+                        </span>
+                      ))}
+                    </div>
+                  )}
+                </div>
               </div>
-            </div>
-          );
-        })}
+            );
+          })}
+        </div>
       </div>
     </div>
   );
