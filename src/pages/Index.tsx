@@ -3,7 +3,8 @@ import BackToTop from "@/components/BackToTop";
 import NewHero from "@/components/NewHero";
 import NewProjectsSection from "@/components/NewProjectsSection";
 import SectionDivider from "@/components/SectionDivider";
-import PortfolioSidebar from "@/components/PortfolioSidebar";
+import PillNavbar from "@/components/PillNavbar";
+import CursorSpotlight from "@/components/CursorSpotlight";
 import { Skeleton } from "@/components/ui/skeleton";
 import ScrollProgress from "@/components/ScrollProgress";
 import NeuralNetworkBackground from "@/components/NeuralNetworkBackground";
@@ -54,28 +55,28 @@ const ScrollReveal = ({ children, className = "" }: { children: React.ReactNode;
 
 const Index = () => {
   return (
-    <div className="min-h-screen text-foreground scroll-smooth relative" style={{ backgroundColor: 'transparent' }}>
+    <div className="min-h-screen text-foreground scroll-smooth relative" style={{ backgroundColor: "transparent" }}>
       {/* Global background layers */}
       <NeuralNetworkBackground />
       <div className="mesh-orb mesh-orb-1" />
       <div className="mesh-orb mesh-orb-2" />
       <div className="mesh-orb mesh-orb-3" />
 
+      {/* Cursor spotlight glow */}
+      <CursorSpotlight />
+
       <ScrollProgress />
-      <PortfolioSidebar />
+      <PillNavbar />
       <BackToTop />
-      
-      {/* Main content area — offset by sidebar on desktop, top bar on mobile */}
-      <main className="lg:ml-56 pt-14 lg:pt-0 relative z-10">
+
+      <main className="pt-20 md:pt-24 relative z-10">
         <div id="home">
           <NewHero />
         </div>
-        
-        <SectionDivider />
-        
+
         <ScrollReveal>
-          <section id="experience" className="py-16 px-4">
-            <div className="container mx-auto max-w-5xl">
+          <section id="experience" className="py-32 px-6 md:px-12">
+            <div className="container mx-auto max-w-6xl">
               <Suspense fallback={<LoadingSkeleton />}>
                 <LazyExperienceSection />
               </Suspense>
@@ -83,52 +84,44 @@ const Index = () => {
           </section>
         </ScrollReveal>
 
-        <SectionDivider />
-
         <ScrollReveal>
-          <section id="education" className="py-16 px-4">
-            <div className="container mx-auto max-w-5xl">
+          <section id="education" className="py-32 px-6 md:px-12">
+            <div className="container mx-auto max-w-6xl">
               <Suspense fallback={<LoadingSkeleton />}>
                 <LazyEducationSection />
               </Suspense>
             </div>
           </section>
         </ScrollReveal>
-        
-        <SectionDivider />
-        
+
         <ScrollReveal>
           <div id="projects">
             <NewProjectsSection />
           </div>
         </ScrollReveal>
-        
-        <SectionDivider />
-        
+
         <ScrollReveal>
-          <section id="skills" className="py-16 px-4">
-            <div className="container mx-auto max-w-5xl">
+          <section id="skills" className="py-32 px-6 md:px-12">
+            <div className="container mx-auto max-w-6xl">
               <Suspense fallback={<LoadingSkeleton />}>
                 <LazySkillsSection />
               </Suspense>
             </div>
           </section>
         </ScrollReveal>
-        
-        <SectionDivider />
-        
+
         <ScrollReveal>
-          <section id="contact" className="py-16 px-4">
-            <div className="container mx-auto max-w-5xl">
+          <section id="contact" className="py-32 px-6 md:px-12">
+            <div className="container mx-auto max-w-6xl">
               <Suspense fallback={<LoadingSkeleton />}>
                 <LazyContactSection />
               </Suspense>
             </div>
           </section>
         </ScrollReveal>
-        
-        <footer className="border-t border-border/40 py-10">
-          <div className="container mx-auto max-w-5xl px-4">
+
+        <footer className="border-t border-white/5 py-14 mt-12">
+          <div className="container mx-auto max-w-6xl px-6 md:px-12">
             <div className="flex flex-col items-center gap-5">
               <div className="flex items-center gap-5">
                 <a href="https://github.com/Jeet-51" target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-primary transition-colors duration-300" aria-label="GitHub">
