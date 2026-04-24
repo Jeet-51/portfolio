@@ -71,7 +71,7 @@ const PillNavbar = () => {
                 onClick={() => scrollTo(item.id)}
                 className={`relative px-4 py-2 text-sm font-medium rounded-full transition-all duration-300 ${
                   isActive
-                    ? "text-foreground bg-white/[0.08]"
+                    ? "text-foreground bg-foreground/[0.08]"
                     : "text-muted-foreground hover:text-foreground"
                 }`}
               >
@@ -82,11 +82,11 @@ const PillNavbar = () => {
               </button>
             );
           })}
-          <div className="w-px h-5 bg-white/10 mx-1" />
+          <div className="w-px h-5 bg-border mx-1" />
           <button
             onClick={toggleTheme}
             aria-label="Toggle theme"
-            className="p-2 rounded-full text-muted-foreground hover:text-foreground hover:bg-white/[0.06] transition-colors"
+            className="p-2 rounded-full text-muted-foreground hover:text-foreground hover:bg-foreground/[0.06] transition-colors"
           >
             {isDark ? <Sun className="w-4 h-4" /> : <Moon className="w-4 h-4" />}
           </button>
@@ -106,14 +106,14 @@ const PillNavbar = () => {
             <button
               onClick={toggleTheme}
               aria-label="Toggle theme"
-              className="p-2 rounded-full text-muted-foreground hover:text-foreground hover:bg-white/[0.06]"
+              className="p-2 rounded-full text-muted-foreground hover:text-foreground hover:bg-foreground/[0.06]"
             >
               {isDark ? <Sun className="w-4 h-4" /> : <Moon className="w-4 h-4" />}
             </button>
             <button
               onClick={() => setMobileOpen((v) => !v)}
               aria-label="Menu"
-              className="p-2 rounded-full text-muted-foreground hover:text-foreground hover:bg-white/[0.06]"
+              className="p-2 rounded-full text-muted-foreground hover:text-foreground hover:bg-foreground/[0.06]"
             >
               {mobileOpen ? <X className="w-4 h-4" /> : <Menu className="w-4 h-4" />}
             </button>
@@ -127,8 +127,8 @@ const PillNavbar = () => {
                 onClick={() => scrollTo(item.id)}
                 className={`text-left px-4 py-3 text-sm rounded-xl transition-colors ${
                   active === item.id
-                    ? "text-foreground bg-white/[0.08]"
-                    : "text-muted-foreground hover:text-foreground hover:bg-white/[0.04]"
+                    ? "text-foreground bg-foreground/[0.08]"
+                    : "text-muted-foreground hover:text-foreground hover:bg-foreground/[0.04]"
                 }`}
               >
                 {item.label}

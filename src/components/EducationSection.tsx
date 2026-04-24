@@ -62,7 +62,7 @@ const EducationSection = () => {
             <div className="p-6 md:p-8">
               <div className="flex flex-col md:flex-row gap-6">
                 {/* Logo */}
-                <div className={`flex-shrink-0 w-20 h-20 md:w-24 md:h-24 rounded-2xl ${edu.logoBg} border border-white/10 flex items-center justify-center p-3 self-start`}>
+                <div className={`flex-shrink-0 w-20 h-20 md:w-24 md:h-24 rounded-2xl ${edu.logoBg} border border-border flex items-center justify-center p-3 self-start`}>
                   <img
                     src={edu.logoUrl}
                     alt={`${edu.school} logo`}
@@ -102,13 +102,13 @@ const EducationSection = () => {
                   </div>
 
                   {/* Courses */}
-                  <div className="pt-4 border-t border-white/5">
+                  <div className="pt-4 border-t border-border">
                     <p className="text-xs font-mono text-muted-foreground uppercase tracking-wider mb-3">Relevant Coursework</p>
                     <div className="flex flex-wrap gap-2">
                       {edu.courses.map((course, idx) => (
                         <span
                           key={idx}
-                          className="text-xs font-mono px-2.5 py-1 bg-white/5 border border-white/10 rounded-md text-foreground/70 group-hover:border-primary/20 group-hover:text-primary/80 transition-all duration-300"
+                          className="text-xs font-mono px-2.5 py-1 bg-foreground/[0.04] border border-border rounded-md text-foreground/70 group-hover:border-primary/20 group-hover:text-primary/80 transition-all duration-300"
                         >
                           {course}
                         </span>

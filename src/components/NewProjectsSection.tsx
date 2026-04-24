@@ -211,7 +211,7 @@ const ProjectCard = ({ project, featured }: { project: Project; featured?: boole
             {project.tech.map((t) => (
               <span
                 key={t}
-                className="text-[10px] font-mono px-2 py-1 rounded-md bg-white/[0.04] text-muted-foreground border border-white/[0.06]"
+                className="text-[10px] font-mono px-2 py-1 rounded-md bg-foreground/[0.04] text-muted-foreground border border-border"
               >
                 {t}
               </span>

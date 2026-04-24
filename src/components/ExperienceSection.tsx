@@ -127,7 +127,7 @@ const ExperienceSection = () => {
                   className={`absolute -left-[26px] md:-left-[34px] top-3 w-2.5 h-2.5 rounded-full transition-all duration-500 ${
                     isActive
                       ? "bg-primary shadow-[0_0_20px_hsl(var(--primary)),0_0_40px_hsl(var(--primary)/0.4)] scale-150"
-                      : "bg-white/25"
+                      : "bg-muted-foreground/40"
                   }`}
                 />
 
@@ -173,7 +173,7 @@ const ExperienceSection = () => {
                       {exp.technologies.map((tech, tIdx) => (
                         <span
                           key={tIdx}
-                          className="text-[10px] font-mono px-2 py-1 rounded-md bg-white/[0.04] text-muted-foreground border border-white/[0.06]"
+                          className="text-[10px] font-mono px-2 py-1 rounded-md bg-foreground/[0.04] text-muted-foreground border border-border"
                         >
                           {tech}
                         </span>

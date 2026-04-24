@@ -43,7 +43,7 @@ const rowTwo = [
 const Chip = ({ skill }: { skill: string }) => {
   const Icon = iconFor[skill] ?? Code;
   return (
-    <div className="flex items-center gap-2 px-4 py-2.5 rounded-full border border-white/[0.08] bg-white/[0.03] backdrop-blur-sm font-mono text-sm text-muted-foreground whitespace-nowrap hover:border-primary/40 hover:text-foreground hover:bg-primary/[0.06] transition-colors duration-200">
+    <div className="flex items-center gap-2 px-4 py-2.5 rounded-full border border-border bg-foreground/[0.03] backdrop-blur-sm font-mono text-sm text-muted-foreground whitespace-nowrap hover:border-primary/40 hover:text-foreground hover:bg-primary/[0.06] transition-colors duration-200">
       <Icon className="w-3.5 h-3.5 flex-shrink-0 text-muted-foreground/70" />
       <span>{skill}</span>
     </div>
@@ -88,7 +88,7 @@ const SkillsSection = () => {
         {categories.map(({ title, icon: Icon }) => (
           <div
             key={title}
-            className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-white/10 bg-white/[0.03] text-sm text-muted-foreground"
+            className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-border bg-foreground/[0.03] text-sm text-muted-foreground"
           >
             <Icon className="w-4 h-4 text-primary" />
             <span className="font-mono uppercase tracking-wider text-xs">{title}</span>

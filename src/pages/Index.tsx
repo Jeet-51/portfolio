@@ -120,7 +120,7 @@ const Index = () => {
           </section>
         </ScrollReveal>
 
-        <footer className="border-t border-white/5 py-14 mt-12">
+        <footer className="border-t border-border py-14 mt-12">
           <div className="container mx-auto max-w-6xl px-6 md:px-12">
             <div className="flex flex-col items-center gap-5">
               <div className="flex items-center gap-5">
