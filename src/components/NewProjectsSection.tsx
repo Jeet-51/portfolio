@@ -1,6 +1,6 @@
 import { useRef, useEffect } from "react";
 import { Button } from "@/components/ui/button";
-import { Mail, ArrowUpRight } from "lucide-react";
+import { Mail, ArrowUpRight, ExternalLink } from "lucide-react";
 
 interface Project {
   title: string;
@@ -10,183 +10,92 @@ interface Project {
   tech: string[];
   githubUrl: string;
   category: string;
-  metricColor: string;   // explicit CSS color for metric number
-  borderColor: string;   // top border color
-  spotlight: string;     // hover radial glow
-  illustration: React.ReactNode;
+  accentColor: string;
+  glowColor: string;
 }
-
-// Inline SVG illustrations per project type
-const BackendIllustration = () => (
-  <svg viewBox="0 0 120 60" className="w-full h-full opacity-40" fill="none">
-    <rect x="10" y="10" width="30" height="18" rx="3" stroke="currentColor" strokeWidth="1.5"/>
-    <rect x="50" y="10" width="30" height="18" rx="3" stroke="currentColor" strokeWidth="1.5"/>
-    <rect x="90" y="10" width="20" height="18" rx="3" stroke="currentColor" strokeWidth="1.5"/>
-    <line x1="40" y1="19" x2="50" y2="19" stroke="currentColor" strokeWidth="1.5" strokeDasharray="3 2"/>
-    <line x1="80" y1="19" x2="90" y2="19" stroke="currentColor" strokeWidth="1.5" strokeDasharray="3 2"/>
-    <rect x="30" y="38" width="60" height="14" rx="3" stroke="currentColor" strokeWidth="1.5"/>
-    <line x1="60" y1="28" x2="60" y2="38" stroke="currentColor" strokeWidth="1.5"/>
-    <circle cx="25" cy="19" r="2" fill="currentColor"/>
-    <circle cx="65" cy="19" r="2" fill="currentColor"/>
-    <circle cx="60" cy="45" r="2" fill="currentColor"/>
-  </svg>
-);
-
-const LLMIllustration = () => (
-  <svg viewBox="0 0 120 60" className="w-full h-full opacity-40" fill="none">
-    <circle cx="60" cy="30" r="18" stroke="currentColor" strokeWidth="1.5"/>
-    <circle cx="60" cy="30" r="10" stroke="currentColor" strokeWidth="1" strokeDasharray="4 3"/>
-    <circle cx="60" cy="30" r="3" fill="currentColor"/>
-    <line x1="10" y1="30" x2="42" y2="30" stroke="currentColor" strokeWidth="1.5" strokeDasharray="3 2"/>
-    <line x1="78" y1="30" x2="110" y2="30" stroke="currentColor" strokeWidth="1.5" strokeDasharray="3 2"/>
-    <circle cx="10" cy="30" r="3" fill="currentColor"/>
-    <circle cx="110" cy="30" r="3" fill="currentColor"/>
-    <text x="52" y="56" fontSize="8" fill="currentColor" opacity="0.6" fontFamily="monospace">GPU</text>
-  </svg>
-);
-
-const GenAIIllustration = () => (
-  <svg viewBox="0 0 120 60" className="w-full h-full opacity-40" fill="none">
-    {[0,1,2,3,4].map(i => (
-      <circle key={i} cx={20 + i * 20} cy={i % 2 === 0 ? 20 : 40} r="5" stroke="currentColor" strokeWidth="1.5"/>
-    ))}
-    {[[0,1],[1,2],[2,3],[3,4],[0,2],[1,3],[2,4]].map(([a,b],i) => (
-      <line key={i} x1={20+a*20} y1={a%2===0?20:40} x2={20+b*20} y2={b%2===0?20:40}
-        stroke="currentColor" strokeWidth="1" strokeDasharray="3 2" opacity="0.6"/>
-    ))}
-  </svg>
-);
-
-const MLIllustration = () => (
-  <svg viewBox="0 0 120 60" className="w-full h-full opacity-40" fill="none">
-    {[55,42,48,35,52,38,45,30,50,40].map((y, i) => (
-      <circle key={i} cx={10 + i * 11} cy={y} r="2.5" fill="currentColor"/>
-    ))}
-    <polyline points="10,55 21,42 32,48 43,35 54,52 65,38 76,45 87,30 98,50 109,40"
-      stroke="currentColor" strokeWidth="1.5" fill="none" strokeLinejoin="round"/>
-    <line x1="10" y1="55" x2="110" y2="20" stroke="currentColor" strokeWidth="1"
-      strokeDasharray="4 3" opacity="0.5"/>
-  </svg>
-);
-
-const AnalyticsIllustration = () => (
-  <svg viewBox="0 0 120 60" className="w-full h-full opacity-40" fill="none">
-    {[40,25,50,15,35,45,20,38].map((h, i) => (
-      <rect key={i} x={8 + i * 14} y={55 - h} width="10" height={h} rx="2"
-        fill="currentColor" opacity={0.5 + i * 0.06}/>
-    ))}
-    <line x1="8" y1="55" x2="120" y2="55" stroke="currentColor" strokeWidth="1" opacity="0.4"/>
-  </svg>
-);
-
-const DataIllustration = () => (
-  <svg viewBox="0 0 120 60" className="w-full h-full opacity-40" fill="none">
-    <ellipse cx="30" cy="22" rx="22" ry="9" stroke="currentColor" strokeWidth="1.5"/>
-    <line x1="8" y1="22" x2="8" y2="38" stroke="currentColor" strokeWidth="1.5"/>
-    <line x1="52" y1="22" x2="52" y2="38" stroke="currentColor" strokeWidth="1.5"/>
-    <ellipse cx="30" cy="38" rx="22" ry="9" stroke="currentColor" strokeWidth="1.5"/>
-    <line x1="52" y1="38" x2="90" y2="38" stroke="currentColor" strokeWidth="1.5" strokeDasharray="3 2"/>
-    <ellipse cx="100" cy="38" rx="15" ry="7" stroke="currentColor" strokeWidth="1.5"/>
-    <circle cx="100" cy="38" r="3" fill="currentColor"/>
-  </svg>
-);
 
 const projects: Project[] = [
   {
-    title: "Production Backend Platform",
-    description: "High-throughput backend powering 175K+ nonprofit records with GPU-accelerated inference and Text-to-SQL interfaces.",
-    metric: { value: "175K+", label: "records served" },
-    outcomes: ["Scaled to 175K+ nonprofit records", "Sub-second query response"],
-    tech: ["Python", "FastAPI", "PostgreSQL", "Mistral-7B", "CUDA"],
-    githubUrl: "https://github.com/Jeet-51",
-    category: "Backend",
-    metricColor: "#a855f7",
-    borderColor: "linear-gradient(to right, #8b5cf6, #d946ef, #22d3ee)",
-    spotlight: "hsl(270 95% 60% / 0.12)",
-    illustration: <BackendIllustration />,
-  },
-  {
     title: "LLM Inference Service",
-    description: "GPU-backed LLM inference service designed for low-latency, high-concurrency workloads.",
-    metric: { value: "180ms", label: "p50 latency" },
-    outcomes: ["Reduced latency to ~180ms", "Supported 100+ concurrent requests"],
-    tech: ["FastAPI", "vLLM", "CUDA", "Mistral-7B"],
+    description:
+      "GPU-backed LLM inference service designed for low-latency, high-concurrency workloads. Built for production-grade reliability with 100+ concurrent users.",
+    metric: { value: "180ms", label: "P50 latency" },
+    outcomes: [
+      "Reduced inference latency to ~180ms P50",
+      "Supported 100+ concurrent requests",
+      "Deployed on GPU cluster with vLLM optimization",
+    ],
+    tech: ["FastAPI", "vLLM", "CUDA", "Mistral-7B", "Python"],
     githubUrl: "https://github.com/Jeet-51",
     category: "AI Infrastructure",
-    metricColor: "#22d3ee",
-    borderColor: "linear-gradient(to right, #22d3ee, #0ea5e9)",
-    spotlight: "hsl(190 95% 55% / 0.12)",
-    illustration: <LLMIllustration />,
+    accentColor: "#22d3ee",
+    glowColor: "rgba(34,211,238,0.12)",
   },
   {
     title: "PitchPal — AI Evaluator",
-    description: "AI-powered startup evaluation platform using LangChain ReAct agents.",
+    description:
+      "AI-powered startup evaluation platform using LangChain ReAct agents to automate investor due diligence workflows.",
     metric: { value: "60%", label: "faster diligence" },
-    outcomes: ["Processed 100+ pitch evaluations", "Accelerated due diligence by 60%"],
-    tech: ["LangChain", "GPT-4", "Streamlit"],
+    outcomes: [
+      "Processed 100+ pitch deck evaluations",
+      "Accelerated due diligence cycle by 60%",
+    ],
+    tech: ["LangChain", "GPT-4", "Streamlit", "Python"],
     githubUrl: "https://github.com/Jeet-51/PitchPal-AI-Agent-for-Startup-Pitch-Evaluation",
     category: "GenAI",
-    metricColor: "#f59e0b",
-    borderColor: "linear-gradient(to right, #fbbf24, #ec4899)",
-    spotlight: "hsl(330 90% 60% / 0.12)",
-    illustration: <GenAIIllustration />,
+    accentColor: "#f59e0b",
+    glowColor: "rgba(245,158,11,0.12)",
   },
   {
-    title: "ClaimGuard: Healthcare Pattern Analysis",
-    description: "Scalable ML pipeline forecasting Medicare billing behaviors using Bio_ClinicalBERT embeddings.",
+    title: "ClaimGuard: Healthcare Analytics",
+    description:
+      "Scalable ML pipeline forecasting Medicare billing behaviors using Bio_ClinicalBERT embeddings with full MLOps tracking.",
     metric: { value: "0.95", label: "R² accuracy" },
     outcomes: [
-      "Achieved R² = 0.95 prediction accuracy",
+      "R² = 0.95 on unseen Medicare billing data",
       "Processed 200K+ claims with semantic classification",
-      "MLflow tracking & SHAP interpretability",
+      "MLflow tracking + SHAP model interpretability",
     ],
-    tech: ["Delta Lake", "MLflow", "SHAP", "XGBoost", "PySpark", "Transformers"],
+    tech: ["XGBoost", "PySpark", "MLflow", "SHAP", "Delta Lake", "Transformers"],
     githubUrl: "https://github.com/Jeet-51/ClaimGuard-Intelligent-Healthcare-Service-Pattern-Analysis",
     category: "ML Engineering",
-    metricColor: "#34d399",
-    borderColor: "linear-gradient(to right, #34d399, #14b8a6)",
-    spotlight: "hsl(160 80% 50% / 0.12)",
-    illustration: <MLIllustration />,
+    accentColor: "#34d399",
+    glowColor: "rgba(52,211,153,0.12)",
   },
   {
     title: "EPA GHG Dashboard",
-    description: "Production-style analytics stack with dbt models on Snowflake.",
+    description:
+      "Production analytics stack with dbt models on Snowflake powering a Tableau dashboard for EPA greenhouse gas emissions analysis.",
     metric: { value: "40%", label: "less analysis time" },
-    outcomes: ["Reduced Tableau latency", "Cut analysis time by 40%"],
-    tech: ["Tableau", "dbt", "Snowflake"],
+    outcomes: [
+      "Cut analyst query time by 40%",
+      "Modular dbt models on Snowflake data warehouse",
+    ],
+    tech: ["Tableau", "dbt", "Snowflake", "SQL"],
     githubUrl: "https://github.com/Jeet-51/EPA-Greenhouse-Gas-GHG-Emissions-Dashboard",
     category: "Analytics",
-    metricColor: "#fb923c",
-    borderColor: "linear-gradient(to right, #fb923c, #ef4444)",
-    spotlight: "hsl(20 90% 55% / 0.12)",
-    illustration: <AnalyticsIllustration />,
+    accentColor: "#fb923c",
+    glowColor: "rgba(251,146,60,0.12)",
   },
   {
     title: "FinanceFlow: Cloud Analytics",
-    description: "Real-time ETL pipeline using PySpark and AWS services for enhanced fraud detection.",
-    metric: { value: "+40%", label: "fraud accuracy" },
-    outcomes: ["Boosted fraud detection accuracy by 40%", "Delivered 40% faster insights"],
-    tech: ["AWS", "S3", "SageMaker", "PySpark"],
+    description:
+      "Real-time ETL pipeline on AWS using PySpark and SageMaker for fraud detection with end-to-end MLOps.",
+    metric: { value: "+40%", label: "fraud detection accuracy" },
+    outcomes: [
+      "Boosted fraud detection accuracy by 40%",
+      "Real-time pipeline: S3 → PySpark → SageMaker",
+    ],
+    tech: ["AWS", "S3", "SageMaker", "PySpark", "Python"],
     githubUrl: "https://github.com/Jeet-51/FinanceFlow-Cloud-Enabled-Analytics-for-Fraud-Detection",
     category: "Data Engineering",
-    metricColor: "#60a5fa",
-    borderColor: "linear-gradient(to right, #3b82f6, #6366f1)",
-    spotlight: "hsl(220 90% 60% / 0.12)",
-    illustration: <DataIllustration />,
+    accentColor: "#818cf8",
+    glowColor: "rgba(129,140,248,0.12)",
   },
 ];
 
-const RevealCard = ({
-  children,
-  index,
-  className = "",
-}: {
-  children: React.ReactNode;
-  index: number;
-  className?: string;
-}) => {
+const useReveal = (index: number) => {
   const ref = useRef<HTMLDivElement>(null);
-
   useEffect(() => {
     const el = ref.current;
     if (!el) return;
@@ -195,9 +104,8 @@ const RevealCard = ({
       return;
     }
     el.style.opacity = "0";
-    el.style.transform = "translateY(32px)";
-    el.style.transition = `opacity 0.6s ease-out ${index * 0.08}s, transform 0.6s ease-out ${index * 0.08}s`;
-
+    el.style.transform = "translateY(24px)";
+    el.style.transition = `opacity 0.55s ease-out ${index * 0.07}s, transform 0.55s ease-out ${index * 0.07}s`;
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
@@ -206,110 +114,153 @@ const RevealCard = ({
           observer.unobserve(el);
         }
       },
-      { threshold: 0.1 }
+      { threshold: 0.08 }
     );
     observer.observe(el);
     return () => observer.disconnect();
   }, [index]);
+  return ref;
+};
 
+const FeaturedCard = ({ project, index }: { project: Project; index: number }) => {
+  const ref = useReveal(index);
   return (
-    <div ref={ref} className={className}>
-      {children}
+    <div ref={ref} className="md:col-span-2">
+      <a
+        href={project.githubUrl}
+        target="_blank"
+        rel="noopener noreferrer"
+        className="group relative flex flex-col md:flex-row gap-0 rounded-2xl border border-border overflow-hidden transition-all duration-300 hover:-translate-y-1 hover:shadow-2xl"
+        style={{ backgroundColor: "hsl(var(--card))" }}
+      >
+        {/* Left accent panel — metric */}
+        <div
+          className="flex flex-col justify-center px-8 py-10 md:py-12 md:w-56 flex-shrink-0"
+          style={{
+            background: `linear-gradient(135deg, ${project.glowColor.replace("0.12", "0.25")}, ${project.glowColor.replace("0.12", "0.08")})`,
+            borderRight: `1px solid ${project.accentColor}22`,
+          }}
+        >
+          <div
+            className="font-display font-bold leading-none tracking-tight text-5xl md:text-6xl"
+            style={{ color: project.accentColor }}
+          >
+            {project.metric.value}
+          </div>
+          <div
+            className="mt-2 text-[10px] font-mono uppercase tracking-widest"
+            style={{ color: project.accentColor, opacity: 0.7 }}
+          >
+            {project.metric.label}
+          </div>
+        </div>
+
+        {/* Right content */}
+        <div className="flex flex-col p-7 md:p-9 flex-grow">
+          {/* Top border accent */}
+          <div
+            className="absolute top-0 inset-x-0 h-[2px] opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+            style={{ background: `linear-gradient(to right, ${project.accentColor}, transparent)` }}
+          />
+
+          <div className="flex items-start justify-between gap-3 mb-5">
+            <span className="text-[10px] font-mono uppercase tracking-[0.2em] text-muted-foreground">
+              {project.category}
+            </span>
+            <ExternalLink
+              className="w-4 h-4 flex-shrink-0 opacity-40 group-hover:opacity-100 group-hover:-translate-y-0.5 group-hover:translate-x-0.5 transition-all"
+              style={{ color: project.accentColor }}
+            />
+          </div>
+
+          <h3 className="font-display font-semibold text-foreground text-xl md:text-2xl leading-tight mb-3">
+            {project.title}
+          </h3>
+          <p className="text-sm md:text-base text-muted-foreground leading-relaxed mb-6">
+            {project.description}
+          </p>
+
+          <ul className="space-y-1.5 mb-6">
+            {project.outcomes.map((o, i) => (
+              <li key={i} className="text-sm text-muted-foreground flex items-start gap-2">
+                <span
+                  className="mt-[7px] block w-1 h-1 rounded-full flex-shrink-0"
+                  style={{ backgroundColor: project.accentColor }}
+                />
+                {o}
+              </li>
+            ))}
+          </ul>
+
+          <div className="mt-auto flex flex-wrap gap-1.5">
+            {project.tech.map((t) => (
+              <span
+                key={t}
+                className="text-[10px] font-mono px-2.5 py-1 rounded-md bg-foreground/[0.04] text-muted-foreground border border-border"
+              >
+                {t}
+              </span>
+            ))}
+          </div>
+        </div>
+      </a>
     </div>
   );
 };
 
-const ProjectCard = ({ project, featured }: { project: Project; featured?: boolean }) => {
+const SmallCard = ({ project, index }: { project: Project; index: number }) => {
+  const ref = useReveal(index);
   return (
-    <a
-      href={project.githubUrl}
-      target="_blank"
-      rel="noopener noreferrer"
-      className="group relative block h-full surface-card overflow-hidden"
-      onMouseMove={(e) => {
-        const rect = (e.currentTarget as HTMLElement).getBoundingClientRect();
-        (e.currentTarget as HTMLElement).style.setProperty("--mx", `${e.clientX - rect.left}px`);
-        (e.currentTarget as HTMLElement).style.setProperty("--my", `${e.clientY - rect.top}px`);
-        (e.currentTarget as HTMLElement).style.backgroundImage =
-          `radial-gradient(500px circle at ${e.clientX - rect.left}px ${e.clientY - rect.top}px, ${project.spotlight}, transparent 40%)`;
-      }}
-      onMouseLeave={(e) => {
-        (e.currentTarget as HTMLElement).style.backgroundImage = "none";
-      }}
-    >
-      {/* Colored top border */}
-      <div
-        className="absolute top-0 inset-x-0 h-[3px] opacity-90 group-hover:opacity-100 transition-opacity"
-        style={{ background: project.borderColor }}
-      />
-
-      {/* Illustration strip */}
-      <div
-        className="relative overflow-hidden transition-all duration-500"
-        style={{
-          height: featured ? "120px" : "80px",
-          background: `radial-gradient(ellipse at 60% 50%, ${project.spotlight.replace("0.12", "0.25")}, transparent 70%)`,
-          color: project.metricColor,
-        }}
+    <div ref={ref} className="md:col-span-1">
+      <a
+        href={project.githubUrl}
+        target="_blank"
+        rel="noopener noreferrer"
+        className="group relative flex flex-col h-full rounded-2xl border border-border overflow-hidden transition-all duration-300 hover:-translate-y-1 hover:shadow-xl"
+        style={{ backgroundColor: "hsl(var(--card))" }}
       >
-        <div className="absolute inset-0 p-4 flex items-center justify-center">
-          {project.illustration}
-        </div>
-        {/* Big metric overlaid */}
-        <div className="absolute inset-0 flex flex-col justify-center px-6 md:px-8">
-          <div
-            className={`font-display font-bold leading-none tracking-tight select-none ${
-              featured ? "text-6xl md:text-7xl" : "text-4xl md:text-5xl"
-            }`}
-            style={{ color: project.metricColor }}
-          >
-            {project.metric.value}
+        {/* Top border — always visible, stronger on hover */}
+        <div
+          className="h-[2px] flex-shrink-0 opacity-60 group-hover:opacity-100 transition-opacity"
+          style={{ background: `linear-gradient(to right, ${project.accentColor}, ${project.accentColor}44)` }}
+        />
+
+        <div className="flex flex-col p-6 flex-grow">
+          <div className="flex items-start justify-between gap-3 mb-5">
+            <span className="text-[10px] font-mono uppercase tracking-[0.2em] text-muted-foreground">
+              {project.category}
+            </span>
+            <ArrowUpRight
+              className="w-3.5 h-3.5 flex-shrink-0 opacity-40 group-hover:opacity-100 group-hover:-translate-y-0.5 group-hover:translate-x-0.5 transition-all"
+              style={{ color: project.accentColor }}
+            />
           </div>
-          <div className="mt-1 text-[10px] font-mono uppercase tracking-widest opacity-70"
-            style={{ color: project.metricColor }}>
-            {project.metric.label}
+
+          {/* Metric */}
+          <div className="mb-5">
+            <div
+              className="font-display font-bold leading-none tracking-tight text-4xl"
+              style={{ color: project.accentColor }}
+            >
+              {project.metric.value}
+            </div>
+            <div
+              className="mt-1.5 text-[10px] font-mono uppercase tracking-widest"
+              style={{ color: project.accentColor, opacity: 0.65 }}
+            >
+              {project.metric.label}
+            </div>
           </div>
-        </div>
-      </div>
 
-      <div className="relative p-6 md:p-7 h-auto flex flex-col">
-        {/* Header row */}
-        <div className="flex items-start justify-between gap-4 mb-4">
-          <span className="text-[10px] font-mono uppercase tracking-[0.18em] text-muted-foreground/80">
-            {project.category}
-          </span>
-          <ArrowUpRight className="w-4 h-4 text-muted-foreground/50 group-hover:text-foreground group-hover:-translate-y-0.5 group-hover:translate-x-0.5 transition-all flex-shrink-0" />
-        </div>
+          <h3 className="font-display font-semibold text-foreground text-lg leading-tight mb-2">
+            {project.title}
+          </h3>
+          <p className="text-sm text-muted-foreground leading-relaxed mb-5 flex-grow">
+            {project.description}
+          </p>
 
-        {/* Title */}
-        <h3
-          className={`font-display font-semibold text-foreground leading-tight mb-3 ${
-            featured ? "text-2xl md:text-3xl" : "text-lg md:text-xl"
-          }`}
-        >
-          {project.title}
-        </h3>
-
-        {/* Description */}
-        <p className="text-sm text-muted-foreground leading-relaxed mb-5">
-          {project.description}
-        </p>
-
-        <div className="mt-auto space-y-4">
-          {featured && project.outcomes.length > 1 && (
-            <ul className="space-y-1.5">
-              {project.outcomes.slice(0, 3).map((o, i) => (
-                <li key={i} className="text-sm text-muted-foreground flex items-start gap-2">
-                  <span className="mt-2 block w-1 h-1 rounded-full bg-primary flex-shrink-0" />
-                  {o}
-                </li>
-              ))}
-            </ul>
-          )}
-
-          {/* Tech */}
-          <div className="flex flex-wrap gap-1.5">
-            {project.tech.map((t) => (
+          <div className="mt-auto flex flex-wrap gap-1.5">
+            {project.tech.slice(0, 4).map((t) => (
               <span
                 key={t}
                 className="text-[10px] font-mono px-2 py-1 rounded-md bg-foreground/[0.04] text-muted-foreground border border-border"
@@ -319,59 +270,98 @@ const ProjectCard = ({ project, featured }: { project: Project; featured?: boole
             ))}
           </div>
         </div>
-      </div>
-    </a>
+      </a>
+    </div>
+  );
+};
+
+const WideCard = ({ project, index }: { project: Project; index: number }) => {
+  const ref = useReveal(index);
+  return (
+    <div ref={ref} className="md:col-span-3">
+      <a
+        href={project.githubUrl}
+        target="_blank"
+        rel="noopener noreferrer"
+        className="group relative flex flex-col md:flex-row gap-0 rounded-2xl border border-border overflow-hidden transition-all duration-300 hover:-translate-y-1 hover:shadow-xl"
+        style={{ backgroundColor: "hsl(var(--card))" }}
+      >
+        <div
+          className="flex flex-col justify-center px-8 py-8 md:w-48 flex-shrink-0"
+          style={{
+            background: `linear-gradient(135deg, ${project.glowColor.replace("0.12","0.2")}, ${project.glowColor.replace("0.12","0.05")})`,
+            borderRight: `1px solid ${project.accentColor}22`,
+          }}
+        >
+          <div className="font-display font-bold leading-none tracking-tight text-4xl md:text-5xl" style={{ color: project.accentColor }}>
+            {project.metric.value}
+          </div>
+          <div className="mt-2 text-[10px] font-mono uppercase tracking-widest" style={{ color: project.accentColor, opacity: 0.65 }}>
+            {project.metric.label}
+          </div>
+        </div>
+        <div className="flex flex-col md:flex-row md:items-center gap-6 p-7 flex-grow">
+          <div className="flex-grow">
+            <div className="flex items-start justify-between gap-3 mb-3">
+              <span className="text-[10px] font-mono uppercase tracking-[0.2em] text-muted-foreground">{project.category}</span>
+              <ExternalLink className="w-3.5 h-3.5 opacity-40 group-hover:opacity-100 transition-opacity" style={{ color: project.accentColor }} />
+            </div>
+            <h3 className="font-display font-semibold text-foreground text-xl mb-2">{project.title}</h3>
+            <p className="text-sm text-muted-foreground leading-relaxed">{project.description}</p>
+          </div>
+          <div className="flex flex-wrap gap-1.5 md:flex-col md:items-end flex-shrink-0">
+            {project.tech.map((t) => (
+              <span key={t} className="text-[10px] font-mono px-2.5 py-1 rounded-md bg-foreground/[0.04] text-muted-foreground border border-border whitespace-nowrap">
+                {t}
+              </span>
+            ))}
+          </div>
+        </div>
+      </a>
+    </div>
   );
 };
 
 const NewProjectsSection = () => {
+  // Layout: [Featured LLM 2-col][PitchPal 1-col] / [ClaimGuard 2-col][EPA 1-col] / [FinanceFlow full]
   return (
-    <section className="py-32 px-6 md:px-12 relative z-10">
-      <div className="container mx-auto max-w-7xl">
-        <div className="space-y-4 mb-20">
-          <p className="text-xs font-mono text-primary uppercase tracking-[0.2em]">
+    <section className="py-28 px-6 md:px-12 relative z-10">
+      <div className="container mx-auto max-w-6xl">
+        {/* Header */}
+        <div className="mb-16">
+          <p className="text-xs font-mono text-primary uppercase tracking-[0.2em] mb-4">
             &gt;_ Featured Work
           </p>
-          <h2 className="font-display text-4xl md:text-6xl font-light tracking-tight text-foreground">
+          <h2 className="font-display text-4xl md:text-5xl font-light tracking-tight text-foreground mb-4">
             Projects &amp; <span className="gradient-text font-medium">Solutions</span>
           </h2>
-          <p className="text-lg text-muted-foreground max-w-2xl">
-            Showcasing impactful AI and data science projects that solve real-world problems.
+          <p className="text-base text-muted-foreground max-w-xl">
+            Production AI and data science systems solving real-world problems.
           </p>
         </div>
 
-        {/* Asymmetric Bento Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
-          <RevealCard index={0} className="md:col-span-2 md:row-span-2">
-            <ProjectCard project={projects[0]} featured />
-          </RevealCard>
+        {/* Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+          {/* Row 1: LLM Inference (2-col featured) + PitchPal (1-col) */}
+          <FeaturedCard project={projects[0]} index={0} />
+          <SmallCard project={projects[1]} index={1} />
 
-          <RevealCard index={1} className="md:col-span-1">
-            <ProjectCard project={projects[1]} />
-          </RevealCard>
-          <RevealCard index={2} className="md:col-span-1">
-            <ProjectCard project={projects[2]} />
-          </RevealCard>
+          {/* Row 2: ClaimGuard (2-col featured) + EPA (1-col) */}
+          <FeaturedCard project={projects[2]} index={2} />
+          <SmallCard project={projects[3]} index={3} />
 
-          <RevealCard index={3} className="md:col-span-2">
-            <ProjectCard project={projects[3]} featured />
-          </RevealCard>
-          <RevealCard index={4} className="md:col-span-1">
-            <ProjectCard project={projects[4]} />
-          </RevealCard>
-
-          <RevealCard index={5} className="md:col-span-3">
-            <ProjectCard project={projects[5]} />
-          </RevealCard>
+          {/* Row 3: FinanceFlow full-width */}
+          <WideCard project={projects[4]} index={4} />
         </div>
 
-        <div className="text-center mt-24">
-          <p className="text-muted-foreground mb-6 font-mono text-sm">
-            Ready to deploy your next big idea?
+        {/* CTA */}
+        <div className="text-center mt-20">
+          <p className="text-muted-foreground mb-5 font-mono text-sm">
+            Want to collaborate on something impactful?
           </p>
           <Button
             size="lg"
-            className="bg-gradient-to-r from-primary to-accent hover:opacity-90 text-primary-foreground shadow-[0_0_30px_hsl(var(--primary)/0.3)] hover:shadow-[0_0_40px_hsl(var(--primary)/0.5)] transition-all duration-300"
+            className="bg-gradient-to-r from-primary to-accent hover:opacity-90 text-primary-foreground shadow-[0_0_24px_hsl(var(--primary)/0.25)] hover:shadow-[0_0_36px_hsl(var(--primary)/0.4)] transition-all duration-300"
             asChild
           >
             <a href="mailto:jeetp5118@gmail.com" className="inline-flex items-center gap-2">

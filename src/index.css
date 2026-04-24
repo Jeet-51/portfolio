@@ -216,10 +216,12 @@
 }
 
 .mesh-orb {
-  position: absolute;
+  position: fixed;
   border-radius: 50%;
   filter: blur(90px);
   will-change: transform;
+  pointer-events: none;
+  z-index: 0;
 }
 .mesh-orb-1 {
   top: -15%; right: -10%;
