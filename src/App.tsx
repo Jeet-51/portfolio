@@ -10,7 +10,7 @@ import NotFound from "./pages/NotFound";
 const queryClient = new QueryClient();
 
 // Use different basename for GitHub Pages vs Lovable
-const basename = process.env.NODE_ENV === 'production' && window.location.hostname.includes('github.io') 
+const basename = import.meta.env.PROD && window.location.hostname.includes('github.io') 
   ? '/portfolio' 
   : '';
 
