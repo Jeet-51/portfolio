@@ -219,24 +219,13 @@ const NewHero = () => {
                 <span className="text-xs font-mono text-foreground whitespace-nowrap">Open to work</span>
               </div>
               {/* Floating badge — bottom left */}
-              <div className="absolute -bottom-3 -left-6 bg-card border border-border rounded-xl px-3 py-2 shadow-lg">
-                <p className="text-[10px] font-mono text-muted-foreground uppercase tracking-wider">MS Data Science</p>
-                <p className="text-xs font-semibold text-foreground">Indiana University</p>
-              </div>
-            </div>
-
-            {/* Stats row */}
-            <div className="flex items-center gap-5 mt-4">
-              {[
-                { value: "175K+", label: "Records" },
-                { value: "3.8", label: "GPA" },
-                { value: "7+", label: "Roles" },
-              ].map(({ value, label }) => (
-                <div key={label} className="text-center">
-                  <div className="text-xl font-display font-semibold gradient-text">{value}</div>
-                  <div className="text-[10px] font-mono text-muted-foreground uppercase tracking-wider">{label}</div>
+              <div className="absolute -bottom-3 -left-6 bg-card border border-border rounded-xl px-3 py-2 shadow-lg flex items-center gap-2">
+                <span className="text-lg">🎓</span>
+                <div>
+                  <p className="text-[10px] font-mono text-muted-foreground uppercase tracking-wider">MS '25 · GPA 3.8</p>
+                  <p className="text-xs font-semibold gradient-text">Indiana University</p>
                 </div>
-              ))}
+              </div>
             </div>
           </div>
 

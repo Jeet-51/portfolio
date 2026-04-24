@@ -286,3 +286,14 @@
 }
 
 #root { margin: 0 auto; }
+
+/* ── Subtle dot-grid background ── */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: -1;
+  background-image: radial-gradient(circle, hsl(var(--foreground) / 0.055) 1px, transparent 1px);
+  background-size: 28px 28px;
+}
