@@ -113,23 +113,6 @@ const experiences: Experience[] = [
   },
 ];
 
-/* Auto-highlight numbers/percentages */
-const BulletText = ({ text, color }: { text: string; color: string }) => {
-  const parts = text.split(/(\d[\d,]*(?:\.\d+)?[KkMm%+]?(?:\+)?)/g);
-  return (
-    <>
-      {parts.map((part, i) =>
-        /^\d[\d,]*(?:\.\d+)?[KkMm%+]?(?:\+)?$/.test(part) ? (
-          <span key={i} style={{ color }} className="font-bold">
-            {part}
-          </span>
-        ) : (
-          <span key={i}>{part}</span>
-        )
-      )}
-    </>
-  );
-};
 
 const ExperienceSection = () => {
   const scrollRef = useRef<HTMLDivElement>(null);
@@ -293,7 +276,7 @@ const ExperienceSection = () => {
                             className="mt-[7px] block w-1.5 h-1.5 rounded-full flex-shrink-0"
                             style={{ backgroundColor: exp.accentColor }}
                           />
-                          <BulletText text={b} color={exp.accentColor} />
+                          {b}
                         </li>
                       ))}
                     </ul>
