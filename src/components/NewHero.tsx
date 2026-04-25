@@ -100,10 +100,10 @@ const NewHero = () => {
               style={{ animationDelay: "0.2s" }}
             >
               <p className="text-base md:text-lg text-muted-foreground leading-relaxed">
-                MS in Data Science from Indiana University. I ship production AI systems — LLM pipelines, GPU-accelerated inference, RAG agents, and full-stack platforms — across healthcare, social impact analytics, and creator tech.
+                I build production systems, not demos. GPU inference servers, fraud detection pipelines, healthcare ML systems. Shipped, deployed, and measured against real numbers.
               </p>
               <p className="text-base md:text-lg text-muted-foreground leading-relaxed">
-                I care about clean, reliable code and building software that solves real problems for real people.
+                If it doesn&rsquo;t run in production, it doesn&rsquo;t count.
               </p>
             </div>
 
