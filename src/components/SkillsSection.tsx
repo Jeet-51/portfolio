@@ -73,8 +73,8 @@ const categories = [
 
 const SkillsSection = () => {
   return (
-    <div className="py-12">
-      <div className="space-y-4 mb-16">
+    <div className="py-2">
+      <div className="space-y-4 mb-10">
         <p className="text-xs font-mono text-primary uppercase tracking-[0.2em]">
           &gt;_ Toolkit
         </p>

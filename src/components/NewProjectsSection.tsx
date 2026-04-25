@@ -314,7 +314,7 @@ const ProjectCard = ({ project, index }: { project: Project; index: number }) =>
 
 const NewProjectsSection = () => {
   return (
-    <section className="py-28 px-6 md:px-12 relative z-10">
+    <section className="py-16 px-6 md:px-12 relative z-10">
       <div className="container mx-auto max-w-6xl">
         {/* Header */}
         <div className="mb-16">
@@ -342,7 +342,7 @@ const NewProjectsSection = () => {
         </div>
 
         {/* CTA */}
-        <div className="text-center mt-20">
+        <div className="text-center mt-12">
           <p className="text-muted-foreground mb-5 font-mono text-sm">
             Want to collaborate on something impactful?
           </p>

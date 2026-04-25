@@ -75,7 +75,7 @@ const Index = () => {
         </div>
 
         <ScrollReveal>
-          <section id="experience" className="py-32 px-6 md:px-12">
+          <section id="experience" className="py-16 px-6 md:px-12">
             <div className="container mx-auto max-w-6xl">
               <Suspense fallback={<LoadingSkeleton />}>
                 <LazyExperienceSection />
@@ -85,7 +85,7 @@ const Index = () => {
         </ScrollReveal>
 
         <ScrollReveal>
-          <section id="education" className="py-32 px-6 md:px-12">
+          <section id="education" className="py-16 px-6 md:px-12">
             <div className="container mx-auto max-w-6xl">
               <Suspense fallback={<LoadingSkeleton />}>
                 <LazyEducationSection />
@@ -101,7 +101,7 @@ const Index = () => {
         </ScrollReveal>
 
         <ScrollReveal>
-          <section id="skills" className="py-32 px-6 md:px-12">
+          <section id="skills" className="py-16 px-6 md:px-12">
             <div className="container mx-auto max-w-6xl">
               <Suspense fallback={<LoadingSkeleton />}>
                 <LazySkillsSection />
@@ -111,7 +111,7 @@ const Index = () => {
         </ScrollReveal>
 
         <ScrollReveal>
-          <section id="contact" className="py-32 px-6 md:px-12">
+          <section id="contact" className="py-16 px-6 md:px-12">
             <div className="container mx-auto max-w-6xl">
               <Suspense fallback={<LoadingSkeleton />}>
                 <LazyContactSection />
@@ -120,7 +120,7 @@ const Index = () => {
           </section>
         </ScrollReveal>
 
-        <footer className="border-t border-border py-14 mt-12">
+        <footer className="border-t border-border py-10 mt-6">
           <div className="container mx-auto max-w-6xl px-6 md:px-12">
             <div className="flex flex-col items-center gap-5">
               <div className="flex items-center gap-5">

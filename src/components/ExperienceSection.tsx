@@ -161,7 +161,7 @@ const ExperienceSection = () => {
   }, [activeIdx]);
 
   return (
-    <div className="py-12 relative z-10">
+    <div className="py-2 relative z-10">
       {/* Header */}
       <div className="space-y-4 mb-12">
         <p className="text-xs font-mono text-primary uppercase tracking-[0.2em]">
